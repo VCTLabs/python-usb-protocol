@@ -278,4 +278,3 @@ AudioControlInterruptEndpointDescriptor = DescriptorFormat(
     "bRefresh"            / DescriptorField(description="Reset to 0"),
     "bSynchAddress"       / DescriptorField(description="Reset to 0"),
 )
-

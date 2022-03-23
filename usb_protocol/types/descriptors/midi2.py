@@ -22,7 +22,7 @@ from ..descriptor import (
 )
 
 from ..descriptors.uac1 import (
-    AudioInterfaceClassCodes,
+    AudioInterfaceClassCode,
     AudioInterfaceSubclassCodes,
     AudioClassSpecificDescriptorTypes,
     AudioClassSpecificACInterfaceDescriptorSubtypes,
