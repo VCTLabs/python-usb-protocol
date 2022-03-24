@@ -111,7 +111,7 @@ StringDescriptor = DescriptorFormat(
 
 
 StringLanguageDescriptorLength = \
-     construct.Rebuild(construct.Int8ul, construct.len_(this.wLANGID) * 2 + 2)
+    construct.Rebuild(construct.Int8ul, construct.len_(this.wLANGID) * 2 + 2)
 
 StringLanguageDescriptor = DescriptorFormat(
     "bLength"             / StringLanguageDescriptorLength,

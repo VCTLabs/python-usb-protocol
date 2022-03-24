@@ -664,7 +664,7 @@ FeatureUnitDescriptor = DescriptorFormat(
     "bDescriptorSubtype"  / DescriptorNumber(AudioClassSpecificACInterfaceDescriptorSubtypes.FEATURE_UNIT),
     "bUnitID"             / DescriptorField(description="unique identifier for the unit within the audio function."),
     "bSourceID"           / DescriptorField(description="ID of the unit or terminal which is connected to this terminal"),
-    "bmaControls"         / construct.Array((construct.this.bLength - 6)//4, construct.Int32ul) * "The control bitmap for all channels",
+    "bmaControls"         / construct.Array((construct.this.bLength - 6) // 4, construct.Int32ul) * "The control bitmap for all channels",
     "iFeature"            / DescriptorField(description="ID of the feature unit string descriptor", default=0),
 )
 
@@ -809,15 +809,15 @@ class UAC2Cases(unittest.TestCase):
     def test_parse_interface_association_descriptor(self):
         # Parse the relevant descriptor ...
         parsed = InterfaceAssociationDescriptor.parse([
-                0x08,  # Length
-                0x0B,  # Type
-                0x01,  # First interface
-                0x02,  # Interface count
-                0x01,  # Function class
-                0x00,  # Function subclass
-                0x20,  # Function protocol
-                0x42   # Function name
-            ])
+            0x08,  # Length
+            0x0B,  # Type
+            0x01,  # First interface
+            0x02,  # Interface count
+            0x01,  # Function class
+            0x00,  # Function subclass
+            0x20,  # Function protocol
+            0x42   # Function name
+        ])
 
         # ... and check the descriptor's fields.
         self.assertEqual(parsed.bLength, 8)
@@ -839,29 +839,29 @@ class UAC2Cases(unittest.TestCase):
 
         # ... and check the binary output
         self.assertEqual(data, bytes([
-                0x08,  # Length
-                0x0B,  # Type
-                0x01,  # First interface
-                0x02,  # Interface count
-                0x01,  # Function class
-                0x00,  # Function subclass
-                0x20,  # Function protocol
-                0x42   # Function name
-            ]))
+            0x08,  # Length
+            0x0B,  # Type
+            0x01,  # First interface
+            0x02,  # Interface count
+            0x01,  # Function class
+            0x00,  # Function subclass
+            0x20,  # Function protocol
+            0x42   # Function name
+        ]))
 
     def test_parse_standard_audio_control_interface_descriptor(self):
         # Parse the relevant descriptor ...
         parsed = StandardAudioControlInterfaceDescriptor.parse([
-                0x09,  # Length
-                0x04,  # Type
-                0x01,  # Interface number
-                0x02,  # Alternate settings
-                0x00,  # Number of endpoints
-                0x01,  # Interface class
-                0x01,  # Interface subclass
-                0x20,  # Interface protocol
-                0x42   # Interface name
-            ])
+            0x09,  # Length
+            0x04,  # Type
+            0x01,  # Interface number
+            0x02,  # Alternate settings
+            0x00,  # Number of endpoints
+            0x01,  # Interface class
+            0x01,  # Interface subclass
+            0x20,  # Interface protocol
+            0x42   # Interface name
+        ])
 
         # ... and check the descriptor's fields.
         self.assertEqual(parsed.bLength, 9)
@@ -885,16 +885,16 @@ class UAC2Cases(unittest.TestCase):
 
         # ... and check the binary output
         self.assertEqual(data, bytes([
-                0x09,  # Length
-                0x04,  # Type
-                0x01,  # Interface number
-                0x02,  # Alternate settings
-                0x00,  # Number of endpoints
-                0x01,  # Interface class
-                0x01,  # Interface subclass
-                0x20,  # Interface protocol
-                0x42   # Interface Name
-            ]))
+            0x09,  # Length
+            0x04,  # Type
+            0x01,  # Interface number
+            0x02,  # Alternate settings
+            0x00,  # Number of endpoints
+            0x01,  # Interface class
+            0x01,  # Interface subclass
+            0x20,  # Interface protocol
+            0x42   # Interface Name
+        ]))
 
     def test_parse_clock_source_descriptor(self):
         # Parse the relevant descriptor ...
@@ -907,7 +907,7 @@ class UAC2Cases(unittest.TestCase):
             0x01,  # Controls
             0x01,  # Associate terminal
             0x42   # Clock source name
-            ])
+        ])
 
         # ... and check the descriptor's fields.
         self.assertEqual(parsed.bLength, 8)
@@ -931,32 +931,32 @@ class UAC2Cases(unittest.TestCase):
 
         # ... and check the binary output
         self.assertEqual(data, bytes([
-                0x08,  # Length
-                0x24,  # Type
-                0x0A,  # Subtype
-                0x01,  # Clock ID
-                0x01,  # Attributes
-                0x01,  # Controls
-                0x01,  # Associate terminal
-                0x42   # Clock source name
-            ]))
+            0x08,  # Length
+            0x24,  # Type
+            0x0A,  # Subtype
+            0x01,  # Clock ID
+            0x01,  # Attributes
+            0x01,  # Controls
+            0x01,  # Associate terminal
+            0x42   # Clock source name
+        ]))
 
     def test_parse_input_terminal_descriptor(self):
         # Parse the relevant descriptor ...
         parsed = InputTerminalDescriptor.parse([
-                0x11,                    # Length
-                0x24,                    # Type
-                0x02,                    # Subtype
-                0x01,                    # Terminal ID
-                0x01, 0x01,              # Terminal type
-                0x00,                    # Associated terminal
-                0x01,                    # Clock ID
-                0x02,                    # Number of channels
-                0x03, 0x00, 0x00, 0x00,  # Channel configuration
-                0x23,                    # First channel name
-                0x05, 0x00,              # Controls
-                0x42                     # Terminal name
-            ])
+            0x11,                    # Length
+            0x24,                    # Type
+            0x02,                    # Subtype
+            0x01,                    # Terminal ID
+            0x01, 0x01,              # Terminal type
+            0x00,                    # Associated terminal
+            0x01,                    # Clock ID
+            0x02,                    # Number of channels
+            0x03, 0x00, 0x00, 0x00,  # Channel configuration
+            0x23,                    # First channel name
+            0x05, 0x00,              # Controls
+            0x42                     # Terminal name
+        ])
 
         # ... and check the descriptor's fields.
         self.assertEqual(parsed.bLength, 17)
@@ -987,34 +987,34 @@ class UAC2Cases(unittest.TestCase):
 
         # ... and check the binary output
         self.assertEqual(data, bytes([
-                0x11,                    # Length
-                0x24,                    # Type
-                0x02,                    # Subtype
-                0x01,                    # Terminal ID
-                0x01, 0x01,              # Terminal type
-                0x00,                    # Associated terminal
-                0x01,                    # Clock ID
-                0x02,                    # Number of channels
-                0x03, 0x00, 0x00, 0x00,  # Channel configuration
-                0x23,                    # First channel name
-                0x05, 0x00,              # Controls
-                0x42                     # Terminal name
-            ]))
+            0x11,                    # Length
+            0x24,                    # Type
+            0x02,                    # Subtype
+            0x01,                    # Terminal ID
+            0x01, 0x01,              # Terminal type
+            0x00,                    # Associated terminal
+            0x01,                    # Clock ID
+            0x02,                    # Number of channels
+            0x03, 0x00, 0x00, 0x00,  # Channel configuration
+            0x23,                    # First channel name
+            0x05, 0x00,              # Controls
+            0x42                     # Terminal name
+        ]))
 
     def test_parse_output_terminal_descriptor(self):
         # Parse the relevant descriptor ...
         parsed = OutputTerminalDescriptor.parse([
-                0x0C,        # Length
-                0x24,        # Type
-                0x03,        # Subtype
-                0x06,        # Terminal ID
-                0x01, 0x03,  # Terminal type
-                0x00,        # Associated terminal
-                0x09,        # Source ID
-                0x01,        # Clock ID
-                0x00, 0x00,  # Controls
-                0x42         # Terminal name
-            ])
+            0x0C,        # Length
+            0x24,        # Type
+            0x03,        # Subtype
+            0x06,        # Terminal ID
+            0x01, 0x03,  # Terminal type
+            0x00,        # Associated terminal
+            0x09,        # Source ID
+            0x01,        # Clock ID
+            0x00, 0x00,  # Controls
+            0x42         # Terminal name
+        ])
 
         # ... and check the descriptor's fields.
         self.assertEqual(parsed.bLength, 12)
@@ -1040,31 +1040,31 @@ class UAC2Cases(unittest.TestCase):
 
         # ... and check the binary output
         self.assertEqual(data, bytes([
-                0x0C,        # Length
-                0x24,        # Type
-                0x03,        # Subtype
-                0x06,        # Terminal ID
-                0x01, 0x03,  # Terminal type
-                0x00,        # Associated terminal
-                0x09,        # Source ID
-                0x01,        # Clock ID
-                0x00, 0x00,  # Controls
-                0x42         # Terminal name
-            ]))
+            0x0C,        # Length
+            0x24,        # Type
+            0x03,        # Subtype
+            0x06,        # Terminal ID
+            0x01, 0x03,  # Terminal type
+            0x00,        # Associated terminal
+            0x09,        # Source ID
+            0x01,        # Clock ID
+            0x00, 0x00,  # Controls
+            0x42         # Terminal name
+        ]))
 
     def test_parse_feature_unit_descriptor(self):
         # Parse the relevant descriptor ...
         parsed = FeatureUnitDescriptor.parse([
-                0x12,                    # Length
-                0x24,                    # Type
-                0x06,                    # Subtype
-                0x06,                    # Unit ID
-                0x09,                    # Source ID
-                0x01, 0x00, 0x00, 0x00,  # Controls 0
-                0x02, 0x00, 0x00, 0x00,  # Controls 1
-                0x03, 0x00, 0x00, 0x00,  # Controls 2
-                0x42                     # Unit name
-            ])
+            0x12,                    # Length
+            0x24,                    # Type
+            0x06,                    # Subtype
+            0x06,                    # Unit ID
+            0x09,                    # Source ID
+            0x01, 0x00, 0x00, 0x00,  # Controls 0
+            0x02, 0x00, 0x00, 0x00,  # Controls 1
+            0x03, 0x00, 0x00, 0x00,  # Controls 2
+            0x42                     # Unit name
+        ])
 
         # ... and check the descriptor's fields.
         self.assertEqual(parsed.bLength, 18)
@@ -1086,30 +1086,30 @@ class UAC2Cases(unittest.TestCase):
 
         # ... and check the binary output
         self.assertEqual(data, bytes([
-                0x12,                    # Length
-                0x24,                    # Type
-                0x06,                    # Subtype
-                0x06,                    # Unit ID
-                0x09,                    # Source ID
-                0x01, 0x00, 0x00, 0x00,  # Controls 0
-                0x02, 0x00, 0x00, 0x00,  # Controls 1
-                0x03, 0x00, 0x00, 0x00,  # Controls 2
-                0x42                     # Unit name
-            ]))
+            0x12,                    # Length
+            0x24,                    # Type
+            0x06,                    # Subtype
+            0x06,                    # Unit ID
+            0x09,                    # Source ID
+            0x01, 0x00, 0x00, 0x00,  # Controls 0
+            0x02, 0x00, 0x00, 0x00,  # Controls 1
+            0x03, 0x00, 0x00, 0x00,  # Controls 2
+            0x42                     # Unit name
+        ]))
 
     def test_parse_audio_streaming_interface_descriptor(self):
         # Parse the relevant descriptor ...
         parsed = AudioStreamingInterfaceDescriptor.parse([
-                0x09,  # Length
-                0x04,  # Type
-                0x02,  # Interface number
-                0x03,  # Alternate setting
-                0x01,  # Number of endpoints
-                0x01,  # Interface class
-                0x02,  # Interface subclass
-                0x20,  # Interface protocol
-                0x42   # Interface name
-            ])
+            0x09,  # Length
+            0x04,  # Type
+            0x02,  # Interface number
+            0x03,  # Alternate setting
+            0x01,  # Number of endpoints
+            0x01,  # Interface class
+            0x02,  # Interface subclass
+            0x20,  # Interface protocol
+            0x42   # Interface name
+        ])
 
         # ... and check the descriptor's fields.
         self.assertEqual(parsed.bLength, 9)
@@ -1133,31 +1133,31 @@ class UAC2Cases(unittest.TestCase):
 
         # ... and check the binary output
         self.assertEqual(data, bytes([
-                0x09,  # Length
-                0x04,  # Type
-                0x02,  # Interface number
-                0x03,  # Alternate setting
-                0x01,  # Number of endpoints
-                0x01,  # Interface class
-                0x02,  # Interface subclass
-                0x20,  # Interface protocol
-                0x42   # Interface name
-            ]))
+            0x09,  # Length
+            0x04,  # Type
+            0x02,  # Interface number
+            0x03,  # Alternate setting
+            0x01,  # Number of endpoints
+            0x01,  # Interface class
+            0x02,  # Interface subclass
+            0x20,  # Interface protocol
+            0x42   # Interface name
+        ]))
 
     def test_parse_class_specific_audio_streaming_interface_descriptor(self):
         # Parse the relevant descriptor ...
         parsed = ClassSpecificAudioStreamingInterfaceDescriptor.parse([
-                0x10,                    # Length
-                0x24,                    # Type
-                0x01,                    # Subtype
-                0x03,                    # Terminal ID
-                0x00,                    # Controls
-                0x01,                    # Format type
-                0x01, 0x00, 0x00, 0x00,  # Formats
-                0x02,                    # Number of channels
-                0x00, 0x00, 0x00, 0x00,  # Channel config
-                0x42                     # First channel name
-            ])
+            0x10,                    # Length
+            0x24,                    # Type
+            0x01,                    # Subtype
+            0x03,                    # Terminal ID
+            0x00,                    # Controls
+            0x01,                    # Format type
+            0x01, 0x00, 0x00, 0x00,  # Formats
+            0x02,                    # Number of channels
+            0x00, 0x00, 0x00, 0x00,  # Channel config
+            0x42                     # First channel name
+        ])
 
         # ... and check the descriptor's fields.
         self.assertEqual(parsed.bLength, 16)
@@ -1185,28 +1185,28 @@ class UAC2Cases(unittest.TestCase):
 
         # ... and check the binary output
         self.assertEqual(data, bytes([
-                0x10,                    # Length
-                0x24,                    # Type
-                0x01,                    # Subtype
-                0x03,                    # Terminal ID
-                0x00,                    # Controls
-                0x01,                    # Format type
-                0x01, 0x00, 0x00, 0x00,  # Formats
-                0x02,                    # Number of channels
-                0x00, 0x00, 0x00, 0x00,  # Channel config
-                0x42                     # First channel name
-            ]))
+            0x10,                    # Length
+            0x24,                    # Type
+            0x01,                    # Subtype
+            0x03,                    # Terminal ID
+            0x00,                    # Controls
+            0x01,                    # Format type
+            0x01, 0x00, 0x00, 0x00,  # Formats
+            0x02,                    # Number of channels
+            0x00, 0x00, 0x00, 0x00,  # Channel config
+            0x42                     # First channel name
+        ]))
 
     def test_parse_type_i_format_type_descriptor(self):
         # Parse the relevant descriptor ...
         parsed = TypeIFormatTypeDescriptor.parse([
-                0x06,  # Length
-                0x24,  # Type
-                0x02,  # Subtype
-                0x01,  # Format type
-                0x02,  # Subslot size
-                0x10,  # Bit resolution
-            ])
+            0x06,  # Length
+            0x24,  # Type
+            0x02,  # Subtype
+            0x01,  # Format type
+            0x02,  # Subslot size
+            0x10,  # Bit resolution
+        ])
 
         # ... and check the descriptor's fields.
         self.assertEqual(parsed.bLength, 6)
@@ -1225,27 +1225,27 @@ class UAC2Cases(unittest.TestCase):
 
         # ... and check the binary output
         self.assertEqual(data, bytes([
-                0x06,  # Length
-                0x24,  # Type
-                0x02,  # Subtype
-                0x01,  # Format type
-                0x02,  # Subslot size
-                0x10,  # Bit resolution
-            ]))
+            0x06,  # Length
+            0x24,  # Type
+            0x02,  # Subtype
+            0x01,  # Format type
+            0x02,  # Subslot size
+            0x10,  # Bit resolution
+        ]))
 
     def test_parse_extended_type_i_format_type_descriptor(self):
         # Parse the relevant descriptor ...
         parsed = ExtendedTypeIFormatTypeDescriptor.parse([
-                0x09,  # Length
-                0x24,  # Type
-                0x02,  # Subtype
-                0x81,  # Format type
-                0x02,  # Subslot size
-                0x10,  # Bit resolution
-                0x0A,  # Header length
-                0x04,  # Control size
-                0x00,  # Side band protocol
-            ])
+            0x09,  # Length
+            0x24,  # Type
+            0x02,  # Subtype
+            0x81,  # Format type
+            0x02,  # Subslot size
+            0x10,  # Bit resolution
+            0x0A,  # Header length
+            0x04,  # Control size
+            0x00,  # Side band protocol
+        ])
 
         # ... and check the descriptor's fields.
         self.assertEqual(parsed.bLength, 9)
@@ -1270,27 +1270,27 @@ class UAC2Cases(unittest.TestCase):
 
         # ... and check the binary output
         self.assertEqual(data, bytes([
-                0x09,  # Length
-                0x24,  # Type
-                0x02,  # Subtype
-                0x81,  # Format type
-                0x02,  # Subslot size
-                0x10,  # Bit resolution
-                0x0A,  # Header length
-                0x04,  # Control size
-                0x00,  # Side band protocol
-            ]))
+            0x09,  # Length
+            0x24,  # Type
+            0x02,  # Subtype
+            0x81,  # Format type
+            0x02,  # Subslot size
+            0x10,  # Bit resolution
+            0x0A,  # Header length
+            0x04,  # Control size
+            0x00,  # Side band protocol
+        ]))
 
     def test_parse_type_ii_format_type_descriptor(self):
         # Parse the relevant descriptor ...
         parsed = TypeIIFormatTypeDescriptor.parse([
-                0x08,        # Length
-                0x24,        # Type
-                0x02,        # Subtype
-                0x02,        # Format type
-                0x40, 0x00,  # Maximum bit rate
-                0x20, 0x00,  # Slots per frame
-            ])
+            0x08,        # Length
+            0x24,        # Type
+            0x02,        # Subtype
+            0x02,        # Format type
+            0x40, 0x00,  # Maximum bit rate
+            0x20, 0x00,  # Slots per frame
+        ])
 
         # ... and check the descriptor's fields.
         self.assertEqual(parsed.bLength, 8)
@@ -1309,26 +1309,26 @@ class UAC2Cases(unittest.TestCase):
 
         # ... and check the binary output
         self.assertEqual(data, bytes([
-                0x08,        # Length
-                0x24,        # Type
-                0x02,        # Subtype
-                0x02,        # Format type
-                0x40, 0x00,  # Maximum bit rate
-                0x20, 0x00,  # Slots per frame
-            ]))
+            0x08,        # Length
+            0x24,        # Type
+            0x02,        # Subtype
+            0x02,        # Format type
+            0x40, 0x00,  # Maximum bit rate
+            0x20, 0x00,  # Slots per frame
+        ]))
 
     def test_parse_extended_type_ii_format_type_descriptor(self):
         # Parse the relevant descriptor ...
         parsed = ExtendedTypeIIFormatTypeDescriptor.parse([
-                0x0A,        # Length
-                0x24,        # Type
-                0x02,        # Subtype
-                0x82,        # Format type
-                0x40, 0x00,  # Maximum bit rate
-                0x20, 0x00,  # Samples per frame
-                0x0A,        # Header length
-                0x00,        # Side band protocol
-            ])
+            0x0A,        # Length
+            0x24,        # Type
+            0x02,        # Subtype
+            0x82,        # Format type
+            0x40, 0x00,  # Maximum bit rate
+            0x20, 0x00,  # Samples per frame
+            0x0A,        # Header length
+            0x00,        # Side band protocol
+        ])
 
         # ... and check the descriptor's fields.
         self.assertEqual(parsed.bLength, 10)
@@ -1351,26 +1351,26 @@ class UAC2Cases(unittest.TestCase):
 
         # ... and check the binary output
         self.assertEqual(data, bytes([
-                0x0A,        # Length
-                0x24,        # Type
-                0x02,        # Subtype
-                0x82,        # Format type
-                0x40, 0x00,  # Maximum bit rate
-                0x20, 0x00,  # Samples per frame
-                0x0A,        # Header length
-                0x00,        # Side band protocol
-            ]))
+            0x0A,        # Length
+            0x24,        # Type
+            0x02,        # Subtype
+            0x82,        # Format type
+            0x40, 0x00,  # Maximum bit rate
+            0x20, 0x00,  # Samples per frame
+            0x0A,        # Header length
+            0x00,        # Side band protocol
+        ]))
 
     def test_parse_type_iii_format_type_descriptor(self):
         # Parse the relevant descriptor ...
         parsed = TypeIIIFormatTypeDescriptor.parse([
-                0x06,  # Length
-                0x24,  # Type
-                0x02,  # Subtype
-                0x03,  # Format type
-                0x02,  # Subslot size
-                0x10,  # Bit resolution
-            ])
+            0x06,  # Length
+            0x24,  # Type
+            0x02,  # Subtype
+            0x03,  # Format type
+            0x02,  # Subslot size
+            0x10,  # Bit resolution
+        ])
 
         # ... and check the descriptor's fields.
         self.assertEqual(parsed.bLength, 6)
@@ -1388,26 +1388,26 @@ class UAC2Cases(unittest.TestCase):
 
         # ... and check the binary output
         self.assertEqual(data, bytes([
-                0x06,  # Length
-                0x24,  # Type
-                0x02,  # Subtype
-                0x03,  # Format type
-                0x02,  # Subslot size
-                0x10,  # Bit resolution
-            ]))
+            0x06,  # Length
+            0x24,  # Type
+            0x02,  # Subtype
+            0x03,  # Format type
+            0x02,  # Subslot size
+            0x10,  # Bit resolution
+        ]))
 
     def test_parse_extended_type_iii_format_type_descriptor(self):
         # Parse the relevant descriptor ...
         parsed = ExtendedTypeIIIFormatTypeDescriptor.parse([
-                0x08,  # Length
-                0x24,  # Type
-                0x02,  # Subtype
-                0x83,  # Format type
-                0x02,  # Subslot size
-                0x10,  # Bit resolution
-                0x0A,  # Header length
-                0x00,  # Side band protocol
-            ])
+            0x08,  # Length
+            0x24,  # Type
+            0x02,  # Subtype
+            0x83,  # Format type
+            0x02,  # Subslot size
+            0x10,  # Bit resolution
+            0x0A,  # Header length
+            0x00,  # Side band protocol
+        ])
 
         # ... and check the descriptor's fields.
         self.assertEqual(parsed.bLength, 8)
@@ -1429,27 +1429,27 @@ class UAC2Cases(unittest.TestCase):
 
         # ... and check the binary output
         self.assertEqual(data, bytes([
-                0x08,  # Length
-                0x24,  # Type
-                0x02,  # Subtype
-                0x83,  # Format type
-                0x02,  # Subslot size
-                0x10,  # Bit resolution
-                0x0A,  # Header length
-                0x00,  # Side band protocol
-            ]))
+            0x08,  # Length
+            0x24,  # Type
+            0x02,  # Subtype
+            0x83,  # Format type
+            0x02,  # Subslot size
+            0x10,  # Bit resolution
+            0x0A,  # Header length
+            0x00,  # Side band protocol
+        ]))
 
     def test_parse_class_specific_audio_streaming_isochronous_audio_data_endpoint_descriptor(self):
         # Parse the relevant descriptor ...
         parsed = ClassSpecificAudioStreamingIsochronousAudioDataEndpointDescriptor.parse([
-                0x08,       # Length
-                0x25,       # Type
-                0x01,       # Subtype
-                0x00,       # Attributes
-                0x00,       # Controls
-                0x01,       # Lock Delay Units
-                0x00, 0x00  # Lock delay
-            ])
+            0x08,       # Length
+            0x25,       # Type
+            0x01,       # Subtype
+            0x00,       # Attributes
+            0x00,       # Controls
+            0x01,       # Lock Delay Units
+            0x00, 0x00  # Lock delay
+        ])
 
         # ... and check the descriptor's fields.
         self.assertEqual(parsed.bLength, 8)
@@ -1471,11 +1471,11 @@ class UAC2Cases(unittest.TestCase):
 
         # ... and check the binary output
         self.assertEqual(data, bytes([
-                0x08,       # Length
-                0x25,       # Type
-                0x01,       # Subtype
-                0x00,       # Attributes
-                0x00,       # Controls
-                0x01,       # Lock Delay Units
-                0x00, 0x00  # Lock delay
-            ]))
+            0x08,       # Length
+            0x25,       # Type
+            0x01,       # Subtype
+            0x00,       # Attributes
+            0x00,       # Controls
+            0x01,       # Lock Delay Units
+            0x00, 0x00  # Lock delay
+        ]))

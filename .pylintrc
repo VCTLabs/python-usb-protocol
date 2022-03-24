@@ -7,39 +7,11 @@ profile=no
 
 jobs=1
 
-limit-inference-results=100
-
-suggestion-mode=yes
+suggestion-mode=no
 
 [MESSAGES CONTROL]
 disable=
     too-few-public-methods,
-
-
-[REPORTS]
-#output-format=colorized
-output-format=text
-
-reports=no
-
-score=yes
-
-[SIMILARITIES]
-
-# Comments are removed from the similarity computation
-ignore-comments=yes
-
-# Docstrings are removed from the similarity computation
-ignore-docstrings=yes
-
-# Imports are removed from the similarity computation
-ignore-imports=no
-
-# Signatures are removed from the similarity computation
-ignore-signatures=no
-
-# Minimum lines number of a similarity.
-min-similarity-lines=4
 
 [FORMAT]
 max-line-length=250
