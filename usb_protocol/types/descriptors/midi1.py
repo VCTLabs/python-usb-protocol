@@ -101,7 +101,7 @@ MidiOutJackDescriptorHead = DescriptorFormat(
 
 MidiOutJackDescriptorElement = DescriptorFormat(
     "baSourceID"          / construct.Int8ul, # ID of the Entity to which the first Input Pin of this MIDI OUT Jack is connected
-    "BaSourcePin"         / construct.Int8ul, #Output Pin number of the Entity to which the first Input Pin of this MIDI OUT Jack is connected
+    "BaSourcePin"         / construct.Int8ul, # Output Pin number of the Entity to which the first Input Pin of this MIDI OUT Jack is connected
 )
 
 MidiOutJackDescriptorFoot = DescriptorFormat(

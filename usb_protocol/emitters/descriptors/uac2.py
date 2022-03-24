@@ -6,8 +6,8 @@
 
 
 from .. import emitter_for_format
+from ..descriptor import ComplexDescriptorEmitter
 from ...types.descriptors.uac2 import *
-from ...emitters.descriptor    import ComplexDescriptorEmitter
 
 # Create our emitters.
 InterfaceAssociationDescriptorEmitter          = emitter_for_format(InterfaceAssociationDescriptor)
