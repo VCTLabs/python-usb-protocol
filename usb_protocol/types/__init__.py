@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 #
 # This file is part of usb-protocol.
 #
@@ -620,6 +621,3 @@ class USBStandardRequests(IntEnum):
     SET_INTERFACE_DS     = 23
     SET_SEL              = 48
     SET_ISOCH_DELAY      = 49
-
-
-

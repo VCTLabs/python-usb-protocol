@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 #
 # This file is part of usb-protocol.
 #
@@ -81,5 +82,3 @@ class ComplexDescriptorEmitter(ConstructEmitter):
             result.extend(sub)
 
         return bytes(result)
-
-
