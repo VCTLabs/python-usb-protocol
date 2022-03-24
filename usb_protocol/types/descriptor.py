@@ -4,7 +4,6 @@
 #
 """ Type elements for defining USB descriptors. """
 
-import unittest
 import construct
 
 class DescriptorFormat(construct.Struct):

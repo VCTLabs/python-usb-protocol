@@ -4,7 +4,6 @@
 #
 """ Convenience emitters for USB Audio Class 2 descriptors. """
 
-from contextlib import contextmanager
 
 from .. import emitter_for_format
 from ...types.descriptors.uac2 import *

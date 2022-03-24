@@ -4,7 +4,7 @@
 #
 """ USB types -- defines enumerations that describe standard USB types """
 
-from enum import Enum, IntFlag, IntEnum
+from enum import IntEnum, IntFlag
 
 class USBDirection(IntEnum):
     """ Class representing USB directions. """
