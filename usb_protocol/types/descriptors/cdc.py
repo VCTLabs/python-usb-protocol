@@ -4,7 +4,6 @@
 #
 """ Structures describing Communications Device Class descriptors. """
 
-import unittest
 from enum import IntEnum
 
 import construct
