@@ -60,7 +60,6 @@ class ComplexDescriptorEmitter(ConstructEmitter):
 
     def _pre_emit(self):
         """ Performs any manipulations needed on this object before emission. """
-        pass
 
 
     def emit(self, include_subordinates=True):
