@@ -246,5 +246,5 @@ class DescriptorField(construct.Subconstruct):
 
 # Convenience type that gets a descriptor's own length.
 DescriptorLength = \
-     construct.Rebuild(construct.Int8ul, construct.len_(construct.this)) \
-     * "Descriptor Length"
+    construct.Rebuild(construct.Int8ul, construct.len_(construct.this)) \
+    * "Descriptor Length"
