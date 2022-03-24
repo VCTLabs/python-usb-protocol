@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """ Convenience aliases for versions of descriptor structs that support parsing incomplete binary data. """
 
 from .. import standard
