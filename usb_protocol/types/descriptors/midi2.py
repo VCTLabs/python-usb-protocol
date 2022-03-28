@@ -8,26 +8,23 @@
     [Midi20] refers to "Universal Serial Bus Device Class Definition for MIDI Devices", Release 2.0, May 5, 2020
 """
 
-import construct
-
 from enum import IntEnum
 
+import construct
+
 from .. import DescriptorTypes, USBTransferType
-
-from .standard import StandardDescriptorNumbers
-
 from ..descriptor import (
     DescriptorField,
-    DescriptorNumber,
     DescriptorFormat,
+    DescriptorNumber,
 )
-
 from ..descriptors.uac1 import (
     AudioInterfaceClassCodes,
-    AudioInterfaceSubclassCodes,
-    AudioClassSpecificDescriptorTypes,
     AudioClassSpecificACInterfaceDescriptorSubtypes,
+    AudioClassSpecificDescriptorTypes,
+    AudioInterfaceSubclassCodes,
 )
+from .standard import StandardDescriptorNumbers
 
 
 class MidiStreamingInterfaceDescriptorTypes(IntEnum):

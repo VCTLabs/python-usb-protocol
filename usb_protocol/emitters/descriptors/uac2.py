@@ -5,9 +5,9 @@
 """ Convenience emitters for USB Audio Class 2 descriptors. """
 
 
+from ...types.descriptors.uac2 import *
 from .. import emitter_for_format
 from ..descriptor import ComplexDescriptorEmitter
-from ...types.descriptors.uac2 import *
 
 # Create our emitters.
 InterfaceAssociationDescriptorEmitter          = emitter_for_format(InterfaceAssociationDescriptor)

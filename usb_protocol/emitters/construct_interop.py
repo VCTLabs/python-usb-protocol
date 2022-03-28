@@ -5,6 +5,7 @@
 """ Helpers for creating construct-related emitters. """
 
 import unittest
+
 import construct
 
 

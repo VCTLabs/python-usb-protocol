@@ -13,15 +13,15 @@ import unittest
 from enum import IntEnum
 
 import construct
-from   construct  import this, Default
+from construct import Default, this
 
 from .. import LanguageIDs
 from ..descriptor import (
-    DescriptorField,
-    DescriptorNumber,
-    DescriptorFormat,
     BCDFieldAdapter,
-    DescriptorLength
+    DescriptorField,
+    DescriptorFormat,
+    DescriptorLength,
+    DescriptorNumber,
 )
 
 
