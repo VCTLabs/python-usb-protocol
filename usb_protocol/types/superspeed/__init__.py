@@ -6,6 +6,7 @@
 
 from enum import IntEnum
 
+
 class LinkCommand(IntEnum):
     """ Constant values (including both class and type) for link commands. """
 

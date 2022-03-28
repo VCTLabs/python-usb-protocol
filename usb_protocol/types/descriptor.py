@@ -6,6 +6,7 @@
 
 import construct
 
+
 class DescriptorFormat(construct.Struct):
     """
     Creates a Construct structure for a USB descriptor, and a corresponding version that

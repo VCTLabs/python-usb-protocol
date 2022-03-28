@@ -6,9 +6,9 @@
 
 from collections import defaultdict
 
+from ..types.descriptor import DescriptorFormat
 from . import ConstructEmitter
 
-from ..types.descriptor import DescriptorFormat
 
 class ComplexDescriptorEmitter(ConstructEmitter):
     """ Base class for emitting complex descriptors, which contain nested subordinates. """
