@@ -6,6 +6,7 @@
 
 from enum import IntEnum, IntFlag
 
+
 class USBDirection(IntEnum):
     """ Class representing USB directions. """
     OUT = 0
