@@ -5,15 +5,12 @@
 """ Convenience emitters for simple, standard descriptors. """
 
 import unittest
-
 from contextlib import contextmanager
 
-from ..           import emitter_for_format
-from ..descriptor import ComplexDescriptorEmitter
-
-from ...types     import LanguageIDs
+from ...types import LanguageIDs
 from ...types.descriptors.standard import *
-
+from .. import emitter_for_format
+from ..descriptor import ComplexDescriptorEmitter
 
 # Create our basic emitters...
 DeviceDescriptorEmitter         = emitter_for_format(DeviceDescriptor)

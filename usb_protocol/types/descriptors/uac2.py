@@ -12,18 +12,19 @@
     NOTE: This is not complete yet and will be extended as needed
 """
 
-from usb_protocol.emitters import descriptor
-from enum                  import IntEnum
+import unittest
+from enum import IntEnum
 
 import construct
 
-from .standard import StandardDescriptorNumbers
+from usb_protocol.emitters import descriptor
 
 from ..descriptor import (
     DescriptorField,
-    DescriptorNumber,
     DescriptorFormat,
+    DescriptorNumber,
 )
+from .standard import StandardDescriptorNumbers
 
 
 class AudioInterfaceClassCodes(IntEnum):
