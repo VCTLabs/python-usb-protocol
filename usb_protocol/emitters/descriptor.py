@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 #
 # This file is part of usb-protocol.
 #
@@ -5,9 +6,9 @@
 
 from collections import defaultdict
 
+from ..types.descriptor import DescriptorFormat
 from . import ConstructEmitter
 
-from ..types.descriptor import DescriptorFormat
 
 class ComplexDescriptorEmitter(ConstructEmitter):
     """ Base class for emitting complex descriptors, which contain nested subordinates. """
@@ -59,7 +60,6 @@ class ComplexDescriptorEmitter(ConstructEmitter):
 
     def _pre_emit(self):
         """ Performs any manipulations needed on this object before emission. """
-        pass
 
 
     def emit(self, include_subordinates=True):
@@ -81,5 +81,3 @@ class ComplexDescriptorEmitter(ConstructEmitter):
             result.extend(sub)
 
         return bytes(result)
-
-

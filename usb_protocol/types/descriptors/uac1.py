@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 #
 # This file is part of usb-protocol.
 #
@@ -9,17 +10,16 @@
     [TermT10] refers to "Universal Serial Bus Device Class Definition for Terminal Types", Release 1.0, March 18, 1998
 """
 
-import construct
-
 from enum import IntEnum
 
-from .standard import StandardDescriptorNumbers
+import construct
 
 from ..descriptor import (
     DescriptorField,
-    DescriptorNumber,
     DescriptorFormat,
+    DescriptorNumber,
 )
+from .standard import StandardDescriptorNumbers
 
 
 class AudioInterfaceClassCodes(IntEnum):
@@ -278,4 +278,3 @@ AudioControlInterruptEndpointDescriptor = DescriptorFormat(
     "bRefresh"            / DescriptorField(description="Reset to 0"),
     "bSynchAddress"       / DescriptorField(description="Reset to 0"),
 )
-

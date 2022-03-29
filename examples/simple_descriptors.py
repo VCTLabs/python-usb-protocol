@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 #
 # This file is part of usb-protocol.
 #
 """ Examples for using the simple descriptor data structures. """
 
-from usb_protocol.types.descriptors    import StringDescriptor
 from usb_protocol.emitters.descriptors import DeviceDescriptorEmitter
+from usb_protocol.types.descriptors import StringDescriptor
 
 string_descriptor = bytes([
         40, # Length

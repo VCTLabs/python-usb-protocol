@@ -1,10 +1,11 @@
+# -*- coding: utf-8 -*-
 #
 # This file is part of usb-protocol.
 #
 """ Type elements for defining USB descriptors. """
 
-import unittest
 import construct
+
 
 class DescriptorFormat(construct.Struct):
     """
@@ -246,5 +247,5 @@ class DescriptorField(construct.Subconstruct):
 
 # Convenience type that gets a descriptor's own length.
 DescriptorLength = \
-     construct.Rebuild(construct.Int8ul, construct.len_(construct.this)) \
-     * "Descriptor Length"
+    construct.Rebuild(construct.Int8ul, construct.len_(construct.this)) \
+    * "Descriptor Length"

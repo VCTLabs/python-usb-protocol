@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 #
 # This file is part of usb-protocol.
 #
@@ -11,18 +12,17 @@
     NOTE: This is not complete yet and will be extended as needed
 """
 
-from usb_protocol.emitters import descriptor
-from enum                  import IntEnum
+from enum import IntEnum
 
 import construct
-
-from .standard import StandardDescriptorNumbers
+from usb_protocol.emitters import descriptor
 
 from ..descriptor import (
     DescriptorField,
-    DescriptorNumber,
     DescriptorFormat,
+    DescriptorNumber,
 )
+from .standard import StandardDescriptorNumbers
 
 
 class AudioInterfaceClassCodes(IntEnum):
@@ -662,7 +662,7 @@ FeatureUnitDescriptor = DescriptorFormat(
     "bDescriptorSubtype"  / DescriptorNumber(AudioClassSpecificACInterfaceDescriptorSubtypes.FEATURE_UNIT),
     "bUnitID"             / DescriptorField(description="unique identifier for the unit within the audio function."),
     "bSourceID"           / DescriptorField(description="ID of the unit or terminal which is connected to this terminal"),
-    "bmaControls"         / construct.Array((construct.this.bLength - 6)//4, construct.Int32ul) * "The control bitmap for all channels",
+    "bmaControls"         / construct.Array((construct.this.bLength - 6) // 4, construct.Int32ul) * "The control bitmap for all channels",
     "iFeature"            / DescriptorField(description="ID of the feature unit string descriptor", default=0),
 )
 
