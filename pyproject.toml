@@ -9,6 +9,22 @@ build-backend = "setuptools.build_meta"
 
 [tool.setuptools_scm]
 
+[tool.coverage.run]
+branch = true
+source = ["usb_protocol"]
+omit = [
+    "examples",
+    "tests",
+    ".tox",
+]
+
+[tool.coverage.paths]
+source = ["usb_protocol"]
+
+[tool.coverage.report]
+fail_under = 50
+show_missing = true
+
 [tool.black]
 line-length = 250
 
