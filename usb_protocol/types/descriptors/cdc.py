@@ -1,18 +1,22 @@
+# -*- coding: utf-8 -*-
 #
 # This file is part of usb-protocol.
 #
 """ Structures describing Communications Device Class descriptors. """
 
-import unittest
 from enum import IntEnum
 
 import construct
-from   construct  import this, Default
+from construct import Default, this
 
 from .. import LanguageIDs
-from ..descriptor import \
-    DescriptorField, DescriptorNumber, DescriptorFormat, \
-    BCDFieldAdapter, DescriptorLength
+from ..descriptor import (
+    BCDFieldAdapter,
+    DescriptorField,
+    DescriptorFormat,
+    DescriptorLength,
+    DescriptorNumber,
+)
 
 
 class CDCDescriptorNumbers(IntEnum):

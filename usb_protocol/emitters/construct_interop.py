@@ -1,10 +1,19 @@
+# -*- coding: utf-8 -*-
 #
 # This file is part of usb-protocol.
 #
 """ Helpers for creating construct-related emitters. """
 
-import unittest
 import construct
+
+
+def emitter_for_format(construct_format):
+    """ Creates a factory method for the relevant construct format. """
+
+    def _factory():
+        return ConstructEmitter(construct_format)
+
+    return _factory
 
 
 class ConstructEmitter:
@@ -80,32 +89,3 @@ class ConstructEmitter:
             return self.fields[name]
         else:
             raise AttributeError(f"descriptor emitter has no property {name}")
-
-
-class ConstructEmitterTest(unittest.TestCase):
-
-    def test_simple_emitter(self):
-
-        test_struct = construct.Struct(
-            "a" / construct.Int8ul,
-            "b" / construct.Int8ul
-        )
-
-        emitter   = ConstructEmitter(test_struct)
-        emitter.a = 0xab
-        emitter.b = 0xcd
-
-        self.assertEqual(emitter.emit(), b"\xab\xcd")
-
-
-def emitter_for_format(construct_format):
-    """ Creates a factory method for the relevant construct format. """
-
-    def _factory():
-        return ConstructEmitter(construct_format)
-
-    return _factory
-
-
-if __name__ == "__main__":
-    unittest.main()

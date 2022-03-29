@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 #
 # This file is part of usb-protocol.
 #
@@ -11,23 +12,22 @@
     NOTE: This is not complete yet and will be extended as needed
 """
 
-from usb_protocol.emitters import descriptor
-import unittest
 from enum import IntEnum
 
 import construct
-from   construct  import this, Default
+from construct import Default, this
+
+from usb_protocol.emitters import descriptor
 
 from .. import LanguageIDs
-from .standard import StandardDescriptorNumbers
-
 from ..descriptor import (
-    DescriptorField,
-    DescriptorNumber,
-    DescriptorFormat,
     BCDFieldAdapter,
-    DescriptorLength
+    DescriptorField,
+    DescriptorFormat,
+    DescriptorLength,
+    DescriptorNumber,
 )
+from .standard import StandardDescriptorNumbers
 
 
 class AudioInterfaceClassCodes(IntEnum):

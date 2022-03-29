@@ -1,0 +1,17 @@
+# https://github.com/cmheisel/pylintrcs/blob/master/pylintrc
+[MASTER]
+ignore-paths=
+    .*examples/,
+
+profile=no
+
+jobs=1
+
+suggestion-mode=no
+
+[MESSAGES CONTROL]
+disable=
+    too-few-public-methods,
+
+[FORMAT]
+max-line-length=250

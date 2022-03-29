@@ -1,13 +1,13 @@
+# -*- coding: utf-8 -*-
 #
 # This file is part of usb_protocol.
 #
 """ Convenience emitters for USB Audio Class 2 descriptors. """
 
-from contextlib import contextmanager
 
-from .. import emitter_for_format
 from ...types.descriptors.uac2 import *
-from ...emitters.descriptor    import ComplexDescriptorEmitter
+from .. import emitter_for_format
+from ..descriptor import ComplexDescriptorEmitter
 
 # Create our emitters.
 InterfaceAssociationDescriptorEmitter          = emitter_for_format(InterfaceAssociationDescriptor)
