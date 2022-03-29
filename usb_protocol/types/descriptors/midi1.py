@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 #
 # This file is part of usb-protocol.
 #
@@ -9,6 +10,25 @@
 
 from enum import IntEnum
 
+import construct
+
+from .. import (
+    DescriptorTypes,
+    USBSynchronizationType,
+    USBTransferType,
+    USBUsageType,
+)
+from ..descriptor import (
+    DescriptorField,
+    DescriptorFormat,
+    DescriptorNumber,
+)
+from ..descriptors.uac1 import (
+    AudioClassSpecificACInterfaceDescriptorSubtypes,
+    AudioClassSpecificDescriptorTypes,
+    AudioInterfaceClassCode,
+    AudioInterfaceSubclassCodes,
+)
 from .standard import StandardDescriptorNumbers
 
 
@@ -78,7 +98,7 @@ MidiOutJackDescriptorHead = DescriptorFormat(
 
 MidiOutJackDescriptorElement = DescriptorFormat(
     "baSourceID"          / construct.Int8ul, # ID of the Entity to which the first Input Pin of this MIDI OUT Jack is connected
-    "BaSourcePin"         / construct.Int8ul, #Output Pin number of the Entity to which the first Input Pin of this MIDI OUT Jack is connected
+    "BaSourcePin"         / construct.Int8ul, # Output Pin number of the Entity to which the first Input Pin of this MIDI OUT Jack is connected
 )
 
 MidiOutJackDescriptorFoot = DescriptorFormat(

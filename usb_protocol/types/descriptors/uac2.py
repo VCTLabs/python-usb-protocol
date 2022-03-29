@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 #
 # This file is part of usb-protocol.
 #
@@ -11,15 +12,18 @@
     NOTE: This is not complete yet and will be extended as needed
 """
 
-import unittest
-from usb_protocol.emitters import descriptor
-from enum                  import IntEnum
+from enum import IntEnum
 
 import construct
 
+from usb_protocol.emitters import descriptor
+
+from ..descriptor import (
+    DescriptorField,
+    DescriptorFormat,
+    DescriptorNumber,
+)
 from .standard import StandardDescriptorNumbers
-from ..descriptor import \
-    DescriptorField, DescriptorNumber, DescriptorFormat
 
 
 class AudioInterfaceClassCode(IntEnum):
@@ -556,7 +560,7 @@ AudioControlInterruptEndpointDescriptor = DescriptorFormat(
     "bEndpointAddress"    / DescriptorField(description="The address of the endpoint, use USBDirection.*.from_endpoint_address()"),
     "bmAttributes"        / DescriptorField(description="D1..0: Transfer type (0b11 = Interrupt)", default=0b11),
     "wMaxPacketSize"      / DescriptorField(description="Maximum packet size this endpoint is capable of. Used here to pass 6-byte interrupt information.", default=6),
-    "bInterval"           / DescriptorField(description="Interval for polling the Interrupt endpoint")
+    "bInterval"           / DescriptorField(description="Interval for polling the Interrupt endpoint"),
 )
 
 # As defined in [Audio30], Table 4-33
@@ -566,7 +570,7 @@ AudioStreamingIsochronousEndpointDescriptor = DescriptorFormat(
     "bEndpointAddress"    / DescriptorField(description="The address of the endpoint, use USBDirection.*.from_endpoint_address()"),
     "bmAttributes"        / DescriptorField(description="D1..0: transfer type (01=isochronous); D3..2: synchronization type (01=asynchronous/10=adaptive/11=synchronous); D5..4: usage (00=data/10=feedback)", default=0b000101),
     "wMaxPacketSize"      / DescriptorField(description="Maximum packet size this endpoint is capable of. Used here to pass 6-byte interrupt information.", default=6),
-    "bInterval"           / DescriptorField(description="Interval for polling the Interrupt endpoint")
+    "bInterval"           / DescriptorField(description="Interval for polling the Interrupt endpoint"),
 )
 
 # As defined in [Audio30], Table 4-35
@@ -576,7 +580,7 @@ AudioStreamingIsochronousFeedbackEndpointDescriptor = DescriptorFormat(
     "bEndpointAddress"    / DescriptorField(description="The address of the endpoint, use USBDirection.*.from_endpoint_address()"),
     "bmAttributes"        / DescriptorField(description="D1..0: transfer type (01=isochronous); D3..2: synchronization type (00=no sync); D5..4: usage (10=feedback)", default=0b00100001),
     "wMaxPacketSize"      / DescriptorField(description="Maximum packet size this endpoint is capable of. Used here to pass 6-byte interrupt information.", default=6),
-    "bInterval"           / DescriptorField(description="Interval for polling the Interrupt endpoint")
+    "bInterval"           / DescriptorField(description="Interval for polling the Interrupt endpoint"),
 )
 
 InterfaceAssociationDescriptor = DescriptorFormat(
@@ -585,7 +589,7 @@ InterfaceAssociationDescriptor = DescriptorFormat(
     "bFirstInterface"     / DescriptorField(description="Interface number of the first interface that is associated with this function.", default=0),
     "bInterfaceCount"     / DescriptorField(description="Number of contiguous interfaces that are associated with this function"),
     "bFunctionClass"      / DescriptorNumber(AudioFunctionClassCode.AUDIO_FUNCTION),
-    "bFunctionSubClass"   / DescriptorField(description="function subclass code (currently not used in uac2)", default=AudioFunctionCategoryCodes.FUNCTION_SUBCLASS_UNDEFINED), 
+    "bFunctionSubClass"   / DescriptorField(description="function subclass code (currently not used in uac2)", default=AudioFunctionCategoryCodes.FUNCTION_SUBCLASS_UNDEFINED),
     "bFunctionProtocol"   / DescriptorNumber(AudioFunctionProtocolCodes.AF_VERSION_02_00),
     "iFunction"           / DescriptorField(description="Index of a string descriptor that describes this interface", default=0),
 )
@@ -635,7 +639,7 @@ InputTerminalDescriptor = DescriptorFormat(
     "bmChannelConfig"     / DescriptorField(description="describes the spatial location of the logical channels", default=0, length=4),
     "iChannelNames"       / DescriptorField(description="string descriptor index of the first logical channel name", default=0),
     "bmControls"          / DescriptorField(description="OR combination of CopyProtectControl, ConnectorControl, OverloadControl, ClusterControl, UnderflowControl and OverflowControl", default=0, length=2),
-    "iTerminal"           / DescriptorField(description="ID of the input terminal string descriptor", default=0)
+    "iTerminal"           / DescriptorField(description="ID of the input terminal string descriptor", default=0),
 )
 
 OutputTerminalDescriptor = DescriptorFormat(
@@ -648,7 +652,7 @@ OutputTerminalDescriptor = DescriptorFormat(
     "bSourceID"           / DescriptorField(description="ID of the unit or terminal which is connected to this terminal"),
     "bCSourceID"          / DescriptorField(description="ID of the clock which is connected to this terminal"),
     "bmControls"          / DescriptorField(description="OR combination of  ClockFrequencyControl, CopyProtectControl, ConnectorControl, UnderflowControl>>2 and OverflowControl>>2", default=0, length=2),
-    "iTerminal"           / DescriptorField(description="ID of the input terminal string descriptor", default=0)
+    "iTerminal"           / DescriptorField(description="ID of the input terminal string descriptor", default=0),
 )
 
 FeatureUnitDescriptorLength = construct.Rebuild(construct.Int8ul, construct.len_(construct.this.bmaControls) * 4 + 6)
@@ -659,8 +663,8 @@ FeatureUnitDescriptor = DescriptorFormat(
     "bDescriptorSubtype"  / DescriptorNumber(AudioClassSpecificACInterfaceDescriptorSubtypes.FEATURE_UNIT),
     "bUnitID"             / DescriptorField(description="unique identifier for the unit within the audio function."),
     "bSourceID"           / DescriptorField(description="ID of the unit or terminal which is connected to this terminal"),
-    "bmaControls"         / construct.Array((construct.this.bLength - 6)//4, construct.Int32ul) * "The control bitmap for all channels",
-    "iFeature"            / DescriptorField(description="ID of the feature unit string descriptor", default=0)
+    "bmaControls"         / construct.Array((construct.this.bLength - 6) // 4, construct.Int32ul) * "The control bitmap for all channels",
+    "iFeature"            / DescriptorField(description="ID of the feature unit string descriptor", default=0),
 )
 
 AudioStreamingInterfaceDescriptor = DescriptorFormat(
@@ -672,7 +676,7 @@ AudioStreamingInterfaceDescriptor = DescriptorFormat(
     "bInterfaceClass"     / DescriptorNumber(AudioInterfaceClassCode.AUDIO),
     "bInterfaceSubClass"  / DescriptorNumber(AudioInterfaceSubclassCodes.AUDIO_STREAMING),
     "bInterfaceProtocol"  / DescriptorNumber(AudioInterfaceProtocolCodes.IP_VERSION_02_00),
-    "iInterface"          / DescriptorField(description="index of a string descriptor describing this interface (0 = unused)", default=0)
+    "iInterface"          / DescriptorField(description="index of a string descriptor describing this interface (0 = unused)", default=0),
 )
 
 ClassSpecificAudioStreamingInterfaceDescriptor = DescriptorFormat(
@@ -685,7 +689,7 @@ ClassSpecificAudioStreamingInterfaceDescriptor = DescriptorFormat(
     "bmFormats"           / DescriptorField(description="audio data formats which can be used with this interface", length=4),
     "bNrChannels"         / DescriptorField(description="Number of physical channels in the AS Interface audio channel cluster"),
     "bmChannelConfig"     / DescriptorField(description="spatial location of the physical channels", default=0, length=4),
-    "iChannelNames"       / DescriptorField(description="ndex of a string descriptor, describing the name of the first physical channel.", default=0)
+    "iChannelNames"       / DescriptorField(description="ndex of a string descriptor, describing the name of the first physical channel.", default=0),
 )
 
 TypeIFormatTypeDescriptor = DescriptorFormat(
@@ -694,7 +698,7 @@ TypeIFormatTypeDescriptor = DescriptorFormat(
     "bDescriptorSubtype"  / DescriptorNumber(AudioClassSpecificASInterfaceDescriptorSubtypes.FORMAT_TYPE),
     "bFormatType"         / DescriptorNumber(FormatTypes.FORMAT_TYPE_I),
     "bSubslotSize"        / DescriptorField(description="number of bytes occupied by one audio subslot (1, 2, 3 or 4)"),
-    "bBitResolution"      / DescriptorField(description="number of effectively used bits out of the available bits in an audio subslot")
+    "bBitResolution"      / DescriptorField(description="number of effectively used bits out of the available bits in an audio subslot"),
 )
 
 ExtendedTypeIFormatTypeDescriptor = DescriptorFormat(
@@ -706,7 +710,7 @@ ExtendedTypeIFormatTypeDescriptor = DescriptorFormat(
     "bBitResolution"      / DescriptorField(description="number of effectively used bits out of the available bits in an audio subslot"),
     "bHeaderLength"       / DescriptorField(description="size of the packet header in bytes"),
     "bControlSize"        / DescriptorField(description="size of the control channel words in bytes"),
-    "bSideBandProtocol"   / DescriptorField(description="side band protocol, see SidebandProtocols", default=SidebandProtocols.PROTOCOL_UNDEFINED)
+    "bSideBandProtocol"   / DescriptorField(description="side band protocol, see SidebandProtocols", default=SidebandProtocols.PROTOCOL_UNDEFINED),
 )
 
 TypeIIFormatTypeDescriptor = DescriptorFormat(
@@ -715,7 +719,7 @@ TypeIIFormatTypeDescriptor = DescriptorFormat(
     "bDescriptorSubtype"  / DescriptorNumber(AudioClassSpecificASInterfaceDescriptorSubtypes.FORMAT_TYPE),
     "bFormatType"         / DescriptorNumber(FormatTypes.FORMAT_TYPE_II),
     "wMaxBitRate"         / DescriptorField(description="maximum bitrate of this interface in kbits/s"),
-    "wSlotsPerFrame"      / DescriptorField(description="number of PCM audio slots in one audio frame")
+    "wSlotsPerFrame"      / DescriptorField(description="number of PCM audio slots in one audio frame"),
 )
 
 ExtendedTypeIIFormatTypeDescriptor = DescriptorFormat(
@@ -726,7 +730,7 @@ ExtendedTypeIIFormatTypeDescriptor = DescriptorFormat(
     "wMaxBitRate"         / DescriptorField(description="maximum bitrate of this interface in kbits/s"),
     "wSamplesPerFrame"    / DescriptorField(description="number of PCM audio samples in one audio frame"),
     "bHeaderLength"       / DescriptorField(description="size of the packet header in bytes"),
-    "bSideBandProtocol"   / DescriptorField(description="side band protocol, see SidebandProtocols", default=SidebandProtocols.PROTOCOL_UNDEFINED)
+    "bSideBandProtocol"   / DescriptorField(description="side band protocol, see SidebandProtocols", default=SidebandProtocols.PROTOCOL_UNDEFINED),
 )
 
 TypeIIIFormatTypeDescriptor = DescriptorFormat(
@@ -746,7 +750,7 @@ ExtendedTypeIIIFormatTypeDescriptor = DescriptorFormat(
     "bSubslotSize"        / DescriptorField(description="number of bytes occupied by one audio subslot (must be 2)", default=2),
     "bBitResolution"      / DescriptorField(description="number of effectively used bits out of the available bits in an audio subslot"),
     "bHeaderLength"       / DescriptorField(description="size of the packet header in bytes"),
-    "bSideBandProtocol"   / DescriptorField(description="side band protocol, see SidebandProtocols", default=SidebandProtocols.PROTOCOL_UNDEFINED)
+    "bSideBandProtocol"   / DescriptorField(description="side band protocol, see SidebandProtocols", default=SidebandProtocols.PROTOCOL_UNDEFINED),
 )
 
 ClassSpecificAudioStreamingIsochronousAudioDataEndpointDescriptor = DescriptorFormat(
@@ -756,7 +760,7 @@ ClassSpecificAudioStreamingIsochronousAudioDataEndpointDescriptor = DescriptorFo
     "bmAttributes"        / DescriptorField(description="bit D7 = 1: only packets with size wMaxPacketSize allowed", default=0),
     "bmControls"          / DescriptorField(description="D1..0: pitch control D3..2: data overrun control; D5..4: data underrun control;", default=0),
     "bLockDelayUnits"     / DescriptorField(description="wLockDelay unit: 0: undefined; 1: milliseconds; 2: decoded PCM samples;", default=0),
-    "wLockDelay"          / DescriptorField(description="the time it takes this endpoint to reliably lock its internal clock recovery circuitry. Units see bLockDelayUnits", default=0)
+    "wLockDelay"          / DescriptorField(description="the time it takes this endpoint to reliably lock its internal clock recovery circuitry. Units see bLockDelayUnits", default=0),
 )
 
 ###################### MIDI #########################
@@ -797,680 +801,3 @@ class GroupTerminalNumber(IntEnum):
     GROUP_14 = 0x0D
     GROUP_15 = 0x0E
     GROUP_16 = 0x0F
-
-
-class UAC2Cases(unittest.TestCase):
-
-    def test_parse_interface_association_descriptor(self):
-        # Parse the relevant descriptor ...
-        parsed = InterfaceAssociationDescriptor.parse([
-                0x08,  # Length
-                0x0B,  # Type
-                0x01,  # First interface
-                0x02,  # Interface count
-                0x01,  # Function class
-                0x00,  # Function subclass
-                0x20,  # Function protocol
-                0x42   # Function name
-            ])
-
-        # ... and check the descriptor's fields.
-        self.assertEqual(parsed.bLength, 8)
-        self.assertEqual(parsed.bDescriptorType, StandardDescriptorNumbers.INTERFACE_ASSOCIATION)
-        self.assertEqual(parsed.bFirstInterface, 1)
-        self.assertEqual(parsed.bInterfaceCount, 2)
-        self.assertEqual(parsed.bFunctionClass, AudioFunctionClassCode.AUDIO_FUNCTION)
-        self.assertEqual(parsed.bFunctionSubClass, AudioFunctionCategoryCodes.FUNCTION_SUBCLASS_UNDEFINED)
-        self.assertEqual(parsed.bFunctionProtocol, AudioFunctionProtocolCodes.AF_VERSION_02_00)
-        self.assertEqual(parsed.iFunction, 0x42)
-
-    def test_build_interface_association_descriptor(self):
-        # Build the relevant descriptor
-        data = InterfaceAssociationDescriptor.build({
-            'bFirstInterface': 1,
-            'bInterfaceCount': 2,
-            'iFunction': 0x42
-        })
-
-        # ... and check the binary output
-        self.assertEqual(data, bytes([
-                0x08,  # Length
-                0x0B,  # Type
-                0x01,  # First interface
-                0x02,  # Interface count
-                0x01,  # Function class
-                0x00,  # Function subclass
-                0x20,  # Function protocol
-                0x42   # Function name
-            ]))
-
-    def test_parse_standard_audio_control_interface_descriptor(self):
-        # Parse the relevant descriptor ...
-        parsed = StandardAudioControlInterfaceDescriptor.parse([
-                0x09,  # Length
-                0x04,  # Type
-                0x01,  # Interface number
-                0x02,  # Alternate settings
-                0x00,  # Number of endpoints
-                0x01,  # Interface class
-                0x01,  # Interface subclass
-                0x20,  # Interface protocol
-                0x42   # Interface name
-            ])
-
-        # ... and check the descriptor's fields.
-        self.assertEqual(parsed.bLength, 9)
-        self.assertEqual(parsed.bDescriptorType, StandardDescriptorNumbers.INTERFACE)
-        self.assertEqual(parsed.bInterfaceNumber, 1)
-        self.assertEqual(parsed.bAlternateSetting, 2)
-        self.assertEqual(parsed.bNumEndpoints, 0)
-        self.assertEqual(parsed.bInterfaceClass, AudioInterfaceClassCode.AUDIO)
-        self.assertEqual(parsed.bInterfaceSubClass, AudioInterfaceSubclassCodes.AUDIO_CONTROL)
-        self.assertEqual(parsed.bInterfaceProtocol, AudioInterfaceProtocolCodes.IP_VERSION_02_00)
-        self.assertEqual(parsed.iInterface, 0x42)
-
-    def test_build_standard_audio_control_interface_descriptor(self):
-        # Build the relevant descriptor
-        data = StandardAudioControlInterfaceDescriptor.build({
-            'bInterfaceNumber': 1,
-            'bAlternateSetting': 2,
-            'bNumEndpoints': 0,
-            'iInterface': 0x42
-        })
-
-        # ... and check the binary output
-        self.assertEqual(data, bytes([
-                0x09,  # Length
-                0x04,  # Type
-                0x01,  # Interface number
-                0x02,  # Alternate settings
-                0x00,  # Number of endpoints
-                0x01,  # Interface class
-                0x01,  # Interface subclass
-                0x20,  # Interface protocol
-                0x42   # Interface Name
-            ]))
-
-    def test_parse_clock_source_descriptor(self):
-        # Parse the relevant descriptor ...
-        parsed = ClockSourceDescriptor.parse([
-            0x08,  # Length
-            0x24,  # Type
-            0x0A,  # Subtype
-            0x01,  # Clock ID
-            0x01,  # Attributes
-            0x01,  # Controls
-            0x01,  # Associate terminal
-            0x42   # Clock source name
-            ])
-
-        # ... and check the descriptor's fields.
-        self.assertEqual(parsed.bLength, 8)
-        self.assertEqual(parsed.bDescriptorType, AudioClassSpecificStandardDescriptorNumbers.CS_INTERFACE)
-        self.assertEqual(parsed.bDescriptorSubtype, AudioClassSpecificACInterfaceDescriptorSubtypes.CLOCK_SOURCE)
-        self.assertEqual(parsed.bClockID, 0x01)
-        self.assertEqual(parsed.bmAttributes, ClockAttributes.INTERNAL_FIXED_CLOCK)
-        self.assertEqual(parsed.bmControls, ClockFrequencyControl.HOST_READ_ONLY)
-        self.assertEqual(parsed.bAssocTerminal, 0x01)
-        self.assertEqual(parsed.iClockSource, 0x42)
-
-    def test_build_clock_source_descriptor(self):
-        # Build the relevant descriptor
-        data = ClockSourceDescriptor.build({
-            'bClockID': 1,
-            'bmAttributes': ClockAttributes.INTERNAL_FIXED_CLOCK,
-            'bmControls': ClockFrequencyControl.HOST_READ_ONLY,
-            'bAssocTerminal': 0x01,
-            'iClockSource': 0x42,
-        })
-
-        # ... and check the binary output
-        self.assertEqual(data, bytes([
-                0x08,  # Length
-                0x24,  # Type
-                0x0A,  # Subtype
-                0x01,  # Clock ID
-                0x01,  # Attributes
-                0x01,  # Controls
-                0x01,  # Associate terminal
-                0x42   # Clock source name
-            ]))
-
-    def test_parse_input_terminal_descriptor(self):
-        # Parse the relevant descriptor ...
-        parsed = InputTerminalDescriptor.parse([
-                0x11,                    # Length
-                0x24,                    # Type
-                0x02,                    # Subtype
-                0x01,                    # Terminal ID
-                0x01, 0x01,              # Terminal type
-                0x00,                    # Associated terminal
-                0x01,                    # Clock ID
-                0x02,                    # Number of channels
-                0x03, 0x00, 0x00, 0x00,  # Channel configuration
-                0x23,                    # First channel name
-                0x05, 0x00,              # Controls
-                0x42                     # Terminal name
-            ])
-
-        # ... and check the descriptor's fields.
-        self.assertEqual(parsed.bLength, 17)
-        self.assertEqual(parsed.bDescriptorType, AudioClassSpecificStandardDescriptorNumbers.CS_INTERFACE)
-        self.assertEqual(parsed.bDescriptorSubtype, AudioClassSpecificACInterfaceDescriptorSubtypes.INPUT_TERMINAL)
-        self.assertEqual(parsed.bTerminalID, 0x01)
-        self.assertEqual(parsed.wTerminalType, USBTerminalTypes.USB_STREAMING)
-        self.assertEqual(parsed.bAssocTerminal, 0x00)
-        self.assertEqual(parsed.bCSourceID, 0x01)
-        self.assertEqual(parsed.bNrChannels, 0x02)
-        self.assertEqual(parsed.bmChannelConfig, 0x0003)
-        self.assertEqual(parsed.iChannelNames, 0x23)
-        self.assertEqual(parsed.bmControls, 5)
-        self.assertEqual(parsed.iTerminal, 0x42)
-
-    def test_build_input_terminal_descriptor(self):
-        # Build the relevant descriptor
-        data = InputTerminalDescriptor.build({
-            'bTerminalID': 1,
-            'wTerminalType': USBTerminalTypes.USB_STREAMING,
-            'bCSourceID': 1,
-            'bNrChannels': 2,
-            'bmChannelConfig': 3,
-            'iChannelNames': 0x23,
-            'bmControls': 5,
-            'iTerminal': 0x42,
-        })
-
-        # ... and check the binary output
-        self.assertEqual(data, bytes([
-                0x11,                    # Length
-                0x24,                    # Type
-                0x02,                    # Subtype
-                0x01,                    # Terminal ID
-                0x01, 0x01,              # Terminal type
-                0x00,                    # Associated terminal
-                0x01,                    # Clock ID
-                0x02,                    # Number of channels
-                0x03, 0x00, 0x00, 0x00,  # Channel configuration
-                0x23,                    # First channel name
-                0x05, 0x00,              # Controls
-                0x42                     # Terminal name
-            ]))
-
-    def test_parse_output_terminal_descriptor(self):
-        # Parse the relevant descriptor ...
-        parsed = OutputTerminalDescriptor.parse([
-                0x0C,        # Length
-                0x24,        # Type
-                0x03,        # Subtype
-                0x06,        # Terminal ID
-                0x01, 0x03,  # Terminal type
-                0x00,        # Associated terminal
-                0x09,        # Source ID
-                0x01,        # Clock ID
-                0x00, 0x00,  # Controls
-                0x42         # Terminal name
-            ])
-
-        # ... and check the descriptor's fields.
-        self.assertEqual(parsed.bLength, 12)
-        self.assertEqual(parsed.bDescriptorType, AudioClassSpecificStandardDescriptorNumbers.CS_INTERFACE)
-        self.assertEqual(parsed.bDescriptorSubtype, AudioClassSpecificACInterfaceDescriptorSubtypes.OUTPUT_TERMINAL)
-        self.assertEqual(parsed.bTerminalID, 0x06)
-        self.assertEqual(parsed.wTerminalType, OutputTerminalTypes.SPEAKER)
-        self.assertEqual(parsed.bAssocTerminal, 0x00)
-        self.assertEqual(parsed.bSourceID, 0x09)
-        self.assertEqual(parsed.bCSourceID, 0x01)
-        self.assertEqual(parsed.bmControls, 0x0000)
-        self.assertEqual(parsed.iTerminal, 0x42)
-
-    def test_build_output_terminal_descriptor(self):
-        # Build the relevant descriptor
-        data = OutputTerminalDescriptor.build({
-            'bTerminalID': 6,
-            'wTerminalType': OutputTerminalTypes.SPEAKER,
-            'bSourceID': 9,
-            'bCSourceID': 1,
-            'iTerminal': 0x42,
-        })
-
-        # ... and check the binary output
-        self.assertEqual(data, bytes([
-                0x0C,        # Length
-                0x24,        # Type
-                0x03,        # Subtype
-                0x06,        # Terminal ID
-                0x01, 0x03,  # Terminal type
-                0x00,        # Associated terminal
-                0x09,        # Source ID
-                0x01,        # Clock ID
-                0x00, 0x00,  # Controls
-                0x42         # Terminal name
-            ]))
-
-    def test_parse_feature_unit_descriptor(self):
-        # Parse the relevant descriptor ...
-        parsed = FeatureUnitDescriptor.parse([
-                0x12,                    # Length
-                0x24,                    # Type
-                0x06,                    # Subtype
-                0x06,                    # Unit ID
-                0x09,                    # Source ID
-                0x01, 0x00, 0x00, 0x00,  # Controls 0
-                0x02, 0x00, 0x00, 0x00,  # Controls 1
-                0x03, 0x00, 0x00, 0x00,  # Controls 2
-                0x42                     # Unit name
-            ])
-
-        # ... and check the descriptor's fields.
-        self.assertEqual(parsed.bLength, 18)
-        self.assertEqual(parsed.bDescriptorType, AudioClassSpecificStandardDescriptorNumbers.CS_INTERFACE)
-        self.assertEqual(parsed.bDescriptorSubtype, AudioClassSpecificACInterfaceDescriptorSubtypes.FEATURE_UNIT)
-        self.assertEqual(parsed.bUnitID, 0x06)
-        self.assertEqual(parsed.bSourceID, 0x09)
-        self.assertEqual(parsed.bmaControls, [0x0001, 0x0002, 0x0003])
-        self.assertEqual(parsed.iFeature, 0x42)
-
-    def test_build_feature_unit_descriptor(self):
-        # Build the relevant descriptor
-        data = FeatureUnitDescriptor.build({
-            'bUnitID': 6,
-            'bSourceID': 9,
-            'bmaControls': [1, 2, 3],
-            'iFeature': 0x42,
-        })
-
-        # ... and check the binary output
-        self.assertEqual(data, bytes([
-                0x12,                    # Length
-                0x24,                    # Type
-                0x06,                    # Subtype
-                0x06,                    # Unit ID
-                0x09,                    # Source ID
-                0x01, 0x00, 0x00, 0x00,  # Controls 0
-                0x02, 0x00, 0x00, 0x00,  # Controls 1
-                0x03, 0x00, 0x00, 0x00,  # Controls 2
-                0x42                     # Unit name
-            ]))
-
-    def test_parse_audio_streaming_interface_descriptor(self):
-        # Parse the relevant descriptor ...
-        parsed = AudioStreamingInterfaceDescriptor.parse([
-                0x09,  # Length
-                0x04,  # Type
-                0x02,  # Interface number
-                0x03,  # Alternate setting
-                0x01,  # Number of endpoints
-                0x01,  # Interface class
-                0x02,  # Interface subclass
-                0x20,  # Interface protocol
-                0x42   # Interface name
-            ])
-
-        # ... and check the descriptor's fields.
-        self.assertEqual(parsed.bLength, 9)
-        self.assertEqual(parsed.bDescriptorType, StandardDescriptorNumbers.INTERFACE)
-        self.assertEqual(parsed.bInterfaceNumber, 2)
-        self.assertEqual(parsed.bAlternateSetting, 3)
-        self.assertEqual(parsed.bNumEndpoints, 1)
-        self.assertEqual(parsed.bInterfaceClass, AudioInterfaceClassCode.AUDIO)
-        self.assertEqual(parsed.bInterfaceSubClass, AudioInterfaceSubclassCodes.AUDIO_STREAMING)
-        self.assertEqual(parsed.bInterfaceProtocol, AudioInterfaceProtocolCodes.IP_VERSION_02_00)
-        self.assertEqual(parsed.iInterface, 0x42)
-
-    def test_build_audio_streaming_interface_descriptor(self):
-        # Build the relevant descriptor
-        data = AudioStreamingInterfaceDescriptor.build({
-            'bInterfaceNumber': 2,
-            'bAlternateSetting': 3,
-            'bNumEndpoints': 1,
-            'iInterface': 0x42,
-        })
-
-        # ... and check the binary output
-        self.assertEqual(data, bytes([
-                0x09,  # Length
-                0x04,  # Type
-                0x02,  # Interface number
-                0x03,  # Alternate setting
-                0x01,  # Number of endpoints
-                0x01,  # Interface class
-                0x02,  # Interface subclass
-                0x20,  # Interface protocol
-                0x42   # Interface name
-            ]))
-
-    def test_parse_class_specific_audio_streaming_interface_descriptor(self):
-        # Parse the relevant descriptor ...
-        parsed = ClassSpecificAudioStreamingInterfaceDescriptor.parse([
-                0x10,                    # Length
-                0x24,                    # Type
-                0x01,                    # Subtype
-                0x03,                    # Terminal ID
-                0x00,                    # Controls
-                0x01,                    # Format type
-                0x01, 0x00, 0x00, 0x00,  # Formats
-                0x02,                    # Number of channels
-                0x00, 0x00, 0x00, 0x00,  # Channel config
-                0x42                     # First channel name
-            ])
-
-        # ... and check the descriptor's fields.
-        self.assertEqual(parsed.bLength, 16)
-        self.assertEqual(parsed.bDescriptorType, AudioClassSpecificStandardDescriptorNumbers.CS_INTERFACE)
-        self.assertEqual(parsed.bDescriptorSubtype, AudioClassSpecificASInterfaceDescriptorSubtypes.AS_GENERAL)
-        self.assertEqual(parsed.bTerminalLink, 3)
-        self.assertEqual(parsed.bmControls, 0)
-        self.assertEqual(parsed.bFormatType, FormatTypes.FORMAT_TYPE_I)
-        self.assertEqual(parsed.bmFormats, TypeIFormats.PCM)
-        self.assertEqual(parsed.bNrChannels, 2)
-        self.assertEqual(parsed.bmChannelConfig, 0x0)
-        self.assertEqual(parsed.iChannelNames, 0x42)
-
-    def test_build_class_specific_audio_streaming_interface_descriptor(self):
-        # Build the relevant descriptor
-        data = ClassSpecificAudioStreamingInterfaceDescriptor.build({
-            'bTerminalLink': 3,
-            'bmControls': 0,
-            'bFormatType': FormatTypes.FORMAT_TYPE_I,
-            'bmFormats': TypeIFormats.PCM,
-            'bNrChannels': 2,
-            'bmChannelConfig': 0,
-            'iChannelNames': 0x42,
-        })
-
-        # ... and check the binary output
-        self.assertEqual(data, bytes([
-                0x10,                    # Length
-                0x24,                    # Type
-                0x01,                    # Subtype
-                0x03,                    # Terminal ID
-                0x00,                    # Controls
-                0x01,                    # Format type
-                0x01, 0x00, 0x00, 0x00,  # Formats
-                0x02,                    # Number of channels
-                0x00, 0x00, 0x00, 0x00,  # Channel config
-                0x42                     # First channel name
-            ]))
-
-    def test_parse_type_i_format_type_descriptor(self):
-        # Parse the relevant descriptor ...
-        parsed = TypeIFormatTypeDescriptor.parse([
-                0x06,  # Length
-                0x24,  # Type
-                0x02,  # Subtype
-                0x01,  # Format type
-                0x02,  # Subslot size
-                0x10,  # Bit resolution
-            ])
-
-        # ... and check the descriptor's fields.
-        self.assertEqual(parsed.bLength, 6)
-        self.assertEqual(parsed.bDescriptorType, AudioClassSpecificStandardDescriptorNumbers.CS_INTERFACE)
-        self.assertEqual(parsed.bDescriptorSubtype, AudioClassSpecificASInterfaceDescriptorSubtypes.FORMAT_TYPE)
-        self.assertEqual(parsed.bFormatType, FormatTypes.FORMAT_TYPE_I)
-        self.assertEqual(parsed.bSubslotSize, 2)
-        self.assertEqual(parsed.bBitResolution, 16)
-
-    def test_build_type_i_format_type_descriptor(self):
-        # Build the relevant descriptor
-        data = TypeIFormatTypeDescriptor.build({
-            'bSubslotSize': 2,
-            'bBitResolution': 16,
-        })
-
-        # ... and check the binary output
-        self.assertEqual(data, bytes([
-                0x06,  # Length
-                0x24,  # Type
-                0x02,  # Subtype
-                0x01,  # Format type
-                0x02,  # Subslot size
-                0x10,  # Bit resolution
-            ]))
-
-    def test_parse_extended_type_i_format_type_descriptor(self):
-        # Parse the relevant descriptor ...
-        parsed = ExtendedTypeIFormatTypeDescriptor.parse([
-                0x09,  # Length
-                0x24,  # Type
-                0x02,  # Subtype
-                0x81,  # Format type
-                0x02,  # Subslot size
-                0x10,  # Bit resolution
-                0x0A,  # Header length
-                0x04,  # Control size
-                0x00,  # Side band protocol
-            ])
-
-        # ... and check the descriptor's fields.
-        self.assertEqual(parsed.bLength, 9)
-        self.assertEqual(parsed.bDescriptorType, AudioClassSpecificStandardDescriptorNumbers.CS_INTERFACE)
-        self.assertEqual(parsed.bDescriptorSubtype, AudioClassSpecificASInterfaceDescriptorSubtypes.FORMAT_TYPE)
-        self.assertEqual(parsed.bFormatType, FormatTypes.EXT_FORMAT_TYPE_I)
-        self.assertEqual(parsed.bSubslotSize, 2)
-        self.assertEqual(parsed.bBitResolution, 16)
-        self.assertEqual(parsed.bHeaderLength, 10)
-        self.assertEqual(parsed.bControlSize, 4)
-        self.assertEqual(parsed.bSideBandProtocol, 0)
-
-    def test_build_extended_type_i_format_type_descriptor(self):
-        # Build the relevant descriptor
-        data = ExtendedTypeIFormatTypeDescriptor.build({
-            'bSubslotSize': 2,
-            'bBitResolution': 16,
-            'bHeaderLength': 10,
-            'bControlSize': 4,
-            'bSideBandProtocol': 0,
-        })
-
-        # ... and check the binary output
-        self.assertEqual(data, bytes([
-                0x09,  # Length
-                0x24,  # Type
-                0x02,  # Subtype
-                0x81,  # Format type
-                0x02,  # Subslot size
-                0x10,  # Bit resolution
-                0x0A,  # Header length
-                0x04,  # Control size
-                0x00,  # Side band protocol
-            ]))
-
-    def test_parse_type_ii_format_type_descriptor(self):
-        # Parse the relevant descriptor ...
-        parsed = TypeIIFormatTypeDescriptor.parse([
-                0x08,        # Length
-                0x24,        # Type
-                0x02,        # Subtype
-                0x02,        # Format type
-                0x40, 0x00,  # Maximum bit rate
-                0x20, 0x00,  # Slots per frame
-            ])
-
-        # ... and check the descriptor's fields.
-        self.assertEqual(parsed.bLength, 8)
-        self.assertEqual(parsed.bDescriptorType, AudioClassSpecificStandardDescriptorNumbers.CS_INTERFACE)
-        self.assertEqual(parsed.bDescriptorSubtype, AudioClassSpecificASInterfaceDescriptorSubtypes.FORMAT_TYPE)
-        self.assertEqual(parsed.bFormatType, FormatTypes.FORMAT_TYPE_II)
-        self.assertEqual(parsed.wMaxBitRate, 64)
-        self.assertEqual(parsed.wSlotsPerFrame, 32)
-
-    def test_build_type_ii_format_type_descriptor(self):
-        # Build the relevant descriptor
-        data = TypeIIFormatTypeDescriptor.build({
-            'wMaxBitRate': 64,
-            'wSlotsPerFrame': 32,
-        })
-
-        # ... and check the binary output
-        self.assertEqual(data, bytes([
-                0x08,        # Length
-                0x24,        # Type
-                0x02,        # Subtype
-                0x02,        # Format type
-                0x40, 0x00,  # Maximum bit rate
-                0x20, 0x00,  # Slots per frame
-            ]))
-
-    def test_parse_extended_type_ii_format_type_descriptor(self):
-        # Parse the relevant descriptor ...
-        parsed = ExtendedTypeIIFormatTypeDescriptor.parse([
-                0x0A,        # Length
-                0x24,        # Type
-                0x02,        # Subtype
-                0x82,        # Format type
-                0x40, 0x00,  # Maximum bit rate
-                0x20, 0x00,  # Samples per frame
-                0x0A,        # Header length
-                0x00,        # Side band protocol
-            ])
-
-        # ... and check the descriptor's fields.
-        self.assertEqual(parsed.bLength, 10)
-        self.assertEqual(parsed.bDescriptorType, AudioClassSpecificStandardDescriptorNumbers.CS_INTERFACE)
-        self.assertEqual(parsed.bDescriptorSubtype, AudioClassSpecificASInterfaceDescriptorSubtypes.FORMAT_TYPE)
-        self.assertEqual(parsed.bFormatType, FormatTypes.EXT_FORMAT_TYPE_II)
-        self.assertEqual(parsed.wMaxBitRate, 64)
-        self.assertEqual(parsed.wSamplesPerFrame, 32)
-        self.assertEqual(parsed.bHeaderLength, 10)
-        self.assertEqual(parsed.bSideBandProtocol, 0)
-
-    def test_build_extended_type_ii_format_type_descriptor(self):
-        # Build the relevant descriptor
-        data = ExtendedTypeIIFormatTypeDescriptor.build({
-            'wMaxBitRate': 64,
-            'wSamplesPerFrame': 32,
-            'bHeaderLength': 10,
-            'bSideBandProtocol': 0,
-        })
-
-        # ... and check the binary output
-        self.assertEqual(data, bytes([
-                0x0A,        # Length
-                0x24,        # Type
-                0x02,        # Subtype
-                0x82,        # Format type
-                0x40, 0x00,  # Maximum bit rate
-                0x20, 0x00,  # Samples per frame
-                0x0A,        # Header length
-                0x00,        # Side band protocol
-            ]))
-
-    def test_parse_type_iii_format_type_descriptor(self):
-        # Parse the relevant descriptor ...
-        parsed = TypeIIIFormatTypeDescriptor.parse([
-                0x06,  # Length
-                0x24,  # Type
-                0x02,  # Subtype
-                0x03,  # Format type
-                0x02,  # Subslot size
-                0x10,  # Bit resolution
-            ])
-
-        # ... and check the descriptor's fields.
-        self.assertEqual(parsed.bLength, 6)
-        self.assertEqual(parsed.bDescriptorType, AudioClassSpecificStandardDescriptorNumbers.CS_INTERFACE)
-        self.assertEqual(parsed.bDescriptorSubtype, AudioClassSpecificASInterfaceDescriptorSubtypes.FORMAT_TYPE)
-        self.assertEqual(parsed.bFormatType, FormatTypes.FORMAT_TYPE_III)
-        self.assertEqual(parsed.bSubslotSize, 2)
-        self.assertEqual(parsed.bBitResolution, 16)
-
-    def test_build_type_iii_format_type_descriptor(self):
-        # Build the relevant descriptor
-        data = TypeIIIFormatTypeDescriptor.build({
-            'bBitResolution': 16,
-        })
-
-        # ... and check the binary output
-        self.assertEqual(data, bytes([
-                0x06,  # Length
-                0x24,  # Type
-                0x02,  # Subtype
-                0x03,  # Format type
-                0x02,  # Subslot size
-                0x10,  # Bit resolution
-            ]))
-
-    def test_parse_extended_type_iii_format_type_descriptor(self):
-        # Parse the relevant descriptor ...
-        parsed = ExtendedTypeIIIFormatTypeDescriptor.parse([
-                0x08,  # Length
-                0x24,  # Type
-                0x02,  # Subtype
-                0x83,  # Format type
-                0x02,  # Subslot size
-                0x10,  # Bit resolution
-                0x0A,  # Header length
-                0x00,  # Side band protocol
-            ])
-
-        # ... and check the descriptor's fields.
-        self.assertEqual(parsed.bLength, 8)
-        self.assertEqual(parsed.bDescriptorType, AudioClassSpecificStandardDescriptorNumbers.CS_INTERFACE)
-        self.assertEqual(parsed.bDescriptorSubtype, AudioClassSpecificASInterfaceDescriptorSubtypes.FORMAT_TYPE)
-        self.assertEqual(parsed.bFormatType, FormatTypes.EXT_FORMAT_TYPE_III)
-        self.assertEqual(parsed.bSubslotSize, 2)
-        self.assertEqual(parsed.bBitResolution, 16)
-        self.assertEqual(parsed.bHeaderLength, 10)
-        self.assertEqual(parsed.bSideBandProtocol, 0)
-
-    def test_build_extended_type_iii_format_type_descriptor(self):
-        # Build the relevant descriptor
-        data = ExtendedTypeIIIFormatTypeDescriptor.build({
-            'bBitResolution': 16,
-            'bHeaderLength': 10,
-            'bSideBandProtocol': 0,
-        })
-
-        # ... and check the binary output
-        self.assertEqual(data, bytes([
-                0x08,  # Length
-                0x24,  # Type
-                0x02,  # Subtype
-                0x83,  # Format type
-                0x02,  # Subslot size
-                0x10,  # Bit resolution
-                0x0A,  # Header length
-                0x00,  # Side band protocol
-            ]))
-
-    def test_parse_class_specific_audio_streaming_isochronous_audio_data_endpoint_descriptor(self):
-        # Parse the relevant descriptor ...
-        parsed = ClassSpecificAudioStreamingIsochronousAudioDataEndpointDescriptor.parse([
-                0x08,       # Length
-                0x25,       # Type
-                0x01,       # Subtype
-                0x00,       # Attributes
-                0x00,       # Controls
-                0x01,       # Lock Delay Units
-                0x00, 0x00  # Lock delay
-            ])
-
-        # ... and check the descriptor's fields.
-        self.assertEqual(parsed.bLength, 8)
-        self.assertEqual(parsed.bDescriptorType, AudioClassSpecificStandardDescriptorNumbers.CS_ENDPOINT)
-        self.assertEqual(parsed.bDescriptorSubtype, AudioClassSpecificEndpointDescriptorSubtypes.EP_GENERAL)
-        self.assertEqual(parsed.bmAttributes, 0)
-        self.assertEqual(parsed.bmControls, 0)
-        self.assertEqual(parsed.bLockDelayUnits, 1)
-        self.assertEqual(parsed.wLockDelay, 0)
-
-    def test_build_class_specific_audio_streaming_isochronous_audio_data_endpoint_descriptor(self):
-        # Build the relevant descriptor
-        data = ClassSpecificAudioStreamingIsochronousAudioDataEndpointDescriptor.build({
-            'bmAttributes': 0,
-            'bmControls': 0,
-            'bLockDelayUnits': 1,
-            'wLockDelay': 0,
-        })
-
-        # ... and check the binary output
-        self.assertEqual(data, bytes([
-                0x08,       # Length
-                0x25,       # Type
-                0x01,       # Subtype
-                0x00,       # Attributes
-                0x00,       # Controls
-                0x01,       # Lock Delay Units
-                0x00, 0x00  # Lock delay
-            ]))

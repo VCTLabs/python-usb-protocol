@@ -1,9 +1,11 @@
+# -*- coding: utf-8 -*-
 #
 # This file is part of usb-protocol.
 #
 """ USB types -- defines enumerations that describe standard USB types """
 
-from enum import Enum, IntFlag, IntEnum
+from enum import IntEnum, IntFlag
+
 
 class USBDirection(IntEnum):
     """ Class representing USB directions. """
@@ -593,26 +595,6 @@ class USBUsageType(IntEnum):
     IMPLICIT_FEEDBACK = 2
 
 
-class USBTransferType(IntEnum):
-    CONTROL     = 0
-    ISOCHRONOUS = 1
-    BULK        = 2
-    INTERRUPT   = 3
-
-
-class USBSynchronizationType(IntEnum):
-    NONE         = 0x00
-    ASYNC        = 0x01
-    ADAPTIVE     = 0x02
-    SYNCHRONOUS  = 0x03
-
-
-class USBUsageType(IntEnum):
-    DATA              = 0
-    FEEDBACK          = 1
-    IMPLICIT_FEEDBACK = 2
-
-
 class USBStandardRequests(IntEnum):
     GET_STATUS        = 0
     CLEAR_FEATURE     = 1
@@ -640,6 +622,3 @@ class USBStandardRequests(IntEnum):
     SET_INTERFACE_DS     = 23
     SET_SEL              = 48
     SET_ISOCH_DELAY      = 49
-
-
-
