@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 #
 # This file is part of usb-protocol.
 #
@@ -9,6 +10,20 @@
 
 from enum import IntEnum
 
+import construct
+
+from .. import DescriptorTypes, USBTransferType
+from ..descriptor import (
+    DescriptorField,
+    DescriptorFormat,
+    DescriptorNumber,
+)
+from ..descriptors.uac1 import (
+    AudioClassSpecificACInterfaceDescriptorSubtypes,
+    AudioClassSpecificDescriptorTypes,
+    AudioInterfaceClassCode,
+    AudioInterfaceSubclassCodes,
+)
 from .standard import StandardDescriptorNumbers
 
 
@@ -83,6 +98,3 @@ StandardMidiStreamingDataEndpointDescriptor = DescriptorFormat(
     "wMaxPacketSize"      / DescriptorField(description="Maximum packet size this endpoint is capable of sending or receiving"),
     "bInterval"           / DescriptorField(description="Interval for polling endpoint for Interrupt data transfers. For bulk endpoints this field is ignored and must be reset to 0", default=0)
 )
-
-
-

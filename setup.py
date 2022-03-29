@@ -1,5 +1,6 @@
+# -*- coding: utf-8 -*-
 
-from setuptools import setup, find_packages
+from setuptools import setup
 
 setup(
 
@@ -20,11 +21,18 @@ setup(
 
     # Imports / exports / requirements.
     platforms='any',
-    packages=find_packages(),
+    packages=[
+        'usb_protocol',
+        'usb_protocol.emitters',
+        'usb_protocol.types',
+    ],
+    package_dir={'usb_protocol': 'usb_protocol',
+                 'usb_protocol.emitters': 'usb_protocol/emitters',
+                 'usb_protocol.types': 'usb_protocol/types',
+                 },
     include_package_data=True,
     python_requires="~=3.7",
     install_requires=['construct'],
-    setup_requires=['setuptools', 'setuptools_scm'],
 
     # Metadata
     classifiers = [

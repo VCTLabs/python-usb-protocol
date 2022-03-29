@@ -1,9 +1,11 @@
+# -*- coding: utf-8 -*-
 #
 # This file is part of usb-protocol.
 #
 """ SuperSpeed USB types -- defines enumerations that describe standard USB3 types. """
 
 from enum import IntEnum
+
 
 class LinkCommand(IntEnum):
     """ Constant values (including both class and type) for link commands. """
