@@ -16,21 +16,18 @@ jobs:
       with:
         fetch-depth: 0
 
-    #- uses: actions/setup-python@v2
-      #with:
-        #python-version: '3.9'
-
-    #- name: Add python requirements
-      #run: |
-        #python -m pip install --upgrade pip
-        #pip install tox
-
-    # Builds docs using sphinx
-    - uses: ammaraskar/sphinx-action@master
+    - uses: actions/setup-python@v2
       with:
-        pre-build-command: "pip install .[doc]"
-        build-command: "make -C docs html"
-        docs-folder: "docs/"
+        python-version: '3.9'
+
+    - name: Add python requirements
+      run: |
+        python -m pip install --upgrade pip
+        pip install tox
+
+    - name: Build docs
+      run: |
+        tox -e docs
 
     - uses: actions/upload-artifact@v2
       with:
