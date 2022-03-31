@@ -52,9 +52,8 @@ class ConstructEmitter:
     def _format_contains_field(self, field_name):
         """ Returns True iff the given format has a field with the provided name.
 
-        Parameters:
-            format_object -- The Construct format to work with. This includes e.g. most descriptor types.
-            field_name    -- The field name to query.
+        :param format_object: The Construct format to work with. This includes e.g. most descriptor types.
+        :param field_name: The field name to query.
         """
         return any(f.name == field_name for f in self.format.subcons)
 
