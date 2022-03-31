@@ -19,13 +19,15 @@ def emitter_for_format(construct_format):
 class ConstructEmitter:
     """ Class that creates a simple emitter based on a construct struct.
 
-    For example, if we have a construct format that looks like the following:
+    For example, if we have a construct format that looks like the following::
+
         MyStruct = struct(
             "a" / Int8
             "b" / Int8
         )
 
-    We could create emit an object like follows:
+    We could create emit an object like follows::
+
         emitter   = ConstructEmitter(MyStruct)
         emitter.a = 0xab
         emitter.b = 0xcd
@@ -34,8 +36,7 @@ class ConstructEmitter:
 
     def __init__(self, struct):
         """
-        Parmeters:
-            construct_format -- The format for which to create an emitter.
+        :construct_format: The format for which to create an emitter.
         """
         self.__dict__['format'] = struct
         self.__dict__['fields'] = {}
@@ -44,9 +45,8 @@ class ConstructEmitter:
     def _format_contains_field(self, field_name):
         """ Returns True iff the given format has a field with the provided name.
 
-        Parameters:
-            format_object -- The Construct format to work with. This includes e.g. most descriptor types.
-            field_name    -- The field name to query.
+        :param format_object: The Construct format to work with. This includes e.g. most descriptor types.
+        :param field_name: The field name to query.
         """
         return any(f.name == field_name for f in self.format.subcons)
 

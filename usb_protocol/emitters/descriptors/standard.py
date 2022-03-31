@@ -42,7 +42,7 @@ class EndpointDescriptorEmitter(ComplexDescriptorEmitter):
         """ Context manager that allows addition of a SuperSpeed Companion to this endpoint descriptor.
 
         It can be used with a `with` statement; and yields an SuperSpeedEndpointCompanionDescriptorEmitter
-        that can be populated:
+        that can be populated::
 
             with endpoint.SuperSpeedEndpointCompanion() as d:
                 d.bMaxBurst = 1
@@ -66,7 +66,7 @@ class InterfaceDescriptorEmitter(ComplexDescriptorEmitter):
         """ Context manager that allows addition of a subordinate endpoint descriptor.
 
         It can be used with a `with` statement; and yields an EndpointDesriptorEmitter
-        that can be populated:
+        that can be populated::
 
             with interface.EndpointDescriptor() as d:
                 d.bEndpointAddress = 0x01
@@ -109,7 +109,7 @@ class ConfigurationDescriptorEmitter(ComplexDescriptorEmitter):
         """ Context manager that allows addition of a subordinate interface descriptor.
 
         It can be used with a `with` statement; and yields an InterfaceDescriptorEmitter
-        that can be populated:
+        that can be populated::
 
             with interface.InterfaceDescriptor() as d:
                 d.bInterfaceNumber = 0x01
@@ -148,9 +148,8 @@ class DeviceDescriptorCollection:
 
     def __init__(self, automatic_language_descriptor=True):
         """
-        Parameters:
-            automatic_language_descriptor -- If set or not provided, a language descriptor will automatically
-                                             be added if none exists.
+        :automatic_language_descriptor: If set or not provided, a language descriptor will automatically
+                                        be added if none exists.
         """
 
 
@@ -208,11 +207,10 @@ class DeviceDescriptorCollection:
     def add_descriptor(self, descriptor, index=0, descriptor_type=None):
         """ Adds a descriptor to our collection.
 
-        Parameters:
-            descriptor      -- The descriptor to be added.
-            index           -- The index of the relevant descriptor. Defaults to 0.
-            descriptor_type -- The type of the descriptor to be added. If `None`,
-                               this is automatically derived from the descriptor contents.
+        :param descriptor:      The descriptor to be added.
+        :param index:           The index of the relevant descriptor. Defaults to 0.
+        :param descriptor_type: The type of the descriptor to be added. If `None`,
+                                this is automatically derived from the descriptor contents.
         """
 
         # If this is an emitter rather than a descriptor itself, convert it.
@@ -231,8 +229,7 @@ class DeviceDescriptorCollection:
     def add_language_descriptor(self, supported_languages=None):
         """ Adds a language descriptor to the list of device descriptors.
 
-        Parameters:
-            supported_languages -- A list of languages supported by the device.
+        :param supported_languages: A list of languages supported by the device.
         """
 
         if supported_languages is None:
@@ -248,7 +245,7 @@ class DeviceDescriptorCollection:
         """ Context manager that allows addition of a device descriptor.
 
         It can be used with a `with` statement; and yields an DeviceDescriptorEmitter
-        that can be populated:
+        that can be populated::
 
             with collection.DeviceDescriptor() as d:
                 d.idVendor  = 0xabcd
@@ -275,7 +272,7 @@ class DeviceDescriptorCollection:
         """ Context manager that allows addition of a configuration descriptor.
 
         It can be used with a `with` statement; and yields an ConfigurationDescriptorEmitter
-        that can be populated:
+        that can be populated::
 
             with collection.ConfigurationDescriptor() as d:
                 d.bConfigurationValue = 1
@@ -291,7 +288,7 @@ class DeviceDescriptorCollection:
 
 
     def _ensure_has_language_descriptor(self):
-        """ ensures that we have a language descriptor; adding one if necessary."""
+        """ Ensures that we have a language descriptor; adding one if necessary."""
 
         # if we're not automatically adding a language descriptor, we shouldn't do anything,
         # and we'll just ignore this.
@@ -307,9 +304,8 @@ class DeviceDescriptorCollection:
     def get_descriptor_bytes(self, type_number: int, index: int = 0):
         """ Returns the raw, binary descriptor for a given descriptor type/index.
 
-        Parmeters:
-            type_number -- The descriptor type number.
-            index       -- The index of the relevant descriptor, if relevant.
+        :param type_number: The descriptor type number.
+        :param index: The index of the relevant descriptor, if relevant.
         """
 
         # If this is a request for a language descriptor, return one.
@@ -337,7 +333,7 @@ class BinaryObjectStoreDescriptorEmitter(ComplexDescriptorEmitter):
         """ Context manager that allows addition of a USB 2.0 Extension to this Binary Object Store.
 
         It can be used with a `with` statement; and yields an USB2ExtensionDescriptorEmitter
-        that can be populated:
+        that can be populated::
 
             with bos.USB2Extension() as e:
                 e.bmAttributes = 1
@@ -356,7 +352,7 @@ class BinaryObjectStoreDescriptorEmitter(ComplexDescriptorEmitter):
         """ Context manager that allows addition of a SS Device Capability to this Binary Object Store.
 
         It can be used with a `with` statement; and yields an SuperSpeedUSBDeviceCapabilityDescriptorEmitter
-        that can be populated:
+        that can be populated::
 
             with bos.SuperSpeedUSBDeviceCapability() as e:
                 e.wSpeedSupported       = 0b1110
@@ -387,9 +383,8 @@ class SuperSpeedDeviceDescriptorCollection(DeviceDescriptorCollection):
 
     def __init__(self, automatic_descriptors=True):
         """
-        Parameters:
-            automatic_descriptors -- If set or not provided, certian required descriptors will be
-                                     be added if none exists.
+        :param automatic_descriptors: If set or not provided, certain required descriptors will be
+                                      be added if none exists.
         """
         self._automatic_descriptors = automatic_descriptors
         super().__init__(automatic_language_descriptor=automatic_descriptors)
@@ -400,7 +395,7 @@ class SuperSpeedDeviceDescriptorCollection(DeviceDescriptorCollection):
         """ Context manager that allows addition of a Binary Object Store descriptor.
 
         It can be used with a `with` statement; and yields an BinaryObjectStoreDescriptorEmitter
-        that can be populated:
+        that can be populated::
 
             with collection.BOSDescriptor() as d:
                 [snip]
