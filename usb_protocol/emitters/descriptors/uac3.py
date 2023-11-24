@@ -1,10 +1,17 @@
-# -*- coding: utf-8 -*-
 #
 # This file is part of usb_protocol.
 #
 """ Convenience emitters for USB Audio Class 3 descriptors. """
 
-from ...types.descriptors.uac3 import *
+from ...types.descriptors.uac3 import (
+    AudioControlInterruptEndpointDescriptor,
+    AudioStreamingInterfaceDescriptor,
+    AudioStreamingIsochronousEndpointDescriptor,
+    AudioStreamingIsochronousFeedbackEndpointDescriptor,
+    ClassSpecificAudioStreamingInterfaceDescriptor,
+    InputTerminalDescriptor,
+    OutputTerminalDescriptor,
+)
 from .. import emitter_for_format
 
 InputTerminalDescriptorEmitter                                           = emitter_for_format(InputTerminalDescriptor)

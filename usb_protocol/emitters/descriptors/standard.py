@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # This file is part of usb_protocol.
 #
@@ -7,7 +6,20 @@
 from contextlib import contextmanager
 
 from ...types import LanguageIDs
-from ...types.descriptors.standard import *
+from ...types.descriptors.standard import (
+    BinaryObjectStoreDescriptor,
+    ConfigurationDescriptor,
+    DeviceDescriptor,
+    DeviceQualifierDescriptor,
+    EndpointDescriptor,
+    InterfaceDescriptor,
+    StandardDescriptorNumbers,
+    StringDescriptor,
+    StringLanguageDescriptor,
+    SuperSpeedEndpointCompanionDescriptor,
+    SuperSpeedUSBDeviceCapabilityDescriptor,
+    USB2ExtensionDescriptor,
+)
 from .. import emitter_for_format
 from ..descriptor import ComplexDescriptorEmitter
 
@@ -173,8 +185,7 @@ class DeviceDescriptorCollection:
 
         if isinstance(field_value, str):
             return self.get_index_for_string(field_value)
-        else:
-            return field_value
+        return field_value
 
 
     def get_index_for_string(self, string):

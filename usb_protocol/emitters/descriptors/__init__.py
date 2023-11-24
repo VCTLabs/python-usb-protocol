@@ -1,3 +1,2 @@
-# -*- coding: utf-8 -*-
 
-from .standard import *
+from .standard import DeviceDescriptorEmitter
