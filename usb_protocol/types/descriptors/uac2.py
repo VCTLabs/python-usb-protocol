@@ -15,6 +15,7 @@
 from enum import IntEnum
 
 import construct
+
 from usb_protocol.emitters import descriptor
 
 from ..descriptor import (

@@ -7,7 +7,20 @@
 from contextlib import contextmanager
 
 from ...types import LanguageIDs
-from ...types.descriptors.standard import *
+from ...types.descriptors.standard import (
+    BinaryObjectStoreDescriptor,
+    ConfigurationDescriptor,
+    DeviceDescriptor,
+    DeviceQualifierDescriptor,
+    EndpointDescriptor,
+    InterfaceDescriptor,
+    StandardDescriptorNumbers,
+    StringDescriptor,
+    StringLanguageDescriptor,
+    SuperSpeedEndpointCompanionDescriptor,
+    SuperSpeedUSBDeviceCapabilityDescriptor,
+    USB2ExtensionDescriptor,
+)
 from .. import emitter_for_format
 from ..descriptor import ComplexDescriptorEmitter
 
@@ -171,10 +184,9 @@ class DeviceDescriptorCollection:
         adds the relevant fields to our string descriptor collection.
         """
 
-        if isinstance(field_value, int):
-            return field_value
-        else:
+        if isinstance(field_value, str):
             return self.get_index_for_string(field_value)
+        return field_value
 
 
     def get_index_for_string(self, string):
@@ -227,7 +239,7 @@ class DeviceDescriptorCollection:
             descriptor_type = descriptor[1]
 
         # Try to convert descriptor_type to StandardDescriptorNumbers ...
-        if (type(descriptor_type) == int):
+        if (type(descriptor_type) is int):
             try:
                 descriptor_type = StandardDescriptorNumbers(descriptor_type)
             except ValueError:

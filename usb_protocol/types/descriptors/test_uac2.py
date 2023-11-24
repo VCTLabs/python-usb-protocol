@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 #
 # This file is part of usb-protocol.
 #
@@ -113,7 +114,7 @@ class UAC2Cases(unittest.TestCase):
             0x01,  # Controls
             0x01,  # Associate terminal
             0x42   # Clock source name
-            ])
+        ])
 
         # ... and check the descriptor's fields.
         self.assertEqual(parsed.bLength, 8)

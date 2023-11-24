@@ -8,7 +8,7 @@ repos:
       - id: check-useless-excludes
       - id: check-hooks-apply
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.0.1
+    rev: v4.5.0
     hooks:
       - id: check-added-large-files
       - id: check-case-conflict
@@ -17,6 +17,7 @@ repos:
       - id: debug-statements
       #- id: requirements-txt-fixer
       - id: fix-encoding-pragma
+        #args: ['--remove']
       - id: trailing-whitespace
       - id: end-of-file-fixer
         exclude: '(.*examples/.*)'
@@ -53,7 +54,7 @@ repos:
       #- id: rst-inline-touching-normal
 
   - repo: https://github.com/myint/autoflake
-    rev: v1.4
+    rev: v2.2.1
     hooks:
       - id: autoflake
         files: ^usb_protocol.*\.py$
@@ -62,8 +63,8 @@ repos:
           - --remove-duplicate-keys
           - --remove-unused-variables
 
-  - repo: https://gitlab.com/pycqa/flake8
-    rev: 3.9.2
+  - repo: https://github.com/pycqa/flake8
+    rev: 6.1.0
     hooks:
       - id: flake8
         files: ^usb_protocol.*\.py$
@@ -76,22 +77,22 @@ repos:
 #        args: [--config=pyproject.toml]
 
   - repo: https://github.com/pycqa/isort
-    rev: 5.5.4
+    rev: 5.12.0
     hooks:
       - id: isort
         args: [--settings-path=pyproject.toml]
 
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v0.910-1
+    rev: v1.7.1
     hooks:
     - id: mypy
       additional_dependencies:
-        - construct==2.10.67
-        - construct-typing==0.5.2
+        - construct>=2.10.67
+        - construct-typing>=0.5.2
       args:
         - --follow-imports=normal
-        #- --install-types
-        #- --non-interactive
+        - --install-types
+        - --non-interactive
       files: ^usb_protocol.*\.py$
 
 #  - repo: https://github.com/psf/black
@@ -120,19 +121,3 @@ repos:
           #"-sn",
           #"--fail-under=8.10",
         #]
-
-ci:
-    autofix_commit_msg: |
-        [pre-commit.ci] auto fixes from pre-commit.com hooks
-
-        for more information, see https://pre-commit.ci
-    autofix_prs: false
-    autoupdate_commit_msg: '[pre-commit.ci] pre-commit autoupdate'
-    autoupdate_schedule: weekly
-    skip: []
-    submodules: false
-
-# re-running a pull request: you can trigger a re-run on a pull request by
-#    commenting pre-commit.ci run (must appear on a line by itself).
-# skipping push runs: skip a run by putting [skip ci], [ci skip],
-#    [skip pre-commit.ci], or [pre-commit.ci skip] in the commit message.

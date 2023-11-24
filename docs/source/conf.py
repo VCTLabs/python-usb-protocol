@@ -1,4 +1,10 @@
-import os, pkg_resources, sys, time
+# -*- coding: utf-8 -*-
+import os
+import sys
+import time
+
+import pkg_resources
+
 sys.path.insert(0, os.path.abspath('../../'))
 sys.path.insert(0, os.path.abspath('../../usb_protocol'))
 

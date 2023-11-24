@@ -3,9 +3,10 @@ usb_protocol documentation
 ==========================
 
 .. toctree::
-   :maxdepth: 6
-   :caption: Contents:
+  :maxdepth: 5
+  :caption: API Documentation
 
+  README
   api_docs/modules
 
 * :ref:`genindex`

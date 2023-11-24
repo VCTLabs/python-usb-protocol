@@ -5,7 +5,27 @@
 """ Convenience emitters for USB Audio Class 2 descriptors. """
 
 
-from ...types.descriptors.uac2 import *
+from ...types.descriptors.uac2 import (
+    AudioControlInterruptEndpointDescriptor,
+    AudioStreamingInterfaceDescriptor,
+    AudioStreamingIsochronousEndpointDescriptor,
+    AudioStreamingIsochronousFeedbackEndpointDescriptor,
+    ClassSpecificAudioControlInterfaceDescriptor,
+    ClassSpecificAudioStreamingInterfaceDescriptor,
+    ClassSpecificAudioStreamingIsochronousAudioDataEndpointDescriptor,
+    ClockSourceDescriptor,
+    ExtendedTypeIFormatTypeDescriptor,
+    ExtendedTypeIIFormatTypeDescriptor,
+    ExtendedTypeIIIFormatTypeDescriptor,
+    FeatureUnitDescriptor,
+    InputTerminalDescriptor,
+    InterfaceAssociationDescriptor,
+    OutputTerminalDescriptor,
+    StandardAudioControlInterfaceDescriptor,
+    TypeIFormatTypeDescriptor,
+    TypeIIFormatTypeDescriptor,
+    TypeIIIFormatTypeDescriptor,
+)
 from .. import emitter_for_format
 from ..descriptor import ComplexDescriptorEmitter
 
