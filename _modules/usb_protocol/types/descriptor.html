@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>usb_protocol.types.descriptor &mdash; usb_protocol 0.0 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=837179f8"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            usb_protocol
+          </a>
+              <div class="version">
+                0.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../README.html">USB Protocol Library for Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/modules.html">usb_protocol</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">usb_protocol</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+          <li class="breadcrumb-item"><a href="../types.html">usb_protocol.types</a></li>
+      <li class="breadcrumb-item active">usb_protocol.types.descriptor</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for usb_protocol.types.descriptor</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="c1">#</span>
+<span class="c1"># This file is part of usb-protocol.</span>
+<span class="c1">#</span>
+<span class="sd">&quot;&quot;&quot; Type elements for defining USB descriptors. &quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">construct</span>
+
+
+<div class="viewcode-block" id="DescriptorFormat">
+<a class="viewcode-back" href="../../../api/usb_protocol.types.descriptor.html#usb_protocol.types.descriptor.DescriptorFormat">[docs]</a>
+<span class="k">class</span> <span class="nc">DescriptorFormat</span><span class="p">(</span><span class="n">construct</span><span class="o">.</span><span class="n">Struct</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Creates a Construct structure for a USB descriptor, and a corresponding version that</span>
+<span class="sd">    supports parsing incomplete binary as `DescriptorType.Partial`, e.g. `DeviceDescriptor.Partial`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">subcons</span><span class="p">,</span> <span class="n">_create_partial</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">subconskw</span><span class="p">):</span>
+
+        <span class="k">if</span> <span class="n">_create_partial</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">Partial</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_partial</span><span class="p">(</span><span class="o">*</span><span class="n">subcons</span><span class="p">,</span> <span class="o">**</span><span class="n">subconskw</span><span class="p">)</span> <span class="c1"># pylint: disable=invalid-name</span>
+
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">subcons</span><span class="p">,</span> <span class="o">**</span><span class="n">subconskw</span><span class="p">)</span>
+
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">_get_subcon_field_type</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">subcon</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Gets the actual field type for a Subconstruct behind arbitrary levels of `Renamed`s.&quot;&quot;&quot;</span>
+
+        <span class="c1"># DescriptorFields are usually `&lt;Renamed &lt;Renamed &lt;FormatField&gt;&gt;&gt;`.</span>
+        <span class="c1"># The type behind the `Renamed`s is the one we&#39;re interested in, so let&#39;s recursively examine</span>
+        <span class="c1"># the child Subconstruct until we get to it.</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">subcon</span><span class="p">,</span> <span class="n">construct</span><span class="o">.</span><span class="n">Renamed</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">subcon</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_get_subcon_field_type</span><span class="p">(</span><span class="n">subcon</span><span class="o">.</span><span class="n">subcon</span><span class="p">)</span>
+
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">_create_partial</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">*</span><span class="n">subcons</span><span class="p">,</span> <span class="o">**</span><span class="n">subconskw</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Creates a version of the descriptor format for parsing incomplete binary data as a descriptor.</span>
+
+<span class="sd">        This essentially wraps every field after bLength and bDescriptorType in a `construct.Optional`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">def</span> <span class="nf">_apply_optional</span><span class="p">(</span><span class="n">subcon</span><span class="p">):</span>
+
+            <span class="n">subcon_type</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_get_subcon_field_type</span><span class="p">(</span><span class="n">subcon</span><span class="p">)</span>
+
+            <span class="c1">#</span>
+            <span class="c1"># If it&#39;s already Optional then we don&#39;t need to apply it again.</span>
+            <span class="c1">#</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">subcon_type</span><span class="p">,</span> <span class="n">construct</span><span class="o">.</span><span class="n">Select</span><span class="p">):</span>
+                <span class="c1"># construct uses a weird singleton to define Pass. `construct.core.Pass` would normally be</span>
+                <span class="c1"># the type&#39;s name, but then they create a singleton of that same name, replacing that name and</span>
+                <span class="c1"># making the type technically unnamable and only accessable via `type()`.</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">subcon_type</span><span class="o">.</span><span class="n">subcons</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="nb">type</span><span class="p">(</span><span class="n">construct</span><span class="o">.</span><span class="n">Pass</span><span class="p">)):</span>
+                    <span class="k">return</span> <span class="n">subcon</span>
+
+            <span class="k">return</span> <span class="p">(</span><span class="n">subcon</span><span class="o">.</span><span class="n">name</span> <span class="o">/</span> <span class="n">construct</span><span class="o">.</span><span class="n">Optional</span><span class="p">(</span><span class="n">subcon_type</span><span class="p">))</span> <span class="o">*</span> <span class="n">subcon</span><span class="o">.</span><span class="n">docs</span>
+
+        <span class="c1"># First store the Subconstructs we don&#39;t want to modify: bLength and bDescriptorType,</span>
+        <span class="c1"># as these are never optional.</span>
+        <span class="n">new_subcons</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">subcons</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">])</span>
+
+        <span class="c1"># Then apply Optional to all of the rest of the Subconstructs.</span>
+        <span class="n">new_subcons</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="n">_apply_optional</span><span class="p">(</span><span class="n">subcon</span><span class="p">)</span> <span class="k">for</span> <span class="n">subcon</span> <span class="ow">in</span> <span class="n">subcons</span><span class="p">[</span><span class="mi">2</span><span class="p">:]])</span>
+
+        <span class="k">return</span> <span class="n">DescriptorFormat</span><span class="p">(</span><span class="o">*</span><span class="n">new_subcons</span><span class="p">,</span> <span class="n">_create_partial</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">subconskw</span><span class="p">)</span>
+
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_to_detail_dictionary</span><span class="p">(</span><span class="n">descriptor</span><span class="p">,</span> <span class="n">use_pretty_names</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="c1"># Loop over every entry in our descriptor context, and try to get a</span>
+        <span class="c1"># fancy name for it.</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">descriptor</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+
+            <span class="c1"># Don&#39;t include any underscore-prefixed private members.</span>
+            <span class="k">if</span> <span class="n">key</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">):</span>
+                <span class="k">continue</span>
+
+            <span class="c1"># If there&#39;s no definition for the given key in our format, # skip it.</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">descriptor</span><span class="o">.</span><span class="n">_format</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+                <span class="k">continue</span>
+
+            <span class="c1"># Try to apply any documentation on the given field rather than it&#39;s internal name.</span>
+            <span class="n">format_element</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">descriptor</span><span class="o">.</span><span class="n">_format</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+            <span class="n">detail_key</span> <span class="o">=</span> <span class="n">format_element</span><span class="o">.</span><span class="n">docs</span> <span class="k">if</span> <span class="p">(</span><span class="n">format_element</span><span class="o">.</span><span class="n">docs</span> <span class="ow">and</span> <span class="n">use_pretty_names</span><span class="p">)</span> <span class="k">else</span> <span class="n">key</span>
+
+            <span class="c1"># Finally, add the entry to our dict.</span>
+            <span class="n">result</span><span class="p">[</span><span class="n">detail_key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+
+        <span class="k">return</span> <span class="n">result</span>
+
+
+<div class="viewcode-block" id="DescriptorFormat.parse">
+<a class="viewcode-back" href="../../../api/usb_protocol.types.descriptor.html#usb_protocol.types.descriptor.DescriptorFormat.parse">[docs]</a>
+    <span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="o">**</span><span class="n">context_keywords</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Hook on the parent parse() method which attaches a few methods. &quot;&quot;&quot;</span>
+
+        <span class="c1"># Use construct to run the parse itself...</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="nb">bytes</span><span class="p">(</span><span class="n">data</span><span class="p">),</span> <span class="o">**</span><span class="n">context_keywords</span><span class="p">)</span>
+
+        <span class="c1"># ... and then bind our static to_detail_dictionary to it.</span>
+        <span class="n">result</span><span class="o">.</span><span class="n">_format</span> <span class="o">=</span> <span class="bp">self</span>
+        <span class="n">result</span><span class="o">.</span><span class="n">_to_detail_dictionary</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_to_detail_dictionary</span><span class="o">.</span><span class="fm">__get__</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">result</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">result</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="DescriptorNumber">
+<a class="viewcode-back" href="../../../api/usb_protocol.types.descriptor.html#usb_protocol.types.descriptor.DescriptorNumber">[docs]</a>
+<span class="k">class</span> <span class="nc">DescriptorNumber</span><span class="p">(</span><span class="n">construct</span><span class="o">.</span><span class="n">Const</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Trivial wrapper class that denotes a particular Const as the descriptor number. &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">const</span><span class="p">):</span>
+
+        <span class="c1"># If our descriptor number is an integer, instead of &quot;raw&quot;,</span>
+        <span class="c1"># convert it to a byte, first.</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">const</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">):</span>
+            <span class="n">const</span> <span class="o">=</span> <span class="n">const</span><span class="o">.</span><span class="n">to_bytes</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">byteorder</span><span class="o">=</span><span class="s1">&#39;little&#39;</span><span class="p">)</span>
+
+        <span class="c1"># Grab the inner descriptor number represented by the constant.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">number</span> <span class="o">=</span> <span class="nb">int</span><span class="o">.</span><span class="n">from_bytes</span><span class="p">(</span><span class="n">const</span><span class="p">,</span> <span class="n">byteorder</span><span class="o">=</span><span class="s1">&#39;little&#39;</span><span class="p">)</span>
+
+        <span class="c1"># And pass this to the core constant class.</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">const</span><span class="p">)</span>
+
+        <span class="c1"># Finally, add a documentation string for the type.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">docs</span> <span class="o">=</span> <span class="s2">&quot;Descriptor type&quot;</span>
+
+
+    <span class="k">def</span> <span class="nf">_parse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stream</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+        <span class="n">const_bytes</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_parse</span><span class="p">(</span><span class="n">stream</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">const_bytes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+
+<div class="viewcode-block" id="DescriptorNumber.get_descriptor_number">
+<a class="viewcode-back" href="../../../api/usb_protocol.types.descriptor.html#usb_protocol.types.descriptor.DescriptorNumber.get_descriptor_number">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_descriptor_number</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Returns this constant&#39;s associated descriptor number.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">number</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="BCDFieldAdapter">
+<a class="viewcode-back" href="../../../api/usb_protocol.types.descriptor.html#usb_protocol.types.descriptor.BCDFieldAdapter">[docs]</a>
+<span class="k">class</span> <span class="nc">BCDFieldAdapter</span><span class="p">(</span><span class="n">construct</span><span class="o">.</span><span class="n">Adapter</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Construct adapter that dynamically parses BCD fields. &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">_decode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+        <span class="n">hex_string</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">obj</span><span class="si">:</span><span class="s2">04x</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">hex_string</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">hex_string</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">_encode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+
+        <span class="c1"># Break the object down into its component parts...</span>
+        <span class="n">integer</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span> <span class="o">%</span> <span class="mi">100</span>
+        <span class="n">percent</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">obj</span> <span class="o">*</span> <span class="mi">100</span><span class="p">))</span> <span class="o">%</span> <span class="mi">100</span>
+
+        <span class="c1"># ... make sure nothing is lost during conversion...</span>
+        <span class="k">if</span> <span class="nb">float</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">integer</span><span class="si">:</span><span class="s2">02</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">percent</span><span class="si">:</span><span class="s2">02</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="o">!=</span> <span class="n">obj</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;BCD fields must be in the format XX.YY&quot;</span><span class="p">)</span>
+
+        <span class="c1"># ... and squish them into an integer.</span>
+        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">integer</span><span class="si">:</span><span class="s2">02</span><span class="si">}{</span><span class="n">percent</span><span class="si">:</span><span class="s2">02</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span></div>
+
+
+
+
+<div class="viewcode-block" id="DescriptorField">
+<a class="viewcode-back" href="../../../api/usb_protocol.types.descriptor.html#usb_protocol.types.descriptor.DescriptorField">[docs]</a>
+<span class="k">class</span> <span class="nc">DescriptorField</span><span class="p">(</span><span class="n">construct</span><span class="o">.</span><span class="n">Subconstruct</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Construct field definition that automatically adds fields of the proper</span>
+<span class="sd">    size to Descriptor definitions.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1">#</span>
+    <span class="c1"># The C++-wonk operator overloading is Construct, not me, I swear.</span>
+    <span class="c1">#</span>
+
+    <span class="c1"># FIXME: these are really primitive views of these types;</span>
+    <span class="c1"># we should extend these to get implicit parsing wherever possible</span>
+    <span class="n">USB_TYPES</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;b&#39;</span>   <span class="p">:</span> <span class="n">construct</span><span class="o">.</span><span class="n">Int8ul</span><span class="p">,</span>
+        <span class="s1">&#39;bcd&#39;</span> <span class="p">:</span> <span class="n">BCDFieldAdapter</span><span class="p">(</span><span class="n">construct</span><span class="o">.</span><span class="n">Int16ul</span><span class="p">),</span>  <span class="c1"># TODO: Create a BCD parser for this</span>
+        <span class="s1">&#39;i&#39;</span>   <span class="p">:</span> <span class="n">construct</span><span class="o">.</span><span class="n">Int8ul</span><span class="p">,</span>
+        <span class="s1">&#39;id&#39;</span>  <span class="p">:</span> <span class="n">construct</span><span class="o">.</span><span class="n">Int16ul</span><span class="p">,</span>
+        <span class="s1">&#39;bm&#39;</span>  <span class="p">:</span> <span class="n">construct</span><span class="o">.</span><span class="n">Int8ul</span><span class="p">,</span>
+        <span class="s1">&#39;w&#39;</span>   <span class="p">:</span> <span class="n">construct</span><span class="o">.</span><span class="n">Int16ul</span><span class="p">,</span>
+    <span class="p">}</span>
+
+
+    <span class="n">LENGTH_TYPES</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="mi">1</span><span class="p">:</span> <span class="n">construct</span><span class="o">.</span><span class="n">Int8ul</span><span class="p">,</span>
+        <span class="mi">2</span><span class="p">:</span> <span class="n">construct</span><span class="o">.</span><span class="n">Int16ul</span><span class="p">,</span>
+        <span class="mi">3</span><span class="p">:</span> <span class="n">construct</span><span class="o">.</span><span class="n">Int24ul</span><span class="p">,</span>
+        <span class="mi">4</span><span class="p">:</span> <span class="n">construct</span><span class="o">.</span><span class="n">Int32ul</span><span class="p">,</span>
+        <span class="mi">8</span><span class="p">:</span> <span class="n">construct</span><span class="o">.</span><span class="n">Int64ul</span>
+    <span class="p">}</span>
+
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_get_prefix</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Returns the lower-case prefix on a USB descriptor name. &quot;&quot;&quot;</span>
+        <span class="n">prefix</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="c1"># Silly loop that continues until we find an uppercase letter.</span>
+        <span class="c1"># You&#39;d be aghast at how the &#39;pythonic&#39; answers look.</span>
+        <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">name</span><span class="p">:</span>
+
+            <span class="c1"># Ignore leading underscores.</span>
+            <span class="k">if</span> <span class="n">c</span> <span class="o">==</span> <span class="s1">&#39;_&#39;</span><span class="p">:</span>
+                <span class="k">continue</span>
+
+            <span class="k">if</span> <span class="n">c</span><span class="o">.</span><span class="n">isupper</span><span class="p">():</span>
+                <span class="k">break</span>
+            <span class="n">prefix</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">prefix</span><span class="p">)</span>
+
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">_get_type_for_name</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Returns the type that&#39;s appropriate for a given descriptor field name. &quot;&quot;&quot;</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">USB_TYPES</span><span class="p">[</span><span class="bp">cls</span><span class="o">.</span><span class="n">_get_prefix</span><span class="p">(</span><span class="n">name</span><span class="p">)]</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;field names must be formatted per the USB standard!&quot;</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">description</span> <span class="o">=</span> <span class="n">description</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">default</span> <span class="o">=</span> <span class="n">default</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">length</span> <span class="o">=</span> <span class="n">length</span>
+
+
+    <span class="k">def</span> <span class="fm">__rtruediv__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field_name</span><span class="p">):</span>
+        <span class="c1"># If we have a length, use it to figure out the type.</span>
+        <span class="c1"># Otherwise, extract the type from the prefix. (Using a length</span>
+        <span class="c1"># is useful for e.g. USB3 bitfields; which can span several bytes.)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">length</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">field_type</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">LENGTH_TYPES</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">length</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">field_type</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_type_for_name</span><span class="p">(</span><span class="n">field_name</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">default</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">field_type</span> <span class="o">=</span> <span class="n">construct</span><span class="o">.</span><span class="n">Default</span><span class="p">(</span><span class="n">field_type</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">default</span><span class="p">)</span>
+
+        <span class="c1"># Build our subconstruct. Construct makes this look super weird,</span>
+        <span class="c1"># but this is actually &quot;we have a field with &lt;field_name&gt; of type &lt;field_type&gt;&quot;.</span>
+        <span class="c1"># In long form, we&#39;ll call it &quot;description&quot;.</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">field_name</span> <span class="o">/</span> <span class="n">field_type</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">description</span></div>
+
+
+
+<span class="c1"># Convenience type that gets a descriptor&#39;s own length.</span>
+<span class="n">DescriptorLength</span> <span class="o">=</span> \
+    <span class="n">construct</span><span class="o">.</span><span class="n">Rebuild</span><span class="p">(</span><span class="n">construct</span><span class="o">.</span><span class="n">Int8ul</span><span class="p">,</span> <span class="n">construct</span><span class="o">.</span><span class="n">len_</span><span class="p">(</span><span class="n">construct</span><span class="o">.</span><span class="n">this</span><span class="p">))</span> \
+    <span class="o">*</span> <span class="s2">&quot;Descriptor Length&quot;</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

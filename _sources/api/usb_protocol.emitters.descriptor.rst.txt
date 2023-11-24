@@ -1,0 +1,7 @@
+usb\_protocol.emitters.descriptor module
+========================================
+
+.. automodule:: usb_protocol.emitters.descriptor
+   :members:
+   :undoc-members:
+   :show-inheritance:

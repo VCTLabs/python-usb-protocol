@@ -1,0 +1,32 @@
+usb\_protocol.types.descriptors package
+=======================================
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   usb_protocol.types.descriptors.partial
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 4
+
+   usb_protocol.types.descriptors.cdc
+   usb_protocol.types.descriptors.midi1
+   usb_protocol.types.descriptors.midi2
+   usb_protocol.types.descriptors.standard
+   usb_protocol.types.descriptors.uac1
+   usb_protocol.types.descriptors.uac2
+   usb_protocol.types.descriptors.uac3
+
+Module contents
+---------------
+
+.. automodule:: usb_protocol.types.descriptors
+   :members:
+   :undoc-members:
+   :show-inheritance:

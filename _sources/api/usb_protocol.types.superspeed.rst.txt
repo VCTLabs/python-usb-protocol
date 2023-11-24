@@ -1,0 +1,10 @@
+usb\_protocol.types.superspeed package
+======================================
+
+Module contents
+---------------
+
+.. automodule:: usb_protocol.types.superspeed
+   :members:
+   :undoc-members:
+   :show-inheritance:

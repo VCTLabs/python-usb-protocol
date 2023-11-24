@@ -1,0 +1,19 @@
+usb\_protocol package
+=====================
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   usb_protocol.emitters
+   usb_protocol.types
+
+Module contents
+---------------
+
+.. automodule:: usb_protocol
+   :members:
+   :undoc-members:
+   :show-inheritance:

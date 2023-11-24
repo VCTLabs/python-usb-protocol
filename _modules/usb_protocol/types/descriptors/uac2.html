@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>usb_protocol.types.descriptors.uac2 &mdash; usb_protocol 0.0 documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../_static/documentation_options.js?v=837179f8"></script>
+        <script src="../../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            usb_protocol
+          </a>
+              <div class="version">
+                0.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../README.html">USB Protocol Library for Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../api/modules.html">usb_protocol</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">usb_protocol</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">Module code</a></li>
+          <li class="breadcrumb-item"><a href="../../types.html">usb_protocol.types</a></li>
+      <li class="breadcrumb-item active">usb_protocol.types.descriptors.uac2</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for usb_protocol.types.descriptors.uac2</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="c1">#</span>
+<span class="c1"># This file is part of usb-protocol.</span>
+<span class="c1">#</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Descriptors for USB Audio Class Devices (UAC), Release 2</span>
+
+<span class="sd">    [Audio20]  refers to &quot;Universal Serial Bus Device Class Definition for Audio Devices&quot;, Release 2.0, May 31, 2006</span>
+<span class="sd">    [Frmts20] refers to &quot;Universal Serial Bus Device Class Definition for Audio Data Formats&quot;, Release 2.0, May 31, 2006</span>
+<span class="sd">    [TermT20] refers to &quot;Universal Serial Bus Device Class Definition for Terminal Types&quot;, Release 2.0, May 31, 2006</span>
+
+<span class="sd">    NOTE: This is not complete yet and will be extended as needed</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">IntEnum</span>
+
+<span class="kn">import</span> <span class="nn">construct</span>
+
+<span class="kn">from</span> <span class="nn">usb_protocol.emitters</span> <span class="kn">import</span> <span class="n">descriptor</span>
+
+<span class="kn">from</span> <span class="nn">..descriptor</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">DescriptorField</span><span class="p">,</span>
+    <span class="n">DescriptorFormat</span><span class="p">,</span>
+    <span class="n">DescriptorNumber</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">.standard</span> <span class="kn">import</span> <span class="n">StandardDescriptorNumbers</span>
+
+
+<div class="viewcode-block" id="AudioInterfaceClassCode">
+<a class="viewcode-back" href="../../../../api/usb_protocol.types.descriptors.uac2.html#usb_protocol.types.descriptors.uac2.AudioInterfaceClassCode">[docs]</a>
+<span class="k">class</span> <span class="nc">AudioInterfaceClassCode</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+    <span class="c1"># As defined in [Audio20], Table A-4</span>
+    <span class="n">AUDIO</span> <span class="o">=</span> <span class="mh">0x01</span></div>
+
+
+
+<div class="viewcode-block" id="AudioFunctionClassCode">
+<a class="viewcode-back" href="../../../../api/usb_protocol.types.descriptors.uac2.html#usb_protocol.types.descriptors.uac2.AudioFunctionClassCode">[docs]</a>
+<span class="k">class</span> <span class="nc">AudioFunctionClassCode</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+    <span class="c1"># As defined in [Audio20], Table A-1</span>
+    <span class="n">AUDIO_FUNCTION</span> <span class="o">=</span> <span class="n">AudioInterfaceClassCode</span><span class="o">.</span><span class="n">AUDIO</span></div>
+
+
+
+<div class="viewcode-block" id="AudioFunctionSubclassCodes">
+<a class="viewcode-back" href="../../../../api/usb_protocol.types.descriptors.uac2.html#usb_protocol.types.descriptors.uac2.AudioFunctionSubclassCodes">[docs]</a>
+<span class="k">class</span> <span class="nc">AudioFunctionSubclassCodes</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+    <span class="c1"># As defined in [Audio20], Table A-2</span>
+    <span class="n">FUNCTION_SUBCLASS_UNDEFINED</span> <span class="o">=</span> <span class="mh">0x00</span></div>
+
+
+
+<div class="viewcode-block" id="AudioInterfaceProtocolCodes">
+<a class="viewcode-back" href="../../../../api/usb_protocol.types.descriptors.uac2.html#usb_protocol.types.descriptors.uac2.AudioInterfaceProtocolCodes">[docs]</a>
+<span class="k">class</span> <span class="nc">AudioInterfaceProtocolCodes</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+    <span class="c1"># As defined in [Audio20], Table A-6</span>
+    <span class="n">INTERFACE_PROTOCOL_UNDEFINED</span> <span class="o">=</span> <span class="mh">0x00</span>
+    <span class="n">IP_VERSION_02_00</span>             <span class="o">=</span> <span class="mh">0x20</span></div>
+
+
+
+<div class="viewcode-block" id="AudioFunctionProtocolCodes">
+<a class="viewcode-back" href="../../../../api/usb_protocol.types.descriptors.uac2.html#usb_protocol.types.descriptors.uac2.AudioFunctionProtocolCodes">[docs]</a>
+<span class="k">class</span> <span class="nc">AudioFunctionProtocolCodes</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+    <span class="c1"># As defined in [Audio20], Table A-3</span>
+    <span class="n">FUNCTION_PROTOCOL_UNDEFINED</span> <span class="o">=</span> <span class="mh">0x00</span>
+    <span class="n">AF_VERSION_02_00</span> <span class="o">=</span> <span class="n">AudioInterfaceProtocolCodes</span><span class="o">.</span><span class="n">IP_VERSION_02_00</span></div>
+
+
+
+<div class="viewcode-block" id="AudioInterfaceSubclassCodes">
+<a class="viewcode-back" href="../../../../api/usb_protocol.types.descriptors.uac2.html#usb_protocol.types.descriptors.uac2.AudioInterfaceSubclassCodes">[docs]</a>
+<span class="k">class</span> <span class="nc">AudioInterfaceSubclassCodes</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+    <span class="c1"># As defined in [Audio20], Table A-5</span>
+    <span class="n">INTERFACE_SUBCLASS_UNDEFINED</span> <span class="o">=</span> <span class="mh">0x00</span>
+    <span class="n">AUDIO_CONTROL</span>                <span class="o">=</span> <span class="mh">0x01</span>
+    <span class="n">AUDIO_STREAMING</span>              <span class="o">=</span> <span class="mh">0x02</span>
+    <span class="n">MIDI_STREAMING</span>               <span class="o">=</span> <span class="mh">0x03</span></div>
+
+
+
+<div class="viewcode-block" id="AudioFunctionCategoryCodes">
+<a class="viewcode-back" href="../../../../api/usb_protocol.types.descriptors.uac2.html#usb_protocol.types.descriptors.uac2.AudioFunctionCategoryCodes">[docs]</a>
+<span class="k">class</span> <span class="nc">AudioFunctionCategoryCodes</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+    <span class="c1"># As defined in [Audio20], Table A-7</span>
+    <span class="n">FUNCTION_SUBCLASS_UNDEFINED</span> <span class="o">=</span> <span class="mh">0x00</span>
+    <span class="n">DESKTOP_SPEAKER</span>             <span class="o">=</span> <span class="mh">0x01</span>
+    <span class="n">HOME_THEATER</span>                <span class="o">=</span> <span class="mh">0x02</span>
+    <span class="n">MICROPHONE</span>                  <span class="o">=</span> <span class="mh">0x03</span>
+    <span class="n">HEADSET</span>                     <span class="o">=</span> <span class="mh">0x04</span>
+    <span class="n">TELEPHONE</span>                   <span class="o">=</span> <span class="mh">0x05</span>
+    <span class="n">CONVERTER</span>                   <span class="o">=</span> <span class="mh">0x06</span>
+    <span class="n">VOICE_SOUND_RECORDER</span>        <span class="o">=</span> <span class="mh">0x07</span>
+    <span class="n">IO_BOX</span>                      <span class="o">=</span> <span class="mh">0x08</span>
+    <span class="n">MUSICAL_INSTRUMENT</span>          <span class="o">=</span> <span class="mh">0x09</span>
+    <span class="n">PRO_AUDIO</span>                   <span class="o">=</span> <span class="mh">0x0A</span>
+    <span class="n">AUDIO_VIDEO</span>                 <span class="o">=</span> <span class="mh">0x0B</span>
+    <span class="n">CONTROL_PANEL</span>               <span class="o">=</span> <span class="mh">0x0C</span>
+    <span class="n">OTHER</span>                       <span class="o">=</span> <span class="mh">0xFF</span></div>
+
+
+
+<div class="viewcode-block" id="AudioClassSpecificStandardDescriptorNumbers">
+<a class="viewcode-back" href="../../../../api/usb_protocol.types.descriptors.uac2.html#usb_protocol.types.descriptors.uac2.AudioClassSpecificStandardDescriptorNumbers">[docs]</a>
+<span class="k">class</span> <span class="nc">AudioClassSpecificStandardDescriptorNumbers</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+    <span class="c1"># As defined in [Audio20], Table A-8</span>
+    <span class="n">CS_UNDEFINED</span>     <span class="o">=</span> <span class="mh">0x20</span>
+    <span class="n">CS_DEVICE</span>        <span class="o">=</span> <span class="mh">0x21</span>
+    <span class="n">CS_CONFIGURATION</span> <span class="o">=</span> <span class="mh">0x22</span>
+    <span class="n">CS_STRING</span>        <span class="o">=</span> <span class="mh">0x23</span>
+    <span class="n">CS_INTERFACE</span>     <span class="o">=</span> <span class="mh">0x24</span>
+    <span class="n">CS_ENDPOINT</span>      <span class="o">=</span> <span class="mh">0x25</span></div>
+
+
+
+<div class="viewcode-block" id="AudioClassSpecificACInterfaceDescriptorSubtypes">
+<a class="viewcode-back" href="../../../../api/usb_protocol.types.descriptors.uac2.html#usb_protocol.types.descriptors.uac2.AudioClassSpecificACInterfaceDescriptorSubtypes">[docs]</a>
+<span class="k">class</span> <span class="nc">AudioClassSpecificACInterfaceDescriptorSubtypes</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+    <span class="c1"># As defined in [Audio20], Table A-9</span>
+    <span class="n">AC_DESCRIPTOR_UNDEFINED</span>  <span class="o">=</span> <span class="mh">0x00</span>
+    <span class="n">HEADER</span>                   <span class="o">=</span> <span class="mh">0x01</span>
+    <span class="n">INPUT_TERMINAL</span>           <span class="o">=</span> <span class="mh">0x02</span>
+    <span class="n">OUTPUT_TERMINAL</span>          <span class="o">=</span> <span class="mh">0x03</span>
+    <span class="n">MIXER_UNIT</span>               <span class="o">=</span> <span class="mh">0x04</span>
+    <span class="n">SELECTOR_UNIT</span>            <span class="o">=</span> <span class="mh">0x05</span>
+    <span class="n">FEATURE_UNIT</span>             <span class="o">=</span> <span class="mh">0x06</span>
+    <span class="n">EFFECT_UNIT</span>              <span class="o">=</span> <span class="mh">0x07</span>
+    <span class="n">PROCESSING_UNIT</span>          <span class="o">=</span> <span class="mh">0x08</span>
+    <span class="n">EXTENSION_UNIT</span>           <span class="o">=</span> <span class="mh">0x09</span>
+    <span class="n">CLOCK_SOURCE</span>             <span class="o">=</span> <span class="mh">0x0A</span>
+    <span class="n">CLOCK_SELECTOR</span>           <span class="o">=</span> <span class="mh">0x0B</span>
+    <span class="n">CLOCK_MULTIPLIER</span>         <span class="o">=</span> <span class="mh">0x0C</span>
+    <span class="n">SAMPLE_RATE_CONVERTER</span>    <span class="o">=</span> <span class="mh">0x0D</span></div>
+
+
+
+<div class="viewcode-block" id="AudioClassSpecificASInterfaceDescriptorSubtypes">
+<a class="viewcode-back" href="../../../../api/usb_protocol.types.descriptors.uac2.html#usb_protocol.types.descriptors.uac2.AudioClassSpecificASInterfaceDescriptorSubtypes">[docs]</a>
+<span class="k">class</span> <span class="nc">AudioClassSpecificASInterfaceDescriptorSubtypes</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+    <span class="c1"># As defined in [Audio20], Table A-10</span>
+    <span class="n">AS_DESCRIPTOR_UNDEFINED</span> <span class="o">=</span> <span class="mh">0x00</span>
+    <span class="n">AS_GENERAL</span>              <span class="o">=</span> <span class="mh">0x01</span>
+    <span class="n">FORMAT_TYPE</span>             <span class="o">=</span> <span class="mh">0x02</span>
+    <span class="n">ENCODER</span>                 <span class="o">=</span> <span class="mh">0x03</span>
+    <span class="n">DECODER</span>                 <span class="o">=</span> <span class="mh">0x04</span></div>
+
+
+
+<div class="viewcode-block" id="EffectUnitEffectTypes">
+<a class="viewcode-back" href="../../../../api/usb_protocol.types.descriptors.uac2.html#usb_protocol.types.descriptors.uac2.EffectUnitEffectTypes">[docs]</a>
+<span class="k">class</span> <span class="nc">EffectUnitEffectTypes</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+    <span class="c1"># As defined in [Audio20], Table A-11</span>
+    <span class="n">EFFECT_UNDEFINED</span>        <span class="o">=</span> <span class="mh">0x00</span>
+    <span class="n">PARAM_EQ_SECTION_EFFECT</span> <span class="o">=</span> <span class="mh">0x01</span>
+    <span class="n">REVERBERATION_EFFECT</span>    <span class="o">=</span> <span class="mh">0x02</span>
+    <span class="n">MOD_DELAY_EFFECT</span>        <span class="o">=</span> <span class="mh">0x03</span>
+    <span class="n">DYN_RANGE_COMP_EFFECT</span>   <span class="o">=</span> <span class="mh">0x04</span></div>
+
+
+
+<div class="viewcode-block" id="ProcessingUnitProcessTypes">
+<a class="viewcode-back" href="../../../../api/usb_protocol.types.descriptors.uac2.html#usb_protocol.types.descriptors.uac2.ProcessingUnitProcessTypes">[docs]</a>
+<span class="k">class</span> <span class="nc">ProcessingUnitProcessTypes</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+    <span class="c1"># As defined in [Audio20], Table A-12</span>
+    <span class="n">PROCESS_UNDEFINED</span>       <span class="o">=</span> <span class="mh">0x00</span>
+    <span class="n">UP_DOWNMIX_PROCESS</span>      <span class="o">=</span> <span class="mh">0x01</span>
+    <span class="n">DOLBY_PROLOGIC_PROCESS</span>  <span class="o">=</span> <span class="mh">0x02</span>
+    <span class="n">STEREO_EXTENDER_PROCESS</span> <span class="o">=</span> <span class="mh">0x03</span></div>
+
+
+
+<div class="viewcode-block" id="AudioClassSpecificEndpointDescriptorSubtypes">
+<a class="viewcode-back" href="../../../../api/usb_protocol.types.descriptors.uac2.html#usb_protocol.types.descriptors.uac2.AudioClassSpecificEndpointDescriptorSubtypes">[docs]</a>
+<span class="k">class</span> <span class="nc">AudioClassSpecificEndpointDescriptorSubtypes</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+    <span class="c1"># As defined in [Audio20], Table A-13</span>
+    <span class="n">DESCRIPTOR_UNDEFINED</span> <span class="o">=</span> <span class="mh">0x00</span>
+    <span class="n">EP_GENERAL</span>           <span class="o">=</span> <span class="mh">0x01</span></div>
+
+
+
+<div class="viewcode-block" id="AudioClassSpecificRequestCodes">
+<a class="viewcode-back" href="../../../../api/usb_protocol.types.descriptors.uac2.html#usb_protocol.types.descriptors.uac2.AudioClassSpecificRequestCodes">[docs]</a>
+<span class="k">class</span> <span class="nc">AudioClassSpecificRequestCodes</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+    <span class="c1"># As defined in [Audio20], Table A-14</span>
+    <span class="n">REQUEST_CODE_UNDEFINED</span> <span class="o">=</span> <span class="mh">0x00</span>
+    <span class="n">CUR</span>                    <span class="o">=</span> <span class="mh">0x01</span>
+    <span class="n">RANGE</span>                  <span class="o">=</span> <span class="mh">0x02</span>
+    <span class="n">MEM</span>                    <span class="o">=</span> <span class="mh">0x03</span></div>
+
+
+
+<div class="viewcode-block" id="ClockSourceControlSelectors">
+<a class="viewcode-back" href="../../../../api/usb_protocol.types.descriptors.uac2.html#usb_protocol.types.descriptors.uac2.ClockSourceControlSelectors">[docs]</a>
+<span class="k">class</span> <span class="nc">ClockSourceControlSelectors</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+    <span class="c1"># As defined in [Audio20], Table A-17</span>
+    <span class="n">CS_CONTROL_UNDEFINED</span>   <span class="o">=</span> <span class="mh">0x00</span>
+    <span class="n">CS_SAM_FREQ_CONTROL</span>    <span class="o">=</span> <span class="mh">0x01</span>
+    <span class="n">CS_CLOCK_VALID_CONTROL</span> <span class="o">=</span> <span class="mh">0x02</span></div>
+
+
+
+<div class="viewcode-block" id="ClockSelectorControlSelectors">
+<a class="viewcode-back" href="../../../../api/usb_protocol.types.descriptors.uac2.html#usb_protocol.types.descriptors.uac2.ClockSelectorControlSelectors">[docs]</a>
+<span class="k">class</span> <span class="nc">ClockSelectorControlSelectors</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+    <span class="c1"># As defined in [Audio20], Table A-18</span>
+    <span class="n">CX_CONTROL_UNDEFINED</span>      <span class="o">=</span> <span class="mh">0x00</span>
+    <span class="n">CX_CLOCK_SELECTOR_CONTROL</span> <span class="o">=</span> <span class="mh">0x01</span></div>
+
+
+
+<div class="viewcode-block" id="ClockMultiplierControlSelectors">
+<a class="viewcode-back" href="../../../../api/usb_protocol.types.descriptors.uac2.html#usb_protocol.types.descriptors.uac2.ClockMultiplierControlSelectors">[docs]</a>
+<span class="k">class</span> <span class="nc">ClockMultiplierControlSelectors</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+    <span class="c1"># As defined in [Audio20], Table A-19</span>
+    <span class="n">CM_CONTROL_UNDEFINED</span>   <span class="o">=</span> <span class="mh">0x00</span>
+    <span class="n">CM_NUMERATOR_CONTROL</span>   <span class="o">=</span> <span class="mh">0x01</span>
+    <span class="n">CM_DENOMINATOR_CONTROL</span> <span class="o">=</span> <span class="mh">0x02</span></div>
+
+
+
+<div class="viewcode-block" id="TerminalControlSelectors">
+<a class="viewcode-back" href="../../../../api/usb_protocol.types.descriptors.uac2.html#usb_protocol.types.descriptors.uac2.TerminalControlSelectors">[docs]</a>
+<span class="k">class</span> <span class="nc">TerminalControlSelectors</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+    <span class="c1"># As defined in [Audio20], Table A-20</span>
+    <span class="n">TE_CONTROL_UNDEFINED</span>    <span class="o">=</span> <span class="mh">0x00</span>
+    <span class="n">TE_COPY_PROTECT_CONTROL</span> <span class="o">=</span> <span class="mh">0x01</span>
+    <span class="n">TE_CONNECTOR_CONTROL</span>    <span class="o">=</span> <span class="mh">0x02</span>
+    <span class="n">TE_OVERLOAD_CONTROL</span>     <span class="o">=</span> <span class="mh">0x03</span>
+    <span class="n">TE_CLUSTER_CONTROL</span>      <span class="o">=</span> <span class="mh">0x04</span>
+    <span class="n">TE_UNDERFLOW_CONTROL</span>    <span class="o">=</span> <span class="mh">0x05</span>
+    <span class="n">TE_OVERFLOW_CONTROL</span>     <span class="o">=</span> <span class="mh">0x06</span>
+    <span class="n">TE_LATENCY_CONTROL</span>      <span class="o">=</span> <span class="mh">0x07</span></div>
+
+
+
+<div class="viewcode-block" id="MixerControlSelectors">
+<a class="viewcode-back" href="../../../../api/usb_protocol.types.descriptors.uac2.html#usb_protocol.types.descriptors.uac2.MixerControlSelectors">[docs]</a>
+<span class="k">class</span> <span class="nc">MixerControlSelectors</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+    <span class="c1"># As defined in [Audio20], Table A-21</span>
+    <span class="n">MU_CONTROL_UNDEFINED</span> <span class="o">=</span> <span class="mh">0x00</span>
+    <span class="n">MU_MIXER_CONTROL</span>     <span class="o">=</span> <span class="mh">0x01</span>
+    <span class="n">MU_CLUSTER_CONTROL</span>   <span class="o">=</span> <span class="mh">0x02</span>
+    <span class="n">MU_UNDERFLOW_CONTROL</span> <span class="o">=</span> <span class="mh">0x03</span>
+    <span class="n">MU_OVERFLOW_CONTROL</span>  <span class="o">=</span> <span class="mh">0x04</span>
+    <span class="n">MU_LATENCY_CONTROL</span>   <span class="o">=</span> <span class="mh">0x05</span></div>
+
+
+
+<div class="viewcode-block" id="SelectorControlSelectors">
+<a class="viewcode-back" href="../../../../api/usb_protocol.types.descriptors.uac2.html#usb_protocol.types.descriptors.uac2.SelectorControlSelectors">[docs]</a>
+<span class="k">class</span> <span class="nc">SelectorControlSelectors</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+    <span class="c1"># As defined in [Audio20], Table A-22</span>
+    <span class="n">SU_CONTROL_UNDEFINED</span> <span class="o">=</span> <span class="mh">0x00</span>
+    <span class="n">SU_SELECTOR_CONTROL</span>  <span class="o">=</span> <span class="mh">0x01</span>
+    <span class="n">SU_LATENCY_CONTROL</span>   <span class="o">=</span> <span class="mh">0x02</span></div>
+
+
+
+<div class="viewcode-block" id="FeatureUnitControlSelectors">
+<a class="viewcode-back" href="../../../../api/usb_protocol.types.descriptors.uac2.html#usb_protocol.types.descriptors.uac2.FeatureUnitControlSelectors">[docs]</a>
+<span class="k">class</span> <span class="nc">FeatureUnitControlSelectors</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+    <span class="c1"># As defined in [Audio20], Table A-23</span>
+    <span class="n">FU_CONTROL_UNDEFINED</span>         <span class="o">=</span> <span class="mh">0x00</span>
+    <span class="n">FU_MUTE_CONTROL</span>              <span class="o">=</span> <span class="mh">0x01</span>
+    <span class="n">FU_VOLUME_CONTROL</span>            <span class="o">=</span> <span class="mh">0x02</span>
+    <span class="n">FU_BASS_CONTROL</span>              <span class="o">=</span> <span class="mh">0x03</span>
+    <span class="n">FU_MID_CONTROL</span>               <span class="o">=</span> <span class="mh">0x04</span>
+    <span class="n">FU_TREBLE_CONTROL</span>            <span class="o">=</span> <span class="mh">0x05</span>
+    <span class="n">FU_GRAPHIC_EQUALIZER_CONTROL</span> <span class="o">=</span> <span class="mh">0x06</span>
+    <span class="n">FU_AUTOMATIC_GAIN_CONTROL</span>    <span class="o">=</span> <span class="mh">0x07</span>
+    <span class="n">FU_DELAY_CONTROL</span>             <span class="o">=</span> <span class="mh">0x08</span>
+    <span class="n">FU_BASS_BOOST_CONTROL</span>        <span class="o">=</span> <span class="mh">0x09</span>
+    <span class="n">FU_LOUDNESS_CONTROL</span>          <span class="o">=</span> <span class="mh">0x0A</span>
+    <span class="n">FU_INPUT_GAIN_CONTROL</span>        <span class="o">=</span> <span class="mh">0x0B</span>
+    <span class="n">FU_INPUT_GAIN_PAD_CONTROL</span>    <span class="o">=</span> <span class="mh">0x0C</span>
+    <span class="n">FU_PHASE_INVERTER_CONTROL</span>    <span class="o">=</span> <span class="mh">0x0D</span>
+    <span class="n">FU_UNDERFLOW_CONTROL</span>         <span class="o">=</span> <span class="mh">0x0E</span>
+    <span class="n">FU_OVERFLOW_CONTROL</span>          <span class="o">=</span> <span class="mh">0x0F</span>
+    <span class="n">FU_LATENCY_CONTROL</span>           <span class="o">=</span> <span class="mh">0x10</span></div>
+
+
+
+<div class="viewcode-block" id="ParametricEqualizerSectionEffectUnitControlSelectors">
+<a class="viewcode-back" href="../../../../api/usb_protocol.types.descriptors.uac2.html#usb_protocol.types.descriptors.uac2.ParametricEqualizerSectionEffectUnitControlSelectors">[docs]</a>
+<span class="k">class</span> <span class="nc">ParametricEqualizerSectionEffectUnitControlSelectors</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+    <span class="c1"># As defined in [Audio20], Table A-24</span>
+    <span class="n">PE_CONTROL_UNDEFINED</span>  <span class="o">=</span> <span class="mh">0x00</span>
+    <span class="n">PE_ENABLE_CONTROL</span>     <span class="o">=</span> <span class="mh">0x01</span>
+    <span class="n">PE_CENTERFREQ_CONTROL</span> <span class="o">=</span> <span class="mh">0x02</span>
+    <span class="n">PE_QFACTOR_CONTROL</span>    <span class="o">=</span> <span class="mh">0x03</span>
+    <span class="n">PE_GAIN_CONTROL</span>       <span class="o">=</span> <span class="mh">0x04</span>
+    <span class="n">PE_UNDERFLOW_CONTROL</span>  <span class="o">=</span> <span class="mh">0x05</span>
+    <span class="n">PE_OVERFLOW_CONTROL</span>   <span class="o">=</span> <span class="mh">0x06</span>
+    <span class="n">PE_LATENCY_CONTROL</span>    <span class="o">=</span> <span class="mh">0x07</span></div>
+
+
+
+<div class="viewcode-block" id="ReverberationEffectUnitControlSelectors">
+<a class="viewcode-back" href="../../../../api/usb_protocol.types.descriptors.uac2.html#usb_protocol.types.descriptors.uac2.ReverberationEffectUnitControlSelectors">[docs]</a>
+<span class="k">class</span> <span class="nc">ReverberationEffectUnitControlSelectors</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+    <span class="c1"># As defined in [Audio20], Table A-25</span>
+    <span class="n">RV_CONTROL_UNDEFINED</span>      <span class="o">=</span> <span class="mh">0x00</span>
+    <span class="n">RV_ENABLE_CONTROL</span>         <span class="o">=</span> <span class="mh">0x01</span>
+    <span class="n">RV_TYPE_CONTROL</span>           <span class="o">=</span> <span class="mh">0x02</span>
+    <span class="n">RV_LEVEL_CONTROL</span>          <span class="o">=</span> <span class="mh">0x03</span>
+    <span class="n">RV_TIME_CONTROL</span>           <span class="o">=</span> <span class="mh">0x04</span>
+    <span class="n">RV_FEEDBACK_CONTROL</span>       <span class="o">=</span> <span class="mh">0x05</span>
+    <span class="n">RV_PREDELAY_CONTROL</span>       <span class="o">=</span> <span class="mh">0x06</span>
+    <span class="n">RV_DENSITY_CONTROL</span>        <span class="o">=</span> <span class="mh">0x07</span>
+    <span class="n">RV_HIFREQ_ROLLOFF_CONTROL</span> <span class="o">=</span> <span class="mh">0x08</span>
+    <span class="n">RV_UNDERFLOW_CONTROL</span>      <span class="o">=</span> <span class="mh">0x09</span>
+    <span class="n">RV_OVERFLOW_CONTROL</span>       <span class="o">=</span> <span class="mh">0x0A</span>
+    <span class="n">RV_LATENCY_CONTROL</span>        <span class="o">=</span> <span class="mh">0x0B</span></div>
+
+
+
+<div class="viewcode-block" id="ModulationDelayEffectUnitControlSelectors">
+<a class="viewcode-back" href="../../../../api/usb_protocol.types.descriptors.uac2.html#usb_protocol.types.descriptors.uac2.ModulationDelayEffectUnitControlSelectors">[docs]</a>
+<span class="k">class</span> <span class="nc">ModulationDelayEffectUnitControlSelectors</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+    <span class="c1"># As defined in [Audio20], Table A-26</span>
+    <span class="n">MD_CONTROL_UNDEFINED</span> <span class="o">=</span> <span class="mh">0x00</span>
+    <span class="n">MD_ENABLE_CONTROL</span>    <span class="o">=</span> <span class="mh">0x01</span>
+    <span class="n">MD_BALANCE_CONTROL</span>   <span class="o">=</span> <span class="mh">0x02</span>
+    <span class="n">MD_RATE_CONTROL</span>      <span class="o">=</span> <span class="mh">0x03</span>
+    <span class="n">MD_DEPTH_CONTROL</span>     <span class="o">=</span> <span class="mh">0x04</span>
+    <span class="n">MD_TIME_CONTROL</span>      <span class="o">=</span> <span class="mh">0x05</span>
+    <span class="n">MD_FEEDBACK_CONTROL</span>  <span class="o">=</span> <span class="mh">0x06</span>
+    <span class="n">MD_UNDERFLOW_CONTROL</span> <span class="o">=</span> <span class="mh">0x07</span>
+    <span class="n">MD_OVERFLOW_CONTROL</span>  <span class="o">=</span> <span class="mh">0x08</span>
+    <span class="n">MD_LATENCY_CONTROL</span>   <span class="o">=</span> <span class="mh">0x09</span></div>
+
+
+
+<div class="viewcode-block" id="DynamicRangeCompressorEffectUnitControlSelectors">
+<a class="viewcode-back" href="../../../../api/usb_protocol.types.descriptors.uac2.html#usb_protocol.types.descriptors.uac2.DynamicRangeCompressorEffectUnitControlSelectors">[docs]</a>
+<span class="k">class</span> <span class="nc">DynamicRangeCompressorEffectUnitControlSelectors</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+    <span class="c1"># As defined in [Audio20], Table A-27</span>
+    <span class="n">DR_CONTROL_UNDEFINED</span>        <span class="o">=</span> <span class="mh">0x00</span>
+    <span class="n">DR_ENABLE_CONTROL</span>           <span class="o">=</span> <span class="mh">0x01</span>
+    <span class="n">DR_COMPRESSION_RATE_CONTROL</span> <span class="o">=</span> <span class="mh">0x02</span>
+    <span class="n">DR_MAXAMPL_CONTROL</span>          <span class="o">=</span> <span class="mh">0x03</span>
+    <span class="n">DR_THRESHOLD_CONTROL</span>        <span class="o">=</span> <span class="mh">0x04</span>
+    <span class="n">DR_ATTACK_TIME_CONTROL</span>      <span class="o">=</span> <span class="mh">0x05</span>
+    <span class="n">DR_RELEASE_TIME_CONTROL</span>     <span class="o">=</span> <span class="mh">0x06</span>
+    <span class="n">DR_UNDERFLOW_CONTROL</span>        <span class="o">=</span> <span class="mh">0x07</span>
+    <span class="n">DR_OVERFLOW_CONTROL</span>         <span class="o">=</span> <span class="mh">0x08</span>
+    <span class="n">DR_LATENCY_CONTROL</span>          <span class="o">=</span> <span class="mh">0x09</span></div>
+
+
+
+<div class="viewcode-block" id="UpDownMixProcessingUnitControlSelectors">
+<a class="viewcode-back" href="../../../../api/usb_protocol.types.descriptors.uac2.html#usb_protocol.types.descriptors.uac2.UpDownMixProcessingUnitControlSelectors">[docs]</a>
+<span class="k">class</span> <span class="nc">UpDownMixProcessingUnitControlSelectors</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+    <span class="c1"># As defined in [Audio20], Table A-28</span>
+    <span class="n">UD_CONTROL_UNDEFINED</span>   <span class="o">=</span> <span class="mh">0x00</span>
+    <span class="n">UD_ENABLE_CONTROL</span>      <span class="o">=</span> <span class="mh">0x01</span>
+    <span class="n">UD_MODE_SELECT_CONTROL</span> <span class="o">=</span> <span class="mh">0x02</span>
+    <span class="n">UD_CLUSTER_CONTROL</span>     <span class="o">=</span> <span class="mh">0x03</span>
+    <span class="n">UD_UNDERFLOW_CONTROL</span>   <span class="o">=</span> <span class="mh">0x04</span>
+    <span class="n">UD_OVERFLOW_CONTROL</span>    <span class="o">=</span> <span class="mh">0x05</span>
+    <span class="n">UD_LATENCY_CONTROL</span>     <span class="o">=</span> <span class="mh">0x06</span></div>
+
+
+
+<div class="viewcode-block" id="DolbyProLogicProcessingUnitControlSelectors">
+<a class="viewcode-back" href="../../../../api/usb_protocol.types.descriptors.uac2.html#usb_protocol.types.descriptors.uac2.DolbyProLogicProcessingUnitControlSelectors">[docs]</a>
+<span class="k">class</span> <span class="nc">DolbyProLogicProcessingUnitControlSelectors</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+    <span class="c1"># As defined in [Audio20], Table A-29</span>
+    <span class="n">DP_CONTROL_UNDEFINED</span>   <span class="o">=</span> <span class="mh">0x00</span>
+    <span class="n">DP_ENABLE_CONTROL</span>      <span class="o">=</span> <span class="mh">0x01</span>
+    <span class="n">DP_MODE_SELECT_CONTROL</span> <span class="o">=</span> <span class="mh">0x02</span>
+    <span class="n">DP_CLUSTER_CONTROL</span>     <span class="o">=</span> <span class="mh">0x03</span>
+    <span class="n">DP_UNDERFLOW_CONTROL</span>   <span class="o">=</span> <span class="mh">0x04</span>
+    <span class="n">DP_OVERFLOW_CONTROL</span>    <span class="o">=</span> <span class="mh">0x05</span>
+    <span class="n">DP_LATENCY_CONTROL</span>     <span class="o">=</span> <span class="mh">0x06</span></div>
+
+
+
+<div class="viewcode-block" id="StereoExtenderProcessingUnitControlSelectors">
+<a class="viewcode-back" href="../../../../api/usb_protocol.types.descriptors.uac2.html#usb_protocol.types.descriptors.uac2.StereoExtenderProcessingUnitControlSelectors">[docs]</a>
+<span class="k">class</span> <span class="nc">StereoExtenderProcessingUnitControlSelectors</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+    <span class="c1"># As defined in [Audio20], Table A-30</span>
+    <span class="n">ST_EXT_CONTROL_UNDEFINED</span> <span class="o">=</span> <span class="mh">0x00</span>
+    <span class="n">ST_EXT_ENABLE_CONTROL</span>    <span class="o">=</span> <span class="mh">0x01</span>
+    <span class="n">ST_EXT_UNDERFLOW_CONTROL</span> <span class="o">=</span> <span class="mh">0x03</span>
+    <span class="n">ST_EXT_OVERFLOW_CONTROL</span>  <span class="o">=</span> <span class="mh">0x04</span>
+    <span class="n">ST_EXT_LATENCY_CONTROL</span>   <span class="o">=</span> <span class="mh">0x05</span></div>
+
+
+
+<div class="viewcode-block" id="ExtensionUnitControlSelectors">
+<a class="viewcode-back" href="../../../../api/usb_protocol.types.descriptors.uac2.html#usb_protocol.types.descriptors.uac2.ExtensionUnitControlSelectors">[docs]</a>
+<span class="k">class</span> <span class="nc">ExtensionUnitControlSelectors</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+    <span class="c1"># As defined in [Audio20], Table A-31</span>
+    <span class="n">XU_CONTROL_UNDEFINED</span> <span class="o">=</span> <span class="mh">0x00</span>
+    <span class="n">XU_ENABLE_CONTROL</span>    <span class="o">=</span> <span class="mh">0x01</span>
+    <span class="n">XU_CLUSTER_CONTROL</span>   <span class="o">=</span> <span class="mh">0x02</span>
+    <span class="n">XU_UNDERFLOW_CONTROL</span> <span class="o">=</span> <span class="mh">0x03</span>
+    <span class="n">XU_OVERFLOW_CONTROL</span>  <span class="o">=</span> <span class="mh">0x04</span>
+    <span class="n">XU_LATENCY_CONTROL</span>   <span class="o">=</span> <span class="mh">0x05</span></div>
+
+
+
+<div class="viewcode-block" id="AudioStreamingInterfaceControlSelectors">
+<a class="viewcode-back" href="../../../../api/usb_protocol.types.descriptors.uac2.html#usb_protocol.types.descriptors.uac2.AudioStreamingInterfaceControlSelectors">[docs]</a>
+<span class="k">class</span> <span class="nc">AudioStreamingInterfaceControlSelectors</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+    <span class="c1"># As defined in [Audio20], Table A-32</span>
+    <span class="n">AS_CONTROL_UNDEFINED</span>         <span class="o">=</span> <span class="mh">0x00</span>
+    <span class="n">AS_ACT_ALT_SETTING_CONTROL</span>   <span class="o">=</span> <span class="mh">0x01</span>
+    <span class="n">AS_VAL_ALT_SETTINGS_CONTROL</span>  <span class="o">=</span> <span class="mh">0x02</span>
+    <span class="n">AS_AUDIO_DATA_FORMAT_CONTROL</span> <span class="o">=</span> <span class="mh">0x03</span></div>
+
+
+
+<div class="viewcode-block" id="EndpointControlSelectors">
+<a class="viewcode-back" href="../../../../api/usb_protocol.types.descriptors.uac2.html#usb_protocol.types.descriptors.uac2.EndpointControlSelectors">[docs]</a>
+<span class="k">class</span> <span class="nc">EndpointControlSelectors</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+    <span class="c1"># As defined in [Audio20], Table A-33</span>
+    <span class="n">EP_CONTROL_UNDEFINED</span>     <span class="o">=</span> <span class="mh">0x00</span>
+    <span class="n">EN_BIT_RATE_CONTROL</span>      <span class="o">=</span> <span class="mh">0x01</span>
+    <span class="n">EN_QUALITY_CONTROL</span>       <span class="o">=</span> <span class="mh">0x02</span>
+    <span class="n">EN_VBR_CONTROL</span>           <span class="o">=</span> <span class="mh">0x03</span>
+    <span class="n">EN_TYPE_CONTROL</span>          <span class="o">=</span> <span class="mh">0x04</span>
+    <span class="n">EN_UNDERFLOW_CONTROL</span>     <span class="o">=</span> <span class="mh">0x05</span>
+    <span class="n">EN_OVERFLOW_CONTROL</span>      <span class="o">=</span> <span class="mh">0x06</span>
+    <span class="n">EN_ENCODER_ERROR_CONTROL</span> <span class="o">=</span> <span class="mh">0x07</span>
+    <span class="n">EN_PARAM1_CONTROL</span>        <span class="o">=</span> <span class="mh">0x08</span>
+    <span class="n">EN_PARAM2_CONTROL</span>        <span class="o">=</span> <span class="mh">0x09</span>
+    <span class="n">EN_PARAM3_CONTROL</span>        <span class="o">=</span> <span class="mh">0x0A</span>
+    <span class="n">EN_PARAM4_CONTROL</span>        <span class="o">=</span> <span class="mh">0x0B</span>
+    <span class="n">EN_PARAM5_CONTROL</span>        <span class="o">=</span> <span class="mh">0x0C</span>
+    <span class="n">EN_PARAM6_CONTROL</span>        <span class="o">=</span> <span class="mh">0x0D</span>
+    <span class="n">EN_PARAM7_CONTROL</span>        <span class="o">=</span> <span class="mh">0x0E</span>
+    <span class="n">EN_PARAM8_CONTROL</span>        <span class="o">=</span> <span class="mh">0x0F</span></div>
+
+
+
+<div class="viewcode-block" id="USBTerminalTypes">
+<a class="viewcode-back" href="../../../../api/usb_protocol.types.descriptors.uac2.html#usb_protocol.types.descriptors.uac2.USBTerminalTypes">[docs]</a>
+<span class="k">class</span> <span class="nc">USBTerminalTypes</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+    <span class="c1"># As defined in [TermT20], Table 2-1</span>
+    <span class="n">USB_UNDEFINED</span>       <span class="o">=</span> <span class="mh">0x0100</span>
+    <span class="n">USB_STREAMING</span>       <span class="o">=</span> <span class="mh">0x0101</span>
+    <span class="n">USB_VENDOR_SPECIFIC</span> <span class="o">=</span> <span class="mh">0x01FF</span></div>
+
+
+
+<div class="viewcode-block" id="InputTerminalTypes">
+<a class="viewcode-back" href="../../../../api/usb_protocol.types.descriptors.uac2.html#usb_protocol.types.descriptors.uac2.InputTerminalTypes">[docs]</a>
+<span class="k">class</span> <span class="nc">InputTerminalTypes</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+    <span class="c1"># As defined in [TermT20], Table 2-2</span>
+    <span class="n">INPUT_UNDEFINED</span>             <span class="o">=</span> <span class="mh">0x0200</span>
+    <span class="n">MICROPHONE</span>                  <span class="o">=</span> <span class="mh">0x0201</span>
+    <span class="n">DESKTOP_MICROPHONE</span>          <span class="o">=</span> <span class="mh">0x0202</span>
+    <span class="n">PERSONAL_MICROPHONE</span>         <span class="o">=</span> <span class="mh">0x0203</span>
+    <span class="n">OMNI_DIRECTIONAL_MICROPHONE</span> <span class="o">=</span> <span class="mh">0x0204</span>
+    <span class="n">MICROPHONE_ARRAY</span>            <span class="o">=</span> <span class="mh">0x0205</span>
+    <span class="n">PROCESSING_MICROPHONE_ARRAY</span> <span class="o">=</span> <span class="mh">0x0206</span></div>
+
+
+
+<div class="viewcode-block" id="OutputTerminalTypes">
+<a class="viewcode-back" href="../../../../api/usb_protocol.types.descriptors.uac2.html#usb_protocol.types.descriptors.uac2.OutputTerminalTypes">[docs]</a>
+<span class="k">class</span> <span class="nc">OutputTerminalTypes</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+    <span class="c1"># As defined in [TermT20], Table 2-3</span>
+    <span class="n">OUTPUT_UNDEFINED</span>              <span class="o">=</span> <span class="mh">0x0300</span>
+    <span class="n">SPEAKER</span>                       <span class="o">=</span> <span class="mh">0x0301</span>
+    <span class="n">HEADPHONES</span>                    <span class="o">=</span> <span class="mh">0x0302</span>
+    <span class="n">DESKTOP_SPEAKER</span>               <span class="o">=</span> <span class="mh">0x0304</span>
+    <span class="n">ROOM_SPEAKER</span>                  <span class="o">=</span> <span class="mh">0x0305</span>
+    <span class="n">COMMUNICATION_SPEAKER</span>         <span class="o">=</span> <span class="mh">0x0306</span>
+    <span class="n">LOW_FREQUENCY_EFFECTS_SPEAKER</span> <span class="o">=</span> <span class="mh">0x0307</span></div>
+
+
+
+<div class="viewcode-block" id="BidirectionalTerminalTypes">
+<a class="viewcode-back" href="../../../../api/usb_protocol.types.descriptors.uac2.html#usb_protocol.types.descriptors.uac2.BidirectionalTerminalTypes">[docs]</a>
+<span class="k">class</span> <span class="nc">BidirectionalTerminalTypes</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+    <span class="c1"># As defined in [TermT20], Table 2-4</span>
+    <span class="n">BIDIRECTIONAL_UNDEFINED</span>       <span class="o">=</span> <span class="mh">0x0400</span>
+    <span class="n">HANDSET</span>                       <span class="o">=</span> <span class="mh">0x0401</span>
+    <span class="n">HEADSET</span>                       <span class="o">=</span> <span class="mh">0x0402</span>
+    <span class="n">ECHO_SUPPRESSING_SPEAKERPHONE</span> <span class="o">=</span> <span class="mh">0x0404</span>
+    <span class="n">ECHO_CANCELING_SPEAKERPHONE</span>   <span class="o">=</span> <span class="mh">0x0405</span></div>
+
+
+
+<div class="viewcode-block" id="TelephonyTerminalTypes">
+<a class="viewcode-back" href="../../../../api/usb_protocol.types.descriptors.uac2.html#usb_protocol.types.descriptors.uac2.TelephonyTerminalTypes">[docs]</a>
+<span class="k">class</span> <span class="nc">TelephonyTerminalTypes</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+    <span class="c1"># As defined in [TermT20], Table 2-5</span>
+    <span class="n">TELEPHONY_UNDEFINED</span> <span class="o">=</span> <span class="mh">0x0500</span>
+    <span class="n">PHONE_LINE</span>          <span class="o">=</span> <span class="mh">0x0501</span>
+    <span class="n">TELEPHONE</span>           <span class="o">=</span> <span class="mh">0x0502</span>
+    <span class="n">DOWN_LINE_PHONE</span>     <span class="o">=</span> <span class="mh">0x0503</span></div>
+
+
+
+<div class="viewcode-block" id="ExternalTerminalTypes">
+<a class="viewcode-back" href="../../../../api/usb_protocol.types.descriptors.uac2.html#usb_protocol.types.descriptors.uac2.ExternalTerminalTypes">[docs]</a>
+<span class="k">class</span> <span class="nc">ExternalTerminalTypes</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+    <span class="c1"># As defined in [TermT20], Table 2-6</span>
+    <span class="n">EXTERNAL_UNDEFINED</span>             <span class="o">=</span> <span class="mh">0x0600</span>
+    <span class="n">ANALOG_CONNECTOR</span>               <span class="o">=</span> <span class="mh">0x0601</span>
+    <span class="n">DIGITAL_AUDIO_INTERFACE</span>        <span class="o">=</span> <span class="mh">0x0602</span>
+    <span class="n">LINE_CONNECTOR</span>                 <span class="o">=</span> <span class="mh">0x0603</span>
+    <span class="n">SPDIF_INTERFACE</span>                <span class="o">=</span> <span class="mh">0x0605</span>
+    <span class="n">IEEE_1394_DA_STREAM</span>            <span class="o">=</span> <span class="mh">0x0606</span>
+    <span class="n">IEEE_1394_DV_STREAM_SOUNDTRACK</span> <span class="o">=</span> <span class="mh">0x0607</span>
+    <span class="n">ADAT_LIGHTPIPE</span>                 <span class="o">=</span> <span class="mh">0x0608</span>
+    <span class="n">TDIF</span>                           <span class="o">=</span> <span class="mh">0x0609</span>
+    <span class="n">MADI</span>                           <span class="o">=</span> <span class="mh">0x060A</span></div>
+
+
+
+<div class="viewcode-block" id="EmbeddedFunctionTerminalTypes">
+<a class="viewcode-back" href="../../../../api/usb_protocol.types.descriptors.uac2.html#usb_protocol.types.descriptors.uac2.EmbeddedFunctionTerminalTypes">[docs]</a>
+<span class="k">class</span> <span class="nc">EmbeddedFunctionTerminalTypes</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+    <span class="c1"># As defined in [TermT20], Table 2-7</span>
+    <span class="n">EMBEDDED_UNDEFINED</span>       <span class="o">=</span> <span class="mh">0x0700</span>
+    <span class="n">EQUALIZATION_NOISE</span>       <span class="o">=</span> <span class="mh">0x0702</span>
+    <span class="n">CD_PLAYER</span>                <span class="o">=</span> <span class="mh">0x0703</span>
+    <span class="n">DAT</span>                      <span class="o">=</span> <span class="mh">0x0704</span>
+    <span class="n">DCC</span>                      <span class="o">=</span> <span class="mh">0x0705</span>
+    <span class="n">ANALOG_TAPE</span>              <span class="o">=</span> <span class="mh">0x0707</span>
+    <span class="n">PHONOGRAPH</span>               <span class="o">=</span> <span class="mh">0x0708</span>
+    <span class="n">VCR_AUDIO</span>                <span class="o">=</span> <span class="mh">0x0709</span>
+    <span class="n">VIDEO_DISC_AUDIO</span>         <span class="o">=</span> <span class="mh">0x070A</span>
+    <span class="n">DVD_AUDIO</span>                <span class="o">=</span> <span class="mh">0x070B</span>
+    <span class="n">TV_TUNER_AUDIO</span>           <span class="o">=</span> <span class="mh">0x070C</span>
+    <span class="n">SATELLITE_RECEIVER_AUDIO</span> <span class="o">=</span> <span class="mh">0x070D</span>
+    <span class="n">CABLE_TUNER_AUDIO</span>        <span class="o">=</span> <span class="mh">0x070E</span>
+    <span class="n">DSS_AUDIO</span>                <span class="o">=</span> <span class="mh">0x070F</span>
+    <span class="n">RADIO_RECEIVER</span>           <span class="o">=</span> <span class="mh">0x0710</span>
+    <span class="n">RADIO_TRANSMITTER</span>        <span class="o">=</span> <span class="mh">0x0711</span>
+    <span class="n">MULTI_TRACK_RECORDER</span>     <span class="o">=</span> <span class="mh">0x0712</span>
+    <span class="n">SYNTHESIZER</span>              <span class="o">=</span> <span class="mh">0x0713</span>
+    <span class="n">PIANO</span>                    <span class="o">=</span> <span class="mh">0x0714</span>
+    <span class="n">GUITAR</span>                   <span class="o">=</span> <span class="mh">0x0715</span>
+    <span class="n">DRUMS_RHYTHM</span>             <span class="o">=</span> <span class="mh">0x0716</span>
+    <span class="n">OTHER_MUSICAL_INSTRUMENT</span> <span class="o">=</span> <span class="mh">0x0717</span></div>
+
+
+
+<div class="viewcode-block" id="ClockAttributes">
+<a class="viewcode-back" href="../../../../api/usb_protocol.types.descriptors.uac2.html#usb_protocol.types.descriptors.uac2.ClockAttributes">[docs]</a>
+<span class="k">class</span> <span class="nc">ClockAttributes</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+    <span class="n">EXTERNAL_CLOCK</span>              <span class="o">=</span> <span class="mb">0b00</span>
+    <span class="n">INTERNAL_FIXED_CLOCK</span>        <span class="o">=</span> <span class="mb">0b01</span>
+    <span class="n">INTERNAL_VARIABLE_CLOCK</span>     <span class="o">=</span> <span class="mb">0b10</span>
+    <span class="n">INTERNAL_PROGRAMMABLE_CLOCK</span> <span class="o">=</span> <span class="mb">0b11</span></div>
+
+
+
+<div class="viewcode-block" id="ClockFrequencyControl">
+<a class="viewcode-back" href="../../../../api/usb_protocol.types.descriptors.uac2.html#usb_protocol.types.descriptors.uac2.ClockFrequencyControl">[docs]</a>
+<span class="k">class</span> <span class="nc">ClockFrequencyControl</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+    <span class="n">NOT_PRESENT</span>       <span class="o">=</span> <span class="mb">0b00</span>
+    <span class="n">HOST_READ_ONLY</span>    <span class="o">=</span> <span class="mb">0b01</span>
+    <span class="n">HOST_PROGRAMMABLE</span> <span class="o">=</span> <span class="mb">0b11</span></div>
+
+
+
+<div class="viewcode-block" id="CopyProtectControl">
+<a class="viewcode-back" href="../../../../api/usb_protocol.types.descriptors.uac2.html#usb_protocol.types.descriptors.uac2.CopyProtectControl">[docs]</a>
+<span class="k">class</span> <span class="nc">CopyProtectControl</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+    <span class="n">NOT_PRESENT</span>       <span class="o">=</span> <span class="mb">0b00</span>
+    <span class="n">HOST_READ_ONLY</span>    <span class="o">=</span> <span class="mb">0b10</span>
+    <span class="n">HOST_PROGRAMMABLE</span> <span class="o">=</span> <span class="mb">0b11</span></div>
+
+
+
+<div class="viewcode-block" id="ConnectorControl">
+<a class="viewcode-back" href="../../../../api/usb_protocol.types.descriptors.uac2.html#usb_protocol.types.descriptors.uac2.ConnectorControl">[docs]</a>
+<span class="k">class</span> <span class="nc">ConnectorControl</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+    <span class="n">NOT_PRESENT</span>       <span class="o">=</span> <span class="p">(</span><span class="mb">0b00</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mi">2</span>
+    <span class="n">HOST_READ_ONLY</span>    <span class="o">=</span> <span class="p">(</span><span class="mb">0b10</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mi">2</span>
+    <span class="n">HOST_PROGRAMMABLE</span> <span class="o">=</span> <span class="p">(</span><span class="mb">0b11</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mi">2</span></div>
+
+
+
+<div class="viewcode-block" id="OverloadControl">
+<a class="viewcode-back" href="../../../../api/usb_protocol.types.descriptors.uac2.html#usb_protocol.types.descriptors.uac2.OverloadControl">[docs]</a>
+<span class="k">class</span> <span class="nc">OverloadControl</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+    <span class="n">NOT_PRESENT</span>       <span class="o">=</span> <span class="p">(</span><span class="mb">0b00</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mi">4</span>
+    <span class="n">HOST_READ_ONLY</span>    <span class="o">=</span> <span class="p">(</span><span class="mb">0b10</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mi">4</span>
+    <span class="n">HOST_PROGRAMMABLE</span> <span class="o">=</span> <span class="p">(</span><span class="mb">0b11</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mi">4</span></div>
+
+
+
+<div class="viewcode-block" id="ClusterControl">
+<a class="viewcode-back" href="../../../../api/usb_protocol.types.descriptors.uac2.html#usb_protocol.types.descriptors.uac2.ClusterControl">[docs]</a>
+<span class="k">class</span> <span class="nc">ClusterControl</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+    <span class="n">NOT_PRESENT</span>       <span class="o">=</span> <span class="p">(</span><span class="mb">0b00</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mi">6</span>
+    <span class="n">HOST_READ_ONLY</span>    <span class="o">=</span> <span class="p">(</span><span class="mb">0b10</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mi">6</span>
+    <span class="n">HOST_PROGRAMMABLE</span> <span class="o">=</span> <span class="p">(</span><span class="mb">0b11</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mi">6</span></div>
+
+
+
+<div class="viewcode-block" id="UnderflowControl">
+<a class="viewcode-back" href="../../../../api/usb_protocol.types.descriptors.uac2.html#usb_protocol.types.descriptors.uac2.UnderflowControl">[docs]</a>
+<span class="k">class</span> <span class="nc">UnderflowControl</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+    <span class="n">NOT_PRESENT</span>       <span class="o">=</span> <span class="p">(</span><span class="mb">0b00</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span>
+    <span class="n">HOST_READ_ONLY</span>    <span class="o">=</span> <span class="p">(</span><span class="mb">0b10</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span>
+    <span class="n">HOST_PROGRAMMABLE</span> <span class="o">=</span> <span class="p">(</span><span class="mb">0b11</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span></div>
+
+
+
+<div class="viewcode-block" id="OverflowControl">
+<a class="viewcode-back" href="../../../../api/usb_protocol.types.descriptors.uac2.html#usb_protocol.types.descriptors.uac2.OverflowControl">[docs]</a>
+<span class="k">class</span> <span class="nc">OverflowControl</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+    <span class="n">NOT_PRESENT</span>       <span class="o">=</span> <span class="p">(</span><span class="mb">0b00</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mi">10</span>
+    <span class="n">HOST_READ_ONLY</span>    <span class="o">=</span> <span class="p">(</span><span class="mb">0b10</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mi">10</span>
+    <span class="n">HOST_PROGRAMMABLE</span> <span class="o">=</span> <span class="p">(</span><span class="mb">0b11</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mi">10</span></div>
+
+
+
+<div class="viewcode-block" id="FormatTypes">
+<a class="viewcode-back" href="../../../../api/usb_protocol.types.descriptors.uac2.html#usb_protocol.types.descriptors.uac2.FormatTypes">[docs]</a>
+<span class="k">class</span> <span class="nc">FormatTypes</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+    <span class="n">FORMAT_TYPE_UNDEFINED</span> <span class="o">=</span> <span class="mh">0x00</span>
+    <span class="n">FORMAT_TYPE_I</span>         <span class="o">=</span> <span class="mh">0x01</span>
+    <span class="n">FORMAT_TYPE_II</span>        <span class="o">=</span> <span class="mh">0x02</span>
+    <span class="n">FORMAT_TYPE_III</span>       <span class="o">=</span> <span class="mh">0x03</span>
+    <span class="n">FORMAT_TYPE_IV</span>        <span class="o">=</span> <span class="mh">0x04</span>
+    <span class="n">EXT_FORMAT_TYPE_I</span>     <span class="o">=</span> <span class="mh">0x81</span>
+    <span class="n">EXT_FORMAT_TYPE_II</span>    <span class="o">=</span> <span class="mh">0x82</span>
+    <span class="n">EXT_FORMAT_TYPE_III</span>   <span class="o">=</span> <span class="mh">0x83</span></div>
+
+
+
+<div class="viewcode-block" id="TypeIFormats">
+<a class="viewcode-back" href="../../../../api/usb_protocol.types.descriptors.uac2.html#usb_protocol.types.descriptors.uac2.TypeIFormats">[docs]</a>
+<span class="k">class</span> <span class="nc">TypeIFormats</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+    <span class="n">PCM</span>             <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">PCM8</span>            <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">IEEE_FLOAT</span>      <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">ALAW</span>            <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="n">MULAW</span>           <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">4</span><span class="p">)</span>
+    <span class="n">TYPE_I_RAW_DATA</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">31</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="TypeIIFormats">
+<a class="viewcode-back" href="../../../../api/usb_protocol.types.descriptors.uac2.html#usb_protocol.types.descriptors.uac2.TypeIIFormats">[docs]</a>
+<span class="k">class</span> <span class="nc">TypeIIFormats</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+    <span class="n">MPEG</span>             <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">AC_3</span>             <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">WMA</span>              <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">DTS</span>              <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="n">TYPE_II_RAW_DATA</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">31</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="TypeIIIFormats">
+<a class="viewcode-back" href="../../../../api/usb_protocol.types.descriptors.uac2.html#usb_protocol.types.descriptors.uac2.TypeIIIFormats">[docs]</a>
+<span class="k">class</span> <span class="nc">TypeIIIFormats</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+    <span class="n">IEC61937_AC_3</span>               <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">IEC61937_MPEG_1_Layer1</span>      <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">IEC61937_MPEG_1_Layer2_3</span>    <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">2</span><span class="p">)</span> <span class="c1"># same bit!</span>
+    <span class="n">IEC61937_MPEG_2_NOEXT</span>       <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">2</span><span class="p">)</span> <span class="c1"># same bit!</span>
+    <span class="n">IEC61937_MPEG_2_EXT</span>         <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="n">IEC61937_MPEG_2_AAC_ADTS</span>    <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">4</span><span class="p">)</span>
+    <span class="n">IEC61937_MPEG_2_Layer1_LS</span>   <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">5</span><span class="p">)</span>
+    <span class="n">IEC61937_MPEG_2_Layer2_3_LS</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">6</span><span class="p">)</span>
+    <span class="n">IEC61937_DTS_I</span>              <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">7</span><span class="p">)</span>
+    <span class="n">IEC61937_DTS_II</span>             <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span><span class="p">)</span>
+    <span class="n">IEC61937_DTS_III</span>            <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">9</span><span class="p">)</span>
+    <span class="n">IEC61937_ATRAC</span>              <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">10</span><span class="p">)</span>
+    <span class="n">IEC61937_ATRAC2_3</span>           <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">11</span><span class="p">)</span>
+    <span class="n">TYPE_III_WMA</span>                <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">12</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="TypeIVFormats">
+<a class="viewcode-back" href="../../../../api/usb_protocol.types.descriptors.uac2.html#usb_protocol.types.descriptors.uac2.TypeIVFormats">[docs]</a>
+<span class="k">class</span> <span class="nc">TypeIVFormats</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+    <span class="n">PCM</span>                           <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">PCM8</span>                          <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">IEEE_FLOAT</span>                    <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">ALAW</span>                          <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="n">MULAW</span>                         <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">4</span><span class="p">)</span>
+    <span class="n">MPEG</span>                          <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">5</span><span class="p">)</span>
+    <span class="n">AC_3</span>                          <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">6</span><span class="p">)</span>
+    <span class="n">WMA</span>                           <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">7</span><span class="p">)</span>
+    <span class="n">IEC61937_AC_3</span>                 <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span><span class="p">)</span>
+    <span class="n">IEC61937_MPEG_1_Layer1</span>        <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">9</span><span class="p">)</span>
+    <span class="n">IEC61937_MPEG_1_Layer2_3</span>      <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">10</span><span class="p">)</span> <span class="c1"># same bit!</span>
+    <span class="n">IEC61937_MPEG_2_NOEXT</span>         <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">10</span><span class="p">)</span> <span class="c1"># same bit!</span>
+    <span class="n">IEC61937_MPEG_2_EXT</span>           <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">11</span><span class="p">)</span>
+    <span class="n">IEC61937_MPEG_2_AAC_ADTS</span>      <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">12</span><span class="p">)</span>
+    <span class="n">IEC61937_MPEG_2_Layer1_LS</span>     <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">13</span><span class="p">)</span>
+    <span class="n">IEC61937_MPEG_2_Layer2_3_LS</span>   <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">14</span><span class="p">)</span>
+    <span class="n">IEC61937_DTS_I</span>                <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">15</span><span class="p">)</span>
+    <span class="n">IEC61937_DTS_II</span>               <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">16</span><span class="p">)</span>
+    <span class="n">IEC61937_DTS_III</span>              <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">17</span><span class="p">)</span>
+    <span class="n">IEC61937_ATRAC</span>                <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">18</span><span class="p">)</span>
+    <span class="n">IEC61937_ATRAC2_3</span>             <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">19</span><span class="p">)</span>
+    <span class="n">TYPE_III_WMA</span>                  <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">20</span><span class="p">)</span>
+    <span class="n">IEC60958_PCM</span>                  <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">21</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="SidebandProtocols">
+<a class="viewcode-back" href="../../../../api/usb_protocol.types.descriptors.uac2.html#usb_protocol.types.descriptors.uac2.SidebandProtocols">[docs]</a>
+<span class="k">class</span> <span class="nc">SidebandProtocols</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+    <span class="n">PROTOCOL_UNDEFINED</span>      <span class="o">=</span> <span class="mh">0x00</span>
+    <span class="n">PRES_TIMESTAMP_PROTOCOL</span> <span class="o">=</span> <span class="mh">0x02</span></div>
+
+
+
+<span class="c1"># As defined in [Audio20], Table 4-25</span>
+<span class="n">AudioControlInterruptEndpointDescriptor</span> <span class="o">=</span> <span class="n">DescriptorFormat</span><span class="p">(</span>
+    <span class="s2">&quot;bLength&quot;</span>             <span class="o">/</span> <span class="n">construct</span><span class="o">.</span><span class="n">Const</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="n">construct</span><span class="o">.</span><span class="n">Int8ul</span><span class="p">),</span>
+    <span class="s2">&quot;bDescriptorType&quot;</span>     <span class="o">/</span> <span class="n">DescriptorNumber</span><span class="p">(</span><span class="n">AudioClassSpecificStandardDescriptorNumbers</span><span class="o">.</span><span class="n">CS_ENDPOINT</span><span class="p">),</span>
+    <span class="s2">&quot;bEndpointAddress&quot;</span>    <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;The address of the endpoint, use USBDirection.*.from_endpoint_address()&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;bmAttributes&quot;</span>        <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;D1..0: Transfer type (0b11 = Interrupt)&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mb">0b11</span><span class="p">),</span>
+    <span class="s2">&quot;wMaxPacketSize&quot;</span>      <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;Maximum packet size this endpoint is capable of. Used here to pass 6-byte interrupt information.&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">6</span><span class="p">),</span>
+    <span class="s2">&quot;bInterval&quot;</span>           <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;Interval for polling the Interrupt endpoint&quot;</span><span class="p">),</span>
+<span class="p">)</span>
+
+<span class="c1"># As defined in [Audio30], Table 4-33</span>
+<span class="n">AudioStreamingIsochronousEndpointDescriptor</span> <span class="o">=</span> <span class="n">DescriptorFormat</span><span class="p">(</span>
+    <span class="s2">&quot;bLength&quot;</span>             <span class="o">/</span> <span class="n">construct</span><span class="o">.</span><span class="n">Const</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="n">construct</span><span class="o">.</span><span class="n">Int8ul</span><span class="p">),</span>
+    <span class="s2">&quot;bDescriptorType&quot;</span>     <span class="o">/</span> <span class="n">DescriptorNumber</span><span class="p">(</span><span class="n">StandardDescriptorNumbers</span><span class="o">.</span><span class="n">ENDPOINT</span><span class="p">),</span>
+    <span class="s2">&quot;bEndpointAddress&quot;</span>    <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;The address of the endpoint, use USBDirection.*.from_endpoint_address()&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;bmAttributes&quot;</span>        <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;D1..0: transfer type (01=isochronous); D3..2: synchronization type (01=asynchronous/10=adaptive/11=synchronous); D5..4: usage (00=data/10=feedback)&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mb">0b000101</span><span class="p">),</span>
+    <span class="s2">&quot;wMaxPacketSize&quot;</span>      <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;Maximum packet size this endpoint is capable of. Used here to pass 6-byte interrupt information.&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">6</span><span class="p">),</span>
+    <span class="s2">&quot;bInterval&quot;</span>           <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;Interval for polling the Interrupt endpoint&quot;</span><span class="p">),</span>
+<span class="p">)</span>
+
+<span class="c1"># As defined in [Audio30], Table 4-35</span>
+<span class="n">AudioStreamingIsochronousFeedbackEndpointDescriptor</span> <span class="o">=</span> <span class="n">DescriptorFormat</span><span class="p">(</span>
+    <span class="s2">&quot;bLength&quot;</span>             <span class="o">/</span> <span class="n">construct</span><span class="o">.</span><span class="n">Const</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="n">construct</span><span class="o">.</span><span class="n">Int8ul</span><span class="p">),</span>
+    <span class="s2">&quot;bDescriptorType&quot;</span>     <span class="o">/</span> <span class="n">DescriptorNumber</span><span class="p">(</span><span class="n">StandardDescriptorNumbers</span><span class="o">.</span><span class="n">ENDPOINT</span><span class="p">),</span>
+    <span class="s2">&quot;bEndpointAddress&quot;</span>    <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;The address of the endpoint, use USBDirection.*.from_endpoint_address()&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;bmAttributes&quot;</span>        <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;D1..0: transfer type (01=isochronous); D3..2: synchronization type (00=no sync); D5..4: usage (10=feedback)&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mb">0b00100001</span><span class="p">),</span>
+    <span class="s2">&quot;wMaxPacketSize&quot;</span>      <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;Maximum packet size this endpoint is capable of. Used here to pass 6-byte interrupt information.&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">6</span><span class="p">),</span>
+    <span class="s2">&quot;bInterval&quot;</span>           <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;Interval for polling the Interrupt endpoint&quot;</span><span class="p">),</span>
+<span class="p">)</span>
+
+<span class="n">InterfaceAssociationDescriptor</span> <span class="o">=</span> <span class="n">DescriptorFormat</span><span class="p">(</span>
+    <span class="s2">&quot;bLength&quot;</span>             <span class="o">/</span> <span class="n">construct</span><span class="o">.</span><span class="n">Const</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="n">construct</span><span class="o">.</span><span class="n">Int8ul</span><span class="p">),</span>
+    <span class="s2">&quot;bDescriptorType&quot;</span>     <span class="o">/</span> <span class="n">DescriptorNumber</span><span class="p">(</span><span class="n">StandardDescriptorNumbers</span><span class="o">.</span><span class="n">INTERFACE_ASSOCIATION</span><span class="p">),</span>
+    <span class="s2">&quot;bFirstInterface&quot;</span>     <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;Interface number of the first interface that is associated with this function.&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+    <span class="s2">&quot;bInterfaceCount&quot;</span>     <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;Number of contiguous interfaces that are associated with this function&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;bFunctionClass&quot;</span>      <span class="o">/</span> <span class="n">DescriptorNumber</span><span class="p">(</span><span class="n">AudioFunctionClassCode</span><span class="o">.</span><span class="n">AUDIO_FUNCTION</span><span class="p">),</span>
+    <span class="s2">&quot;bFunctionSubClass&quot;</span>   <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;function subclass code (currently not used in uac2)&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">AudioFunctionCategoryCodes</span><span class="o">.</span><span class="n">FUNCTION_SUBCLASS_UNDEFINED</span><span class="p">),</span>
+    <span class="s2">&quot;bFunctionProtocol&quot;</span>   <span class="o">/</span> <span class="n">DescriptorNumber</span><span class="p">(</span><span class="n">AudioFunctionProtocolCodes</span><span class="o">.</span><span class="n">AF_VERSION_02_00</span><span class="p">),</span>
+    <span class="s2">&quot;iFunction&quot;</span>           <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;Index of a string descriptor that describes this interface&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+<span class="p">)</span>
+
+<span class="n">StandardAudioControlInterfaceDescriptor</span> <span class="o">=</span> <span class="n">DescriptorFormat</span><span class="p">(</span>
+    <span class="s2">&quot;bLength&quot;</span>             <span class="o">/</span> <span class="n">construct</span><span class="o">.</span><span class="n">Const</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="n">construct</span><span class="o">.</span><span class="n">Int8ul</span><span class="p">),</span>
+    <span class="s2">&quot;bDescriptorType&quot;</span>     <span class="o">/</span> <span class="n">DescriptorNumber</span><span class="p">(</span><span class="n">StandardDescriptorNumbers</span><span class="o">.</span><span class="n">INTERFACE</span><span class="p">),</span>
+    <span class="s2">&quot;bInterfaceNumber&quot;</span>    <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;ID of the control interface&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;bAlternateSetting&quot;</span>   <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;alternate setting for the interface (must be 0)&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+    <span class="s2">&quot;bNumEndpoints&quot;</span>       <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;number of endpoints used by this interface (excluding endpoint 0). This number is either 0 or 1 if the optional interrupt endpoint is present&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+    <span class="s2">&quot;bInterfaceClass&quot;</span>     <span class="o">/</span> <span class="n">DescriptorNumber</span><span class="p">(</span><span class="n">AudioInterfaceClassCode</span><span class="o">.</span><span class="n">AUDIO</span><span class="p">),</span>
+    <span class="s2">&quot;bInterfaceSubClass&quot;</span>  <span class="o">/</span> <span class="n">DescriptorNumber</span><span class="p">(</span><span class="n">AudioInterfaceSubclassCodes</span><span class="o">.</span><span class="n">AUDIO_CONTROL</span><span class="p">),</span>
+    <span class="s2">&quot;bInterfaceProtocol&quot;</span>  <span class="o">/</span> <span class="n">DescriptorNumber</span><span class="p">(</span><span class="n">AudioInterfaceProtocolCodes</span><span class="o">.</span><span class="n">IP_VERSION_02_00</span><span class="p">),</span>
+    <span class="s2">&quot;iInterface&quot;</span>          <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;index of string descriptor describing this interface&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+<span class="p">)</span>
+
+<span class="n">ClassSpecificAudioControlInterfaceDescriptor</span> <span class="o">=</span> <span class="n">DescriptorFormat</span><span class="p">(</span>
+    <span class="s2">&quot;bLength&quot;</span>             <span class="o">/</span> <span class="n">construct</span><span class="o">.</span><span class="n">Const</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="n">construct</span><span class="o">.</span><span class="n">Int8ul</span><span class="p">),</span>
+    <span class="s2">&quot;bDescriptorType&quot;</span>     <span class="o">/</span> <span class="n">DescriptorNumber</span><span class="p">(</span><span class="n">AudioClassSpecificStandardDescriptorNumbers</span><span class="o">.</span><span class="n">CS_INTERFACE</span><span class="p">),</span>
+    <span class="s2">&quot;bDescriptorSubtype&quot;</span>  <span class="o">/</span> <span class="n">DescriptorNumber</span><span class="p">(</span><span class="n">AudioClassSpecificACInterfaceDescriptorSubtypes</span><span class="o">.</span><span class="n">HEADER</span><span class="p">),</span>
+    <span class="s2">&quot;bcdADC&quot;</span>              <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;Audio Device Class specification release version&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mf">2.0</span><span class="p">),</span>
+    <span class="s2">&quot;bCategory&quot;</span>           <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;primary use of this audio function (see AudioFunctionCategoryCodes)&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">AudioFunctionCategoryCodes</span><span class="o">.</span><span class="n">IO_BOX</span><span class="p">),</span>
+    <span class="s2">&quot;wTotalLength&quot;</span>        <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;total number of bytes for the class specific audio control interface descriptor; Includes the combined length of this descriptor header and all Clock Source, Unit and Terminal descriptors&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;bmControls&quot;</span>          <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;D1..0: latency control&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+<span class="p">)</span>
+
+<span class="n">ClockSourceDescriptor</span> <span class="o">=</span> <span class="n">DescriptorFormat</span><span class="p">(</span>
+    <span class="s2">&quot;bLength&quot;</span>             <span class="o">/</span> <span class="n">construct</span><span class="o">.</span><span class="n">Const</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="n">construct</span><span class="o">.</span><span class="n">Int8ul</span><span class="p">),</span>
+    <span class="s2">&quot;bDescriptorType&quot;</span>     <span class="o">/</span> <span class="n">DescriptorNumber</span><span class="p">(</span><span class="n">AudioClassSpecificStandardDescriptorNumbers</span><span class="o">.</span><span class="n">CS_INTERFACE</span><span class="p">),</span>
+    <span class="s2">&quot;bDescriptorSubtype&quot;</span>  <span class="o">/</span> <span class="n">DescriptorNumber</span><span class="p">(</span><span class="n">AudioClassSpecificACInterfaceDescriptorSubtypes</span><span class="o">.</span><span class="n">CLOCK_SOURCE</span><span class="p">),</span>
+    <span class="s2">&quot;bClockID&quot;</span>            <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;ID of the clock source entity within the audio function (used in requests)&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;bmAttributes&quot;</span>        <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;D1..0: clock type (see ClockAttributs)&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;bmControls&quot;</span>          <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;D1..0: clock frequency control (D0..1: See ClockFrequencyControl, D3..2: clock validity control (0))&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">ClockFrequencyControl</span><span class="o">.</span><span class="n">NOT_PRESENT</span><span class="p">),</span>
+    <span class="s2">&quot;bAssocTerminal&quot;</span>      <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;ID of the terminal which is associated with this clock&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+    <span class="s2">&quot;iClockSource&quot;</span>        <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;index of the string description of this clock source&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+<span class="p">)</span>
+
+<span class="n">InputTerminalDescriptor</span> <span class="o">=</span> <span class="n">DescriptorFormat</span><span class="p">(</span>
+    <span class="s2">&quot;bLength&quot;</span>             <span class="o">/</span> <span class="n">construct</span><span class="o">.</span><span class="n">Const</span><span class="p">(</span><span class="mi">17</span><span class="p">,</span> <span class="n">construct</span><span class="o">.</span><span class="n">Int8ul</span><span class="p">),</span>
+    <span class="s2">&quot;bDescriptorType&quot;</span>     <span class="o">/</span> <span class="n">DescriptorNumber</span><span class="p">(</span><span class="n">AudioClassSpecificStandardDescriptorNumbers</span><span class="o">.</span><span class="n">CS_INTERFACE</span><span class="p">),</span>
+    <span class="s2">&quot;bDescriptorSubtype&quot;</span>  <span class="o">/</span> <span class="n">DescriptorNumber</span><span class="p">(</span><span class="n">AudioClassSpecificACInterfaceDescriptorSubtypes</span><span class="o">.</span><span class="n">INPUT_TERMINAL</span><span class="p">),</span>
+    <span class="s2">&quot;bTerminalID&quot;</span>         <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;unique identifier for the terminal within the audio function (used in requests)&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;wTerminalType&quot;</span>       <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;a value of one of the terminal types Enums (eg InputTerminaTypes, ExternalTerminalTypes)&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;bAssocTerminal&quot;</span>      <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;ID of the associated output terminal&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+    <span class="s2">&quot;bCSourceID&quot;</span>          <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;ID of the clock which is connected to this terminal&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;bNrChannels&quot;</span>         <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;number of logical output channels in the terminal’s output channel cluster&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;bmChannelConfig&quot;</span>     <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;describes the spatial location of the logical channels&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">4</span><span class="p">),</span>
+    <span class="s2">&quot;iChannelNames&quot;</span>       <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;string descriptor index of the first logical channel name&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+    <span class="s2">&quot;bmControls&quot;</span>          <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;OR combination of CopyProtectControl, ConnectorControl, OverloadControl, ClusterControl, UnderflowControl and OverflowControl&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>
+    <span class="s2">&quot;iTerminal&quot;</span>           <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;ID of the input terminal string descriptor&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+<span class="p">)</span>
+
+<span class="n">OutputTerminalDescriptor</span> <span class="o">=</span> <span class="n">DescriptorFormat</span><span class="p">(</span>
+    <span class="s2">&quot;bLength&quot;</span>             <span class="o">/</span> <span class="n">construct</span><span class="o">.</span><span class="n">Const</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="n">construct</span><span class="o">.</span><span class="n">Int8ul</span><span class="p">),</span>
+    <span class="s2">&quot;bDescriptorType&quot;</span>     <span class="o">/</span> <span class="n">DescriptorNumber</span><span class="p">(</span><span class="n">AudioClassSpecificStandardDescriptorNumbers</span><span class="o">.</span><span class="n">CS_INTERFACE</span><span class="p">),</span>
+    <span class="s2">&quot;bDescriptorSubtype&quot;</span>  <span class="o">/</span> <span class="n">DescriptorNumber</span><span class="p">(</span><span class="n">AudioClassSpecificACInterfaceDescriptorSubtypes</span><span class="o">.</span><span class="n">OUTPUT_TERMINAL</span><span class="p">),</span>
+    <span class="s2">&quot;bTerminalID&quot;</span>         <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;unique identifier for the terminal within the audio function.&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;wTerminalType&quot;</span>       <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;a value of one of the terminal types Enums (eg OutputTerminaTypes, ExternalTerminalTypes)&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;bAssocTerminal&quot;</span>      <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;ID of the associated input terminal&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+    <span class="s2">&quot;bSourceID&quot;</span>           <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;ID of the unit or terminal which is connected to this terminal&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;bCSourceID&quot;</span>          <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;ID of the clock which is connected to this terminal&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;bmControls&quot;</span>          <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;OR combination of  ClockFrequencyControl, CopyProtectControl, ConnectorControl, UnderflowControl&gt;&gt;2 and OverflowControl&gt;&gt;2&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>
+    <span class="s2">&quot;iTerminal&quot;</span>           <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;ID of the input terminal string descriptor&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+<span class="p">)</span>
+
+<span class="n">FeatureUnitDescriptorLength</span> <span class="o">=</span> <span class="n">construct</span><span class="o">.</span><span class="n">Rebuild</span><span class="p">(</span><span class="n">construct</span><span class="o">.</span><span class="n">Int8ul</span><span class="p">,</span> <span class="n">construct</span><span class="o">.</span><span class="n">len_</span><span class="p">(</span><span class="n">construct</span><span class="o">.</span><span class="n">this</span><span class="o">.</span><span class="n">bmaControls</span><span class="p">)</span> <span class="o">*</span> <span class="mi">4</span> <span class="o">+</span> <span class="mi">6</span><span class="p">)</span>
+
+<span class="n">FeatureUnitDescriptor</span> <span class="o">=</span> <span class="n">DescriptorFormat</span><span class="p">(</span>
+    <span class="s2">&quot;bLength&quot;</span>             <span class="o">/</span> <span class="n">FeatureUnitDescriptorLength</span><span class="p">,</span>
+    <span class="s2">&quot;bDescriptorType&quot;</span>     <span class="o">/</span> <span class="n">DescriptorNumber</span><span class="p">(</span><span class="n">AudioClassSpecificStandardDescriptorNumbers</span><span class="o">.</span><span class="n">CS_INTERFACE</span><span class="p">),</span>
+    <span class="s2">&quot;bDescriptorSubtype&quot;</span>  <span class="o">/</span> <span class="n">DescriptorNumber</span><span class="p">(</span><span class="n">AudioClassSpecificACInterfaceDescriptorSubtypes</span><span class="o">.</span><span class="n">FEATURE_UNIT</span><span class="p">),</span>
+    <span class="s2">&quot;bUnitID&quot;</span>             <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;unique identifier for the unit within the audio function.&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;bSourceID&quot;</span>           <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;ID of the unit or terminal which is connected to this terminal&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;bmaControls&quot;</span>         <span class="o">/</span> <span class="n">construct</span><span class="o">.</span><span class="n">Array</span><span class="p">((</span><span class="n">construct</span><span class="o">.</span><span class="n">this</span><span class="o">.</span><span class="n">bLength</span> <span class="o">-</span> <span class="mi">6</span><span class="p">)</span> <span class="o">//</span> <span class="mi">4</span><span class="p">,</span> <span class="n">construct</span><span class="o">.</span><span class="n">Int32ul</span><span class="p">)</span> <span class="o">*</span> <span class="s2">&quot;The control bitmap for all channels&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;iFeature&quot;</span>            <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;ID of the feature unit string descriptor&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+<span class="p">)</span>
+
+<span class="n">AudioStreamingInterfaceDescriptor</span> <span class="o">=</span> <span class="n">DescriptorFormat</span><span class="p">(</span>
+    <span class="s2">&quot;bLength&quot;</span>             <span class="o">/</span> <span class="n">construct</span><span class="o">.</span><span class="n">Const</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="n">construct</span><span class="o">.</span><span class="n">Int8ul</span><span class="p">),</span>
+    <span class="s2">&quot;bDescriptorType&quot;</span>     <span class="o">/</span> <span class="n">DescriptorNumber</span><span class="p">(</span><span class="n">StandardDescriptorNumbers</span><span class="o">.</span><span class="n">INTERFACE</span><span class="p">),</span>
+    <span class="s2">&quot;bInterfaceNumber&quot;</span>    <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;ID of the streaming interface&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;bAlternateSetting&quot;</span>   <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;alternate setting number for the interface&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+    <span class="s2">&quot;bNumEndpoints&quot;</span>       <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;Number of data endpoints used (excluding endpoint 0). Can be: 0 (no data endpoint); 1 (data endpoint); 2 (data + explicit feedback endpoint)&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+    <span class="s2">&quot;bInterfaceClass&quot;</span>     <span class="o">/</span> <span class="n">DescriptorNumber</span><span class="p">(</span><span class="n">AudioInterfaceClassCode</span><span class="o">.</span><span class="n">AUDIO</span><span class="p">),</span>
+    <span class="s2">&quot;bInterfaceSubClass&quot;</span>  <span class="o">/</span> <span class="n">DescriptorNumber</span><span class="p">(</span><span class="n">AudioInterfaceSubclassCodes</span><span class="o">.</span><span class="n">AUDIO_STREAMING</span><span class="p">),</span>
+    <span class="s2">&quot;bInterfaceProtocol&quot;</span>  <span class="o">/</span> <span class="n">DescriptorNumber</span><span class="p">(</span><span class="n">AudioInterfaceProtocolCodes</span><span class="o">.</span><span class="n">IP_VERSION_02_00</span><span class="p">),</span>
+    <span class="s2">&quot;iInterface&quot;</span>          <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;index of a string descriptor describing this interface (0 = unused)&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+<span class="p">)</span>
+
+<span class="n">ClassSpecificAudioStreamingInterfaceDescriptor</span> <span class="o">=</span> <span class="n">DescriptorFormat</span><span class="p">(</span>
+    <span class="s2">&quot;bLength&quot;</span>             <span class="o">/</span> <span class="n">construct</span><span class="o">.</span><span class="n">Const</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="n">construct</span><span class="o">.</span><span class="n">Int8ul</span><span class="p">),</span>
+    <span class="s2">&quot;bDescriptorType&quot;</span>     <span class="o">/</span> <span class="n">DescriptorNumber</span><span class="p">(</span><span class="n">AudioClassSpecificStandardDescriptorNumbers</span><span class="o">.</span><span class="n">CS_INTERFACE</span><span class="p">),</span>
+    <span class="s2">&quot;bDescriptorSubtype&quot;</span>  <span class="o">/</span> <span class="n">DescriptorNumber</span><span class="p">(</span><span class="n">AudioClassSpecificASInterfaceDescriptorSubtypes</span><span class="o">.</span><span class="n">AS_GENERAL</span><span class="p">),</span>
+    <span class="s2">&quot;bTerminalLink&quot;</span>       <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;the ID of the terminal to which this interface is connected&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;bmControls&quot;</span>          <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;D1..0: active alternate setting control; D3..2: valid alternate settings control; D7..4: reserved, must be 0&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+    <span class="s2">&quot;bFormatType&quot;</span>         <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;see FormatTypes&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;bmFormats&quot;</span>           <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;audio data formats which can be used with this interface&quot;</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">4</span><span class="p">),</span>
+    <span class="s2">&quot;bNrChannels&quot;</span>         <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;Number of physical channels in the AS Interface audio channel cluster&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;bmChannelConfig&quot;</span>     <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;spatial location of the physical channels&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">4</span><span class="p">),</span>
+    <span class="s2">&quot;iChannelNames&quot;</span>       <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;ndex of a string descriptor, describing the name of the first physical channel.&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+<span class="p">)</span>
+
+<span class="n">TypeIFormatTypeDescriptor</span> <span class="o">=</span> <span class="n">DescriptorFormat</span><span class="p">(</span>
+    <span class="s2">&quot;bLength&quot;</span>             <span class="o">/</span> <span class="n">construct</span><span class="o">.</span><span class="n">Const</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="n">construct</span><span class="o">.</span><span class="n">Int8ul</span><span class="p">),</span>
+    <span class="s2">&quot;bDescriptorType&quot;</span>     <span class="o">/</span> <span class="n">DescriptorNumber</span><span class="p">(</span><span class="n">AudioClassSpecificStandardDescriptorNumbers</span><span class="o">.</span><span class="n">CS_INTERFACE</span><span class="p">),</span>
+    <span class="s2">&quot;bDescriptorSubtype&quot;</span>  <span class="o">/</span> <span class="n">DescriptorNumber</span><span class="p">(</span><span class="n">AudioClassSpecificASInterfaceDescriptorSubtypes</span><span class="o">.</span><span class="n">FORMAT_TYPE</span><span class="p">),</span>
+    <span class="s2">&quot;bFormatType&quot;</span>         <span class="o">/</span> <span class="n">DescriptorNumber</span><span class="p">(</span><span class="n">FormatTypes</span><span class="o">.</span><span class="n">FORMAT_TYPE_I</span><span class="p">),</span>
+    <span class="s2">&quot;bSubslotSize&quot;</span>        <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;number of bytes occupied by one audio subslot (1, 2, 3 or 4)&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;bBitResolution&quot;</span>      <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;number of effectively used bits out of the available bits in an audio subslot&quot;</span><span class="p">),</span>
+<span class="p">)</span>
+
+<span class="n">ExtendedTypeIFormatTypeDescriptor</span> <span class="o">=</span> <span class="n">DescriptorFormat</span><span class="p">(</span>
+    <span class="s2">&quot;bLength&quot;</span>             <span class="o">/</span> <span class="n">construct</span><span class="o">.</span><span class="n">Const</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="n">construct</span><span class="o">.</span><span class="n">Int8ul</span><span class="p">),</span>
+    <span class="s2">&quot;bDescriptorType&quot;</span>     <span class="o">/</span> <span class="n">DescriptorNumber</span><span class="p">(</span><span class="n">AudioClassSpecificStandardDescriptorNumbers</span><span class="o">.</span><span class="n">CS_INTERFACE</span><span class="p">),</span>
+    <span class="s2">&quot;bDescriptorSubtype&quot;</span>  <span class="o">/</span> <span class="n">DescriptorNumber</span><span class="p">(</span><span class="n">AudioClassSpecificASInterfaceDescriptorSubtypes</span><span class="o">.</span><span class="n">FORMAT_TYPE</span><span class="p">),</span>
+    <span class="s2">&quot;bFormatType&quot;</span>         <span class="o">/</span> <span class="n">DescriptorNumber</span><span class="p">(</span><span class="n">FormatTypes</span><span class="o">.</span><span class="n">EXT_FORMAT_TYPE_I</span><span class="p">),</span>
+    <span class="s2">&quot;bSubslotSize&quot;</span>        <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;number of bytes occupied by one audio subslot (1, 2, 3 or 4)&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;bBitResolution&quot;</span>      <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;number of effectively used bits out of the available bits in an audio subslot&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;bHeaderLength&quot;</span>       <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;size of the packet header in bytes&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;bControlSize&quot;</span>        <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;size of the control channel words in bytes&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;bSideBandProtocol&quot;</span>   <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;side band protocol, see SidebandProtocols&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">SidebandProtocols</span><span class="o">.</span><span class="n">PROTOCOL_UNDEFINED</span><span class="p">),</span>
+<span class="p">)</span>
+
+<span class="n">TypeIIFormatTypeDescriptor</span> <span class="o">=</span> <span class="n">DescriptorFormat</span><span class="p">(</span>
+    <span class="s2">&quot;bLength&quot;</span>             <span class="o">/</span> <span class="n">construct</span><span class="o">.</span><span class="n">Const</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="n">construct</span><span class="o">.</span><span class="n">Int8ul</span><span class="p">),</span>
+    <span class="s2">&quot;bDescriptorType&quot;</span>     <span class="o">/</span> <span class="n">DescriptorNumber</span><span class="p">(</span><span class="n">AudioClassSpecificStandardDescriptorNumbers</span><span class="o">.</span><span class="n">CS_INTERFACE</span><span class="p">),</span>
+    <span class="s2">&quot;bDescriptorSubtype&quot;</span>  <span class="o">/</span> <span class="n">DescriptorNumber</span><span class="p">(</span><span class="n">AudioClassSpecificASInterfaceDescriptorSubtypes</span><span class="o">.</span><span class="n">FORMAT_TYPE</span><span class="p">),</span>
+    <span class="s2">&quot;bFormatType&quot;</span>         <span class="o">/</span> <span class="n">DescriptorNumber</span><span class="p">(</span><span class="n">FormatTypes</span><span class="o">.</span><span class="n">FORMAT_TYPE_II</span><span class="p">),</span>
+    <span class="s2">&quot;wMaxBitRate&quot;</span>         <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;maximum bitrate of this interface in kbits/s&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;wSlotsPerFrame&quot;</span>      <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;number of PCM audio slots in one audio frame&quot;</span><span class="p">),</span>
+<span class="p">)</span>
+
+<span class="n">ExtendedTypeIIFormatTypeDescriptor</span> <span class="o">=</span> <span class="n">DescriptorFormat</span><span class="p">(</span>
+    <span class="s2">&quot;bLength&quot;</span>             <span class="o">/</span> <span class="n">construct</span><span class="o">.</span><span class="n">Const</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">construct</span><span class="o">.</span><span class="n">Int8ul</span><span class="p">),</span>
+    <span class="s2">&quot;bDescriptorType&quot;</span>     <span class="o">/</span> <span class="n">DescriptorNumber</span><span class="p">(</span><span class="n">AudioClassSpecificStandardDescriptorNumbers</span><span class="o">.</span><span class="n">CS_INTERFACE</span><span class="p">),</span>
+    <span class="s2">&quot;bDescriptorSubtype&quot;</span>  <span class="o">/</span> <span class="n">DescriptorNumber</span><span class="p">(</span><span class="n">AudioClassSpecificASInterfaceDescriptorSubtypes</span><span class="o">.</span><span class="n">FORMAT_TYPE</span><span class="p">),</span>
+    <span class="s2">&quot;bFormatType&quot;</span>         <span class="o">/</span> <span class="n">DescriptorNumber</span><span class="p">(</span><span class="n">FormatTypes</span><span class="o">.</span><span class="n">EXT_FORMAT_TYPE_II</span><span class="p">),</span>
+    <span class="s2">&quot;wMaxBitRate&quot;</span>         <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;maximum bitrate of this interface in kbits/s&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;wSamplesPerFrame&quot;</span>    <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;number of PCM audio samples in one audio frame&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;bHeaderLength&quot;</span>       <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;size of the packet header in bytes&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;bSideBandProtocol&quot;</span>   <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;side band protocol, see SidebandProtocols&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">SidebandProtocols</span><span class="o">.</span><span class="n">PROTOCOL_UNDEFINED</span><span class="p">),</span>
+<span class="p">)</span>
+
+<span class="n">TypeIIIFormatTypeDescriptor</span> <span class="o">=</span> <span class="n">DescriptorFormat</span><span class="p">(</span>
+    <span class="s2">&quot;bLength&quot;</span>             <span class="o">/</span> <span class="n">construct</span><span class="o">.</span><span class="n">Const</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="n">construct</span><span class="o">.</span><span class="n">Int8ul</span><span class="p">),</span>
+    <span class="s2">&quot;bDescriptorType&quot;</span>     <span class="o">/</span> <span class="n">DescriptorNumber</span><span class="p">(</span><span class="n">AudioClassSpecificStandardDescriptorNumbers</span><span class="o">.</span><span class="n">CS_INTERFACE</span><span class="p">),</span>
+    <span class="s2">&quot;bDescriptorSubtype&quot;</span>  <span class="o">/</span> <span class="n">DescriptorNumber</span><span class="p">(</span><span class="n">AudioClassSpecificASInterfaceDescriptorSubtypes</span><span class="o">.</span><span class="n">FORMAT_TYPE</span><span class="p">),</span>
+    <span class="s2">&quot;bFormatType&quot;</span>         <span class="o">/</span> <span class="n">DescriptorNumber</span><span class="p">(</span><span class="n">FormatTypes</span><span class="o">.</span><span class="n">FORMAT_TYPE_III</span><span class="p">),</span>
+    <span class="s2">&quot;bSubslotSize&quot;</span>        <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;number of bytes occupied by one audio subslot (must be 2)&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>
+    <span class="s2">&quot;bBitResolution&quot;</span>      <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;number of effectively used bits out of the available bits in an audio subslot&quot;</span><span class="p">),</span>
+<span class="p">)</span>
+
+<span class="n">ExtendedTypeIIIFormatTypeDescriptor</span> <span class="o">=</span> <span class="n">DescriptorFormat</span><span class="p">(</span>
+    <span class="s2">&quot;bLength&quot;</span>             <span class="o">/</span> <span class="n">construct</span><span class="o">.</span><span class="n">Const</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="n">construct</span><span class="o">.</span><span class="n">Int8ul</span><span class="p">),</span>
+    <span class="s2">&quot;bDescriptorType&quot;</span>     <span class="o">/</span> <span class="n">DescriptorNumber</span><span class="p">(</span><span class="n">AudioClassSpecificStandardDescriptorNumbers</span><span class="o">.</span><span class="n">CS_INTERFACE</span><span class="p">),</span>
+    <span class="s2">&quot;bDescriptorSubtype&quot;</span>  <span class="o">/</span> <span class="n">DescriptorNumber</span><span class="p">(</span><span class="n">AudioClassSpecificASInterfaceDescriptorSubtypes</span><span class="o">.</span><span class="n">FORMAT_TYPE</span><span class="p">),</span>
+    <span class="s2">&quot;bFormatType&quot;</span>         <span class="o">/</span> <span class="n">DescriptorNumber</span><span class="p">(</span><span class="n">FormatTypes</span><span class="o">.</span><span class="n">EXT_FORMAT_TYPE_III</span><span class="p">),</span>
+    <span class="s2">&quot;bSubslotSize&quot;</span>        <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;number of bytes occupied by one audio subslot (must be 2)&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>
+    <span class="s2">&quot;bBitResolution&quot;</span>      <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;number of effectively used bits out of the available bits in an audio subslot&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;bHeaderLength&quot;</span>       <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;size of the packet header in bytes&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;bSideBandProtocol&quot;</span>   <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;side band protocol, see SidebandProtocols&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">SidebandProtocols</span><span class="o">.</span><span class="n">PROTOCOL_UNDEFINED</span><span class="p">),</span>
+<span class="p">)</span>
+
+<span class="n">ClassSpecificAudioStreamingIsochronousAudioDataEndpointDescriptor</span> <span class="o">=</span> <span class="n">DescriptorFormat</span><span class="p">(</span>
+    <span class="s2">&quot;bLength&quot;</span>             <span class="o">/</span> <span class="n">construct</span><span class="o">.</span><span class="n">Const</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="n">construct</span><span class="o">.</span><span class="n">Int8ul</span><span class="p">),</span>
+    <span class="s2">&quot;bDescriptorType&quot;</span>     <span class="o">/</span> <span class="n">DescriptorNumber</span><span class="p">(</span><span class="n">AudioClassSpecificStandardDescriptorNumbers</span><span class="o">.</span><span class="n">CS_ENDPOINT</span><span class="p">),</span>
+    <span class="s2">&quot;bDescriptorSubtype&quot;</span>  <span class="o">/</span> <span class="n">DescriptorNumber</span><span class="p">(</span><span class="n">AudioClassSpecificEndpointDescriptorSubtypes</span><span class="o">.</span><span class="n">EP_GENERAL</span><span class="p">),</span>
+    <span class="s2">&quot;bmAttributes&quot;</span>        <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;bit D7 = 1: only packets with size wMaxPacketSize allowed&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+    <span class="s2">&quot;bmControls&quot;</span>          <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;D1..0: pitch control D3..2: data overrun control; D5..4: data underrun control;&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+    <span class="s2">&quot;bLockDelayUnits&quot;</span>     <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;wLockDelay unit: 0: undefined; 1: milliseconds; 2: decoded PCM samples;&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+    <span class="s2">&quot;wLockDelay&quot;</span>          <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;the time it takes this endpoint to reliably lock its internal clock recovery circuitry. Units see bLockDelayUnits&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+<span class="p">)</span>
+
+<span class="c1">###################### MIDI #########################</span>
+
+<div class="viewcode-block" id="MidiStreamingGroupTerminalBlockDescriptorSubtypes">
+<a class="viewcode-back" href="../../../../api/usb_protocol.types.descriptors.uac2.html#usb_protocol.types.descriptors.uac2.MidiStreamingGroupTerminalBlockDescriptorSubtypes">[docs]</a>
+<span class="k">class</span> <span class="nc">MidiStreamingGroupTerminalBlockDescriptorSubtypes</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+    <span class="n">GR_TRM_BLOCK_UNDEFINED</span> <span class="o">=</span> <span class="mh">0x00</span>
+    <span class="n">GR_TRM_BLOCK_HEADER</span>    <span class="o">=</span> <span class="mh">0x01</span>
+    <span class="n">GR_TRM_BLOCK</span>           <span class="o">=</span> <span class="mh">0x02</span></div>
+
+
+<div class="viewcode-block" id="GroupTerminalBlockType">
+<a class="viewcode-back" href="../../../../api/usb_protocol.types.descriptors.uac2.html#usb_protocol.types.descriptors.uac2.GroupTerminalBlockType">[docs]</a>
+<span class="k">class</span> <span class="nc">GroupTerminalBlockType</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+    <span class="n">BIDIRECTIONAL</span> <span class="o">=</span> <span class="mh">0x00</span>
+    <span class="n">INPUT_ONLY</span>    <span class="o">=</span> <span class="mh">0x01</span>
+    <span class="n">OUTPUT_ONLY</span>   <span class="o">=</span> <span class="mh">0x02</span></div>
+
+
+<div class="viewcode-block" id="GroupTerminalDefaultMidiProtocol">
+<a class="viewcode-back" href="../../../../api/usb_protocol.types.descriptors.uac2.html#usb_protocol.types.descriptors.uac2.GroupTerminalDefaultMidiProtocol">[docs]</a>
+<span class="k">class</span> <span class="nc">GroupTerminalDefaultMidiProtocol</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+    <span class="n">USE_MIDI_CI</span>                      <span class="o">=</span> <span class="mh">0x00</span>
+    <span class="n">MIDI_1_0_UP_TO_64_BITS</span>           <span class="o">=</span> <span class="mh">0x01</span>
+    <span class="n">MIDI_1_0_UP_TO_64_BITS_AND_JRTS</span>  <span class="o">=</span> <span class="mh">0x02</span>
+    <span class="n">MIDI_1_0_UP_TO_128_BITS</span>          <span class="o">=</span> <span class="mh">0x03</span>
+    <span class="n">MIDI_1_0_UP_TO_128_BITS_AND_JRTS</span> <span class="o">=</span> <span class="mh">0x04</span>
+    <span class="n">MIDI_2_0</span>                         <span class="o">=</span> <span class="mh">0x11</span>
+    <span class="n">MIDI_2_0_AND_JRTS</span>                <span class="o">=</span> <span class="mh">0x12</span></div>
+
+
+<div class="viewcode-block" id="GroupTerminalNumber">
+<a class="viewcode-back" href="../../../../api/usb_protocol.types.descriptors.uac2.html#usb_protocol.types.descriptors.uac2.GroupTerminalNumber">[docs]</a>
+<span class="k">class</span> <span class="nc">GroupTerminalNumber</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+    <span class="n">GROUP_1</span>  <span class="o">=</span> <span class="mh">0x00</span>
+    <span class="n">GROUP_2</span>  <span class="o">=</span> <span class="mh">0x01</span>
+    <span class="n">GROUP_3</span>  <span class="o">=</span> <span class="mh">0x02</span>
+    <span class="n">GROUP_4</span>  <span class="o">=</span> <span class="mh">0x03</span>
+    <span class="n">GROUP_5</span>  <span class="o">=</span> <span class="mh">0x04</span>
+    <span class="n">GROUP_6</span>  <span class="o">=</span> <span class="mh">0x05</span>
+    <span class="n">GROUP_7</span>  <span class="o">=</span> <span class="mh">0x06</span>
+    <span class="n">GROUP_8</span>  <span class="o">=</span> <span class="mh">0x07</span>
+    <span class="n">GROUP_9</span>  <span class="o">=</span> <span class="mh">0x08</span>
+    <span class="n">GROUP_10</span> <span class="o">=</span> <span class="mh">0x09</span>
+    <span class="n">GROUP_11</span> <span class="o">=</span> <span class="mh">0x0A</span>
+    <span class="n">GROUP_12</span> <span class="o">=</span> <span class="mh">0x0B</span>
+    <span class="n">GROUP_13</span> <span class="o">=</span> <span class="mh">0x0C</span>
+    <span class="n">GROUP_14</span> <span class="o">=</span> <span class="mh">0x0D</span>
+    <span class="n">GROUP_15</span> <span class="o">=</span> <span class="mh">0x0E</span>
+    <span class="n">GROUP_16</span> <span class="o">=</span> <span class="mh">0x0F</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

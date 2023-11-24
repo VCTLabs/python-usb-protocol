@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>usb_protocol.types.descriptors.standard &mdash; usb_protocol 0.0 documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../_static/documentation_options.js?v=837179f8"></script>
+        <script src="../../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            usb_protocol
+          </a>
+              <div class="version">
+                0.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../README.html">USB Protocol Library for Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../api/modules.html">usb_protocol</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">usb_protocol</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">Module code</a></li>
+          <li class="breadcrumb-item"><a href="../../types.html">usb_protocol.types</a></li>
+      <li class="breadcrumb-item active">usb_protocol.types.descriptors.standard</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for usb_protocol.types.descriptors.standard</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="c1">#</span>
+<span class="c1"># This file is part of usb-protocol.</span>
+<span class="c1">#</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Structures describing standard USB descriptors. Versions that support parsing incomplete binary data</span>
+<span class="sd">are available as `DescriptorType`.Partial, e.g. `DeviceDescriptor.Partial`, and are collectively available</span>
+<span class="sd">in the `usb_protocol.types.descriptors.partial.standard` module (which, like the structs in this module,</span>
+<span class="sd">can also be imported without `.standard`).</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">IntEnum</span>
+
+<span class="kn">import</span> <span class="nn">construct</span>
+<span class="kn">from</span> <span class="nn">construct</span> <span class="kn">import</span> <span class="n">Default</span><span class="p">,</span> <span class="n">this</span>
+
+<span class="kn">from</span> <span class="nn">..</span> <span class="kn">import</span> <span class="n">LanguageIDs</span>
+<span class="kn">from</span> <span class="nn">..descriptor</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">BCDFieldAdapter</span><span class="p">,</span>
+    <span class="n">DescriptorField</span><span class="p">,</span>
+    <span class="n">DescriptorFormat</span><span class="p">,</span>
+    <span class="n">DescriptorLength</span><span class="p">,</span>
+    <span class="n">DescriptorNumber</span><span class="p">,</span>
+<span class="p">)</span>
+
+
+<div class="viewcode-block" id="StandardDescriptorNumbers">
+<a class="viewcode-back" href="../../../../api/usb_protocol.types.descriptors.standard.html#usb_protocol.types.descriptors.standard.StandardDescriptorNumbers">[docs]</a>
+<span class="k">class</span> <span class="nc">StandardDescriptorNumbers</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Numbers of our standard descriptors. &quot;&quot;&quot;</span>
+
+    <span class="n">DEVICE</span>                                        <span class="o">=</span>  <span class="mi">1</span>
+    <span class="n">CONFIGURATION</span>                                 <span class="o">=</span>  <span class="mi">2</span>
+    <span class="n">STRING</span>                                        <span class="o">=</span>  <span class="mi">3</span>
+    <span class="n">INTERFACE</span>                                     <span class="o">=</span>  <span class="mi">4</span>
+    <span class="n">ENDPOINT</span>                                      <span class="o">=</span>  <span class="mi">5</span>
+    <span class="n">DEVICE_QUALIFIER</span>                              <span class="o">=</span>  <span class="mi">6</span>
+    <span class="n">OTHER_SPEED_DESCRIPTOR</span>                        <span class="o">=</span>  <span class="mi">7</span>
+    <span class="n">OTHER_SPEED</span>                                   <span class="o">=</span>  <span class="mi">7</span>
+    <span class="n">INTERFACE_POWER</span>                               <span class="o">=</span>  <span class="mi">8</span>
+    <span class="n">OTG</span>                                           <span class="o">=</span>  <span class="mi">9</span>
+    <span class="n">DEBUG</span>                                         <span class="o">=</span> <span class="mi">10</span>
+    <span class="n">INTERFACE_ASSOCIATION</span>                         <span class="o">=</span> <span class="mi">11</span>
+
+    <span class="c1"># SuperSpeed only</span>
+    <span class="n">BOS</span>                                           <span class="o">=</span> <span class="mi">15</span>
+    <span class="n">DEVICE_CAPABILITY</span>                             <span class="o">=</span> <span class="mi">16</span>
+    <span class="n">SUPERSPEED_USB_ENDPOINT_COMPANION</span>             <span class="o">=</span> <span class="mi">48</span>
+    <span class="n">SUPERSPEEDPLUS_ISOCHRONOUS_ENDPOINT_COMPANION</span> <span class="o">=</span> <span class="mi">49</span></div>
+
+
+
+<div class="viewcode-block" id="DeviceCapabilityTypes">
+<a class="viewcode-back" href="../../../../api/usb_protocol.types.descriptors.standard.html#usb_protocol.types.descriptors.standard.DeviceCapabilityTypes">[docs]</a>
+<span class="k">class</span> <span class="nc">DeviceCapabilityTypes</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Numbers for the SuperSpeed standard Device Capabilities. &quot;&quot;&quot;</span>
+
+    <span class="n">WIRELESS_USB</span>                <span class="o">=</span>  <span class="mi">1</span>
+    <span class="n">USB_2_EXTENSION</span>             <span class="o">=</span>  <span class="mi">2</span>
+    <span class="n">SUPERSPEED_USB</span>              <span class="o">=</span>  <span class="mi">3</span>
+    <span class="n">CONTAINER_ID</span>                <span class="o">=</span>  <span class="mi">4</span>
+    <span class="n">PLATFORM</span>                    <span class="o">=</span>  <span class="mi">5</span>
+    <span class="n">POWER_DELIVERY_CAPABILITY</span>   <span class="o">=</span>  <span class="mi">6</span>
+    <span class="n">BATTERY_INFO_CAPABILITY</span>     <span class="o">=</span>  <span class="mi">7</span>
+    <span class="n">PD_CONSUMER_PORT_CAPABILITY</span> <span class="o">=</span>  <span class="mi">8</span>
+    <span class="n">PD_PROVIDER_PORT_CAPABILITY</span> <span class="o">=</span>  <span class="mi">9</span>
+    <span class="n">SUPERSPEED_PLUS</span>             <span class="o">=</span> <span class="mi">10</span>
+    <span class="n">PRECISION_TIME_MEASUREMENT</span>  <span class="o">=</span> <span class="mi">11</span>
+    <span class="n">WIRELESS_USB_EXTENSION</span>      <span class="o">=</span> <span class="mi">12</span>
+    <span class="n">BILLBOARD</span>                   <span class="o">=</span> <span class="mi">13</span>
+    <span class="n">AUTHENTICATION</span>              <span class="o">=</span> <span class="mi">14</span>
+    <span class="n">BILLBOARD_EXTENSION</span>         <span class="o">=</span> <span class="mi">15</span>
+    <span class="n">CONFIGURATION_SUMMARY</span>       <span class="o">=</span> <span class="mi">16</span></div>
+
+
+
+
+<span class="n">DeviceDescriptor</span> <span class="o">=</span> <span class="n">DescriptorFormat</span><span class="p">(</span>
+    <span class="s2">&quot;bLength&quot;</span>             <span class="o">/</span> <span class="n">construct</span><span class="o">.</span><span class="n">Const</span><span class="p">(</span><span class="mh">0x12</span><span class="p">,</span> <span class="n">construct</span><span class="o">.</span><span class="n">Int8ul</span><span class="p">),</span>
+    <span class="s2">&quot;bDescriptorType&quot;</span>     <span class="o">/</span> <span class="n">DescriptorNumber</span><span class="p">(</span><span class="n">StandardDescriptorNumbers</span><span class="o">.</span><span class="n">DEVICE</span><span class="p">),</span>
+    <span class="s2">&quot;bcdUSB&quot;</span>              <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="s2">&quot;USB Version&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mf">2.0</span><span class="p">),</span>
+    <span class="s2">&quot;bDeviceClass&quot;</span>        <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="s2">&quot;Class&quot;</span><span class="p">,</span>    <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+    <span class="s2">&quot;bDeviceSubclass&quot;</span>     <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="s2">&quot;Subclass&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+    <span class="s2">&quot;bDeviceProtocol&quot;</span>     <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="s2">&quot;Protocol&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+    <span class="s2">&quot;bMaxPacketSize0&quot;</span>     <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="s2">&quot;EP0 Max Pkt Size&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">64</span><span class="p">),</span>
+    <span class="s2">&quot;idVendor&quot;</span>            <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="s2">&quot;Vendor ID&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;idProduct&quot;</span>           <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="s2">&quot;Product ID&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;bcdDevice&quot;</span>           <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="s2">&quot;Device Version&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+    <span class="s2">&quot;iManufacturer&quot;</span>       <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="s2">&quot;Manufacturer Str&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+    <span class="s2">&quot;iProduct&quot;</span>            <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="s2">&quot;Product Str&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+    <span class="s2">&quot;iSerialNumber&quot;</span>       <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="s2">&quot;Serial Number&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+    <span class="s2">&quot;bNumConfigurations&quot;</span>  <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="s2">&quot;Configuration Count&quot;</span><span class="p">),</span>
+<span class="p">)</span>
+
+
+
+<span class="n">ConfigurationDescriptor</span> <span class="o">=</span> <span class="n">DescriptorFormat</span><span class="p">(</span>
+    <span class="s2">&quot;bLength&quot;</span>             <span class="o">/</span> <span class="n">construct</span><span class="o">.</span><span class="n">Const</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="n">construct</span><span class="o">.</span><span class="n">Int8ul</span><span class="p">),</span>
+    <span class="s2">&quot;bDescriptorType&quot;</span>     <span class="o">/</span> <span class="n">DescriptorNumber</span><span class="p">(</span><span class="n">StandardDescriptorNumbers</span><span class="o">.</span><span class="n">CONFIGURATION</span><span class="p">),</span>
+    <span class="s2">&quot;wTotalLength&quot;</span>        <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="s2">&quot;Length including subordinates&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;bNumInterfaces&quot;</span>      <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="s2">&quot;Interface count&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;bConfigurationValue&quot;</span> <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="s2">&quot;Configuration number&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
+    <span class="s2">&quot;iConfiguration&quot;</span>      <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="s2">&quot;Description string&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+    <span class="s2">&quot;bmAttributes&quot;</span>        <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="s2">&quot;Attributes&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mh">0x80</span><span class="p">),</span>
+    <span class="s2">&quot;bMaxPower&quot;</span>           <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="s2">&quot;Max power consumption&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">250</span><span class="p">),</span>
+<span class="p">)</span>
+
+<span class="c1"># Field that automatically reflects a string descriptor&#39;s length.</span>
+<span class="n">StringDescriptorLength</span> <span class="o">=</span> <span class="n">construct</span><span class="o">.</span><span class="n">Rebuild</span><span class="p">(</span><span class="n">construct</span><span class="o">.</span><span class="n">Int8ul</span><span class="p">,</span> <span class="n">construct</span><span class="o">.</span><span class="n">len_</span><span class="p">(</span><span class="n">this</span><span class="o">.</span><span class="n">bString</span><span class="p">)</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="n">StringDescriptor</span> <span class="o">=</span> <span class="n">DescriptorFormat</span><span class="p">(</span>
+    <span class="s2">&quot;bLength&quot;</span>             <span class="o">/</span> <span class="n">StringDescriptorLength</span><span class="p">,</span>
+    <span class="s2">&quot;bDescriptorType&quot;</span>     <span class="o">/</span> <span class="n">DescriptorNumber</span><span class="p">(</span><span class="n">StandardDescriptorNumbers</span><span class="o">.</span><span class="n">STRING</span><span class="p">),</span>
+    <span class="s2">&quot;bString&quot;</span>             <span class="o">/</span> <span class="n">construct</span><span class="o">.</span><span class="n">GreedyString</span><span class="p">(</span><span class="s2">&quot;utf_16_le&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+
+
+<span class="n">StringLanguageDescriptorLength</span> <span class="o">=</span> \
+    <span class="n">construct</span><span class="o">.</span><span class="n">Rebuild</span><span class="p">(</span><span class="n">construct</span><span class="o">.</span><span class="n">Int8ul</span><span class="p">,</span> <span class="n">construct</span><span class="o">.</span><span class="n">len_</span><span class="p">(</span><span class="n">this</span><span class="o">.</span><span class="n">wLANGID</span><span class="p">)</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="n">StringLanguageDescriptor</span> <span class="o">=</span> <span class="n">DescriptorFormat</span><span class="p">(</span>
+    <span class="s2">&quot;bLength&quot;</span>             <span class="o">/</span> <span class="n">StringLanguageDescriptorLength</span><span class="p">,</span>
+    <span class="s2">&quot;bDescriptorType&quot;</span>     <span class="o">/</span> <span class="n">DescriptorNumber</span><span class="p">(</span><span class="n">StandardDescriptorNumbers</span><span class="o">.</span><span class="n">STRING</span><span class="p">),</span>
+    <span class="s2">&quot;wLANGID&quot;</span>             <span class="o">/</span> <span class="n">construct</span><span class="o">.</span><span class="n">GreedyRange</span><span class="p">(</span><span class="n">construct</span><span class="o">.</span><span class="n">Int16ul</span><span class="p">)</span>
+<span class="p">)</span>
+
+
+<span class="n">InterfaceDescriptor</span> <span class="o">=</span> <span class="n">DescriptorFormat</span><span class="p">(</span>
+    <span class="s2">&quot;bLength&quot;</span>             <span class="o">/</span> <span class="n">construct</span><span class="o">.</span><span class="n">Const</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="n">construct</span><span class="o">.</span><span class="n">Int8ul</span><span class="p">),</span>
+    <span class="s2">&quot;bDescriptorType&quot;</span>     <span class="o">/</span> <span class="n">DescriptorNumber</span><span class="p">(</span><span class="n">StandardDescriptorNumbers</span><span class="o">.</span><span class="n">INTERFACE</span><span class="p">),</span>
+    <span class="s2">&quot;bInterfaceNumber&quot;</span>    <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="s2">&quot;Interface number&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;bAlternateSetting&quot;</span>   <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="s2">&quot;Alternate setting&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+    <span class="s2">&quot;bNumEndpoints&quot;</span>       <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="s2">&quot;Endpoints included&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;bInterfaceClass&quot;</span>     <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="s2">&quot;Class&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mh">0xff</span><span class="p">),</span>
+    <span class="s2">&quot;bInterfaceSubclass&quot;</span>  <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="s2">&quot;Subclass&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mh">0xff</span><span class="p">),</span>
+    <span class="s2">&quot;bInterfaceProtocol&quot;</span>  <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="s2">&quot;Protocol&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mh">0xff</span><span class="p">),</span>
+    <span class="s2">&quot;iInterface&quot;</span>          <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="s2">&quot;String index&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+<span class="p">)</span>
+
+
+<span class="n">EndpointDescriptor</span> <span class="o">=</span> <span class="n">DescriptorFormat</span><span class="p">(</span>
+
+    <span class="c1"># [USB2.0: 9.6; USB Audio Device Class Definition 1.0: 4.6.1.1, 4.6.2.1]</span>
+    <span class="c1"># Interfaces of the Audio 1.0 class extend their subordinate endpoint descriptors with</span>
+    <span class="c1"># 2 additional bytes (extending it from 7 to 9 bytes). Thankfully, this is the only extension that</span>
+    <span class="c1"># changes the length of a standard descriptor type, but we do have to handle this case in Construct.</span>
+    <span class="s2">&quot;bLength&quot;</span>             <span class="o">/</span> <span class="n">construct</span><span class="o">.</span><span class="n">Default</span><span class="p">(</span><span class="n">construct</span><span class="o">.</span><span class="n">OneOf</span><span class="p">(</span><span class="n">construct</span><span class="o">.</span><span class="n">Int8ul</span><span class="p">,</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">]),</span> <span class="mi">7</span><span class="p">),</span>
+    <span class="s2">&quot;bDescriptorType&quot;</span>     <span class="o">/</span> <span class="n">DescriptorNumber</span><span class="p">(</span><span class="n">StandardDescriptorNumbers</span><span class="o">.</span><span class="n">ENDPOINT</span><span class="p">),</span>
+    <span class="s2">&quot;bEndpointAddress&quot;</span>    <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="s2">&quot;Endpoint Address&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;bmAttributes&quot;</span>        <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="s2">&quot;Attributes&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>
+    <span class="s2">&quot;wMaxPacketSize&quot;</span>      <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="s2">&quot;Maximum Packet Size&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">64</span><span class="p">),</span>
+    <span class="s2">&quot;bInterval&quot;</span>           <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="s2">&quot;Polling interval&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">255</span><span class="p">),</span>
+
+    <span class="c1"># 2 bytes that are only present on endpoint descriptors for Audio 1.0 class interfaces.</span>
+    <span class="p">(</span><span class="s2">&quot;bRefresh&quot;</span>           <span class="o">/</span> <span class="n">construct</span><span class="o">.</span><span class="n">Optional</span><span class="p">(</span><span class="n">construct</span><span class="o">.</span><span class="n">Int8ul</span><span class="p">))</span> <span class="o">*</span> <span class="s2">&quot;Refresh Rate&quot;</span><span class="p">,</span>
+    <span class="p">(</span><span class="s2">&quot;bSynchAddress&quot;</span>      <span class="o">/</span> <span class="n">construct</span><span class="o">.</span><span class="n">Optional</span><span class="p">(</span><span class="n">construct</span><span class="o">.</span><span class="n">Int8ul</span><span class="p">))</span> <span class="o">*</span> <span class="s2">&quot;Synch Endpoint Address&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+
+<span class="n">DeviceQualifierDescriptor</span> <span class="o">=</span> <span class="n">DescriptorFormat</span><span class="p">(</span>
+    <span class="s2">&quot;bLength&quot;</span>             <span class="o">/</span> <span class="n">construct</span><span class="o">.</span><span class="n">Const</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="n">construct</span><span class="o">.</span><span class="n">Int8ul</span><span class="p">),</span>
+    <span class="s2">&quot;bDescriptorType&quot;</span>     <span class="o">/</span> <span class="n">DescriptorNumber</span><span class="p">(</span><span class="n">StandardDescriptorNumbers</span><span class="o">.</span><span class="n">DEVICE_QUALIFIER</span><span class="p">),</span>
+    <span class="s2">&quot;bcdUSB&quot;</span>              <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="s2">&quot;USB Version&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;bDeviceClass&quot;</span>        <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="s2">&quot;Class&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;bDeviceSubclass&quot;</span>     <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="s2">&quot;Subclass&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;bDeviceProtocol&quot;</span>     <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="s2">&quot;Protocol&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;bMaxPacketSize0&quot;</span>     <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="s2">&quot;EP0 Max Pkt Size&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;bNumConfigurations&quot;</span>  <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="s2">&quot;Configuration Count&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;_bReserved&quot;</span>          <span class="o">/</span> <span class="n">construct</span><span class="o">.</span><span class="n">Optional</span><span class="p">(</span><span class="n">construct</span><span class="o">.</span><span class="n">Const</span><span class="p">(</span><span class="sa">b</span><span class="s2">&quot;</span><span class="se">\0</span><span class="s2">&quot;</span><span class="p">))</span>
+<span class="p">)</span>
+
+
+<span class="c1">#</span>
+<span class="c1"># SuperSpeed descriptors</span>
+<span class="c1">#</span>
+<span class="n">BinaryObjectStoreDescriptor</span> <span class="o">=</span> <span class="n">DescriptorFormat</span><span class="p">(</span>
+    <span class="s2">&quot;bLength&quot;</span>               <span class="o">/</span> <span class="n">construct</span><span class="o">.</span><span class="n">Const</span><span class="p">(</span><span class="mh">0x5</span><span class="p">,</span> <span class="n">construct</span><span class="o">.</span><span class="n">Int8ul</span><span class="p">),</span>
+    <span class="s2">&quot;bDescriptorType&quot;</span>       <span class="o">/</span> <span class="n">DescriptorNumber</span><span class="p">(</span><span class="n">StandardDescriptorNumbers</span><span class="o">.</span><span class="n">BOS</span><span class="p">),</span>
+    <span class="s2">&quot;wTotalLength&quot;</span>          <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="s2">&quot;Total Length&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">5</span><span class="p">),</span>
+    <span class="s2">&quot;bNumDeviceCaps&quot;</span>        <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="s2">&quot;Device Capability Descriptors&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+<span class="p">)</span>
+
+<span class="n">USB2ExtensionDescriptor</span> <span class="o">=</span> <span class="n">DescriptorFormat</span><span class="p">(</span>
+    <span class="s2">&quot;bLength&quot;</span>               <span class="o">/</span> <span class="n">construct</span><span class="o">.</span><span class="n">Const</span><span class="p">(</span><span class="mh">0x7</span><span class="p">,</span> <span class="n">construct</span><span class="o">.</span><span class="n">Int8ul</span><span class="p">),</span>
+    <span class="s2">&quot;bDescriptorType&quot;</span>       <span class="o">/</span> <span class="n">DescriptorNumber</span><span class="p">(</span><span class="n">StandardDescriptorNumbers</span><span class="o">.</span><span class="n">DEVICE_CAPABILITY</span><span class="p">),</span>
+    <span class="s2">&quot;bDevCapabilityType&quot;</span>    <span class="o">/</span> <span class="n">construct</span><span class="o">.</span><span class="n">Const</span><span class="p">(</span><span class="n">DeviceCapabilityTypes</span><span class="o">.</span><span class="n">USB_2_EXTENSION</span><span class="p">,</span> <span class="n">construct</span><span class="o">.</span><span class="n">Int8ul</span><span class="p">),</span>
+    <span class="s2">&quot;bmAttributes&quot;</span>          <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="s2">&quot;Attributes&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mb">0b10</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="n">SuperSpeedUSBDeviceCapabilityDescriptor</span> <span class="o">=</span> <span class="n">DescriptorFormat</span><span class="p">(</span>
+    <span class="s2">&quot;bLength&quot;</span>               <span class="o">/</span> <span class="n">construct</span><span class="o">.</span><span class="n">Const</span><span class="p">(</span><span class="mh">0xA</span><span class="p">,</span> <span class="n">construct</span><span class="o">.</span><span class="n">Int8ul</span><span class="p">),</span>
+    <span class="s2">&quot;bDescriptorType&quot;</span>       <span class="o">/</span> <span class="n">DescriptorNumber</span><span class="p">(</span><span class="n">StandardDescriptorNumbers</span><span class="o">.</span><span class="n">DEVICE_CAPABILITY</span><span class="p">),</span>
+    <span class="s2">&quot;bDevCapabilityType&quot;</span>    <span class="o">/</span> <span class="n">construct</span><span class="o">.</span><span class="n">Const</span><span class="p">(</span><span class="n">DeviceCapabilityTypes</span><span class="o">.</span><span class="n">SUPERSPEED_USB</span><span class="p">,</span> <span class="n">construct</span><span class="o">.</span><span class="n">Int8ul</span><span class="p">),</span>
+    <span class="s2">&quot;bmAttributes&quot;</span>          <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="s2">&quot;Attributes&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+    <span class="s2">&quot;wSpeedsSupported&quot;</span>      <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="s2">&quot;USB3 Speeds Supported&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mb">0b1000</span><span class="p">),</span>
+    <span class="s2">&quot;bFunctionalitySupport&quot;</span> <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="s2">&quot;Lowest Speed with Full Support&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">3</span><span class="p">),</span>
+    <span class="s2">&quot;bU1DevExitLat&quot;</span>         <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="s2">&quot;U1 Exit Latency&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+    <span class="s2">&quot;wU2DevExitLat&quot;</span>         <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="s2">&quot;U2 Exit Latency&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="p">)</span>
+
+
+<span class="n">SuperSpeedEndpointCompanionDescriptor</span> <span class="o">=</span> <span class="n">DescriptorFormat</span><span class="p">(</span>
+    <span class="s2">&quot;bLength&quot;</span>             <span class="o">/</span> <span class="n">construct</span><span class="o">.</span><span class="n">Const</span><span class="p">(</span><span class="mh">0x6</span><span class="p">,</span> <span class="n">construct</span><span class="o">.</span><span class="n">Int8ul</span><span class="p">),</span>
+    <span class="s2">&quot;bDescriptorType&quot;</span>     <span class="o">/</span> <span class="n">DescriptorNumber</span><span class="p">(</span><span class="n">StandardDescriptorNumbers</span><span class="o">.</span><span class="n">SUPERSPEED_USB_ENDPOINT_COMPANION</span><span class="p">),</span>
+    <span class="s2">&quot;bMaxBurst&quot;</span>           <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="s2">&quot;Maximum Burst Length&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+    <span class="s2">&quot;bmAttributes&quot;</span>        <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="s2">&quot;Extended Attributes&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+    <span class="s2">&quot;wBytesPerInterval&quot;</span>   <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="s2">&quot;Bytes Per Service Interval&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+<span class="p">)</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

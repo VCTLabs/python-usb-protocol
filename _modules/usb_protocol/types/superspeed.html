@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>usb_protocol.types.superspeed &mdash; usb_protocol 0.0 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=837179f8"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            usb_protocol
+          </a>
+              <div class="version">
+                0.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../README.html">USB Protocol Library for Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/modules.html">usb_protocol</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">usb_protocol</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+          <li class="breadcrumb-item"><a href="../types.html">usb_protocol.types</a></li>
+      <li class="breadcrumb-item active">usb_protocol.types.superspeed</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for usb_protocol.types.superspeed</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="c1">#</span>
+<span class="c1"># This file is part of usb-protocol.</span>
+<span class="c1">#</span>
+<span class="sd">&quot;&quot;&quot; SuperSpeed USB types -- defines enumerations that describe standard USB3 types. &quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">IntEnum</span>
+
+
+<div class="viewcode-block" id="LinkCommand">
+<a class="viewcode-back" href="../../../api/usb_protocol.types.superspeed.html#usb_protocol.types.superspeed.LinkCommand">[docs]</a>
+<span class="k">class</span> <span class="nc">LinkCommand</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Constant values (including both class and type) for link commands. &quot;&quot;&quot;</span>
+
+    <span class="n">LGOOD</span> <span class="o">=</span> <span class="mi">0</span>   <span class="c1"># Header Packet ACK</span>
+    <span class="n">LCRD</span>  <span class="o">=</span> <span class="mi">1</span>   <span class="c1"># Header Credit</span>
+    <span class="n">LRTY</span>  <span class="o">=</span> <span class="mi">2</span>   <span class="c1"># Header Packet Retry Sequence</span>
+    <span class="n">LBAD</span>  <span class="o">=</span> <span class="mi">3</span>   <span class="c1"># Header Packet NAK</span>
+    <span class="n">LGO_U</span> <span class="o">=</span> <span class="mi">4</span>   <span class="c1"># Request Switching to Power State Ux</span>
+    <span class="n">LAU</span>   <span class="o">=</span> <span class="mi">5</span>   <span class="c1"># Power State Acceptance</span>
+    <span class="n">LXU</span>   <span class="o">=</span> <span class="mi">6</span>   <span class="c1"># Power State Rejection</span>
+    <span class="n">LPMA</span>  <span class="o">=</span> <span class="mi">7</span>   <span class="c1"># Power State Acknowledgement</span>
+    <span class="n">LUP</span>   <span class="o">=</span> <span class="mi">8</span>   <span class="c1"># Downstream-facing Keep-alive</span>
+    <span class="n">LDN</span>   <span class="o">=</span> <span class="mi">11</span>  <span class="c1"># Upstream-facing Keep-alive</span>
+
+<div class="viewcode-block" id="LinkCommand.get_class">
+<a class="viewcode-back" href="../../../api/usb_protocol.types.superspeed.html#usb_protocol.types.superspeed.LinkCommand.get_class">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_class</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">2</span></div>
+
+
+<div class="viewcode-block" id="LinkCommand.get_type">
+<a class="viewcode-back" href="../../../api/usb_protocol.types.superspeed.html#usb_protocol.types.superspeed.LinkCommand.get_type">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_type</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mb">0b11</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="HeaderPacketType">
+<a class="viewcode-back" href="../../../api/usb_protocol.types.superspeed.html#usb_protocol.types.superspeed.HeaderPacketType">[docs]</a>
+<span class="k">class</span> <span class="nc">HeaderPacketType</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Constants representing the Header Packet archetypes. &quot;&quot;&quot;</span>
+    <span class="n">TRANSACTION</span>           <span class="o">=</span> <span class="mb">0b00100</span>
+    <span class="n">DATA</span>                  <span class="o">=</span> <span class="mb">0b01000</span>
+    <span class="n">ISOCHRONOUS_TIMESTAMP</span> <span class="o">=</span> <span class="mb">0b01100</span>
+    <span class="n">LINK_MANAGEMENT</span>       <span class="o">=</span> <span class="mb">0b00000</span></div>
+
+
+
+<div class="viewcode-block" id="TransactionPacketSubtype">
+<a class="viewcode-back" href="../../../api/usb_protocol.types.superspeed.html#usb_protocol.types.superspeed.TransactionPacketSubtype">[docs]</a>
+<span class="k">class</span> <span class="nc">TransactionPacketSubtype</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Constants representing the subtypes of Transition Header Packet. &quot;&quot;&quot;</span>
+
+    <span class="n">ACK</span>           <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">NRDY</span>          <span class="o">=</span> <span class="mi">2</span>
+    <span class="n">ERDY</span>          <span class="o">=</span> <span class="mi">3</span>
+    <span class="n">STATUS</span>        <span class="o">=</span> <span class="mi">4</span>
+    <span class="n">STALL</span>         <span class="o">=</span> <span class="mi">5</span>
+    <span class="n">NOTIFICATION</span>  <span class="o">=</span> <span class="mi">6</span>
+    <span class="n">PING</span>          <span class="o">=</span> <span class="mi">7</span>
+    <span class="n">PING_RESPONSE</span> <span class="o">=</span> <span class="mi">8</span></div>
+
+
+
+<div class="viewcode-block" id="LinkManagementPacketSubtype">
+<a class="viewcode-back" href="../../../api/usb_protocol.types.superspeed.html#usb_protocol.types.superspeed.LinkManagementPacketSubtype">[docs]</a>
+<span class="k">class</span> <span class="nc">LinkManagementPacketSubtype</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Constants represneting the various types of Link Management Packet. &quot;&quot;&quot;</span>
+
+    <span class="n">SET_LINK_FUNCTION</span>           <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">U2_INACTIVITY_TIMEOUT</span>       <span class="o">=</span> <span class="mi">2</span>
+    <span class="n">VENDOR_DEVICE_TEST</span>          <span class="o">=</span> <span class="mi">3</span>
+    <span class="n">PORT_CAPABILITY</span>             <span class="o">=</span> <span class="mi">4</span>
+    <span class="n">PORT_CONFIGURATION</span>          <span class="o">=</span> <span class="mi">5</span>
+    <span class="n">PORT_CONFIGURATION_RESPONSE</span> <span class="o">=</span> <span class="mi">6</span>
+    <span class="n">PRECISION_TIME_MANAGEMENT</span>   <span class="o">=</span> <span class="mi">7</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

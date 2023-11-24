@@ -1,0 +1,18 @@
+usb\_protocol.types.descriptors.partial package
+===============================================
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 4
+
+   usb_protocol.types.descriptors.partial.standard
+
+Module contents
+---------------
+
+.. automodule:: usb_protocol.types.descriptors.partial
+   :members:
+   :undoc-members:
+   :show-inheritance:

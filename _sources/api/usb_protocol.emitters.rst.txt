@@ -1,0 +1,27 @@
+usb\_protocol.emitters package
+==============================
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   usb_protocol.emitters.descriptors
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 4
+
+   usb_protocol.emitters.construct_interop
+   usb_protocol.emitters.descriptor
+
+Module contents
+---------------
+
+.. automodule:: usb_protocol.emitters
+   :members:
+   :undoc-members:
+   :show-inheritance:

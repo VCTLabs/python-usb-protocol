@@ -1,0 +1,7 @@
+usb\_protocol.types.descriptors.midi2 module
+============================================
+
+.. automodule:: usb_protocol.types.descriptors.midi2
+   :members:
+   :undoc-members:
+   :show-inheritance:

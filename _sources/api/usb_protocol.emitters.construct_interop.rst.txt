@@ -1,0 +1,7 @@
+usb\_protocol.emitters.construct\_interop module
+================================================
+
+.. automodule:: usb_protocol.emitters.construct_interop
+   :members:
+   :undoc-members:
+   :show-inheritance:

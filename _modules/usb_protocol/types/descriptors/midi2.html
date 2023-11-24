@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>usb_protocol.types.descriptors.midi2 &mdash; usb_protocol 0.0 documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../_static/documentation_options.js?v=837179f8"></script>
+        <script src="../../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            usb_protocol
+          </a>
+              <div class="version">
+                0.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../README.html">USB Protocol Library for Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../api/modules.html">usb_protocol</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">usb_protocol</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">Module code</a></li>
+          <li class="breadcrumb-item"><a href="../../types.html">usb_protocol.types</a></li>
+      <li class="breadcrumb-item active">usb_protocol.types.descriptors.midi2</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for usb_protocol.types.descriptors.midi2</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="c1">#</span>
+<span class="c1"># This file is part of usb-protocol.</span>
+<span class="c1">#</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Descriptors for USB MIDI Class Devices</span>
+
+<span class="sd">    [Midi20] refers to &quot;Universal Serial Bus Device Class Definition for MIDI Devices&quot;, Release 2.0, May 5, 2020</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">IntEnum</span>
+
+<span class="kn">import</span> <span class="nn">construct</span>
+
+<span class="kn">from</span> <span class="nn">..</span> <span class="kn">import</span> <span class="n">DescriptorTypes</span><span class="p">,</span> <span class="n">USBTransferType</span>
+<span class="kn">from</span> <span class="nn">..descriptor</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">DescriptorField</span><span class="p">,</span>
+    <span class="n">DescriptorFormat</span><span class="p">,</span>
+    <span class="n">DescriptorNumber</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">..descriptors.uac1</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">AudioClassSpecificACInterfaceDescriptorSubtypes</span><span class="p">,</span>
+    <span class="n">AudioClassSpecificDescriptorTypes</span><span class="p">,</span>
+    <span class="n">AudioInterfaceClassCode</span><span class="p">,</span>
+    <span class="n">AudioInterfaceSubclassCodes</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">.standard</span> <span class="kn">import</span> <span class="n">StandardDescriptorNumbers</span>
+
+
+<div class="viewcode-block" id="MidiStreamingInterfaceDescriptorTypes">
+<a class="viewcode-back" href="../../../../api/usb_protocol.types.descriptors.midi2.html#usb_protocol.types.descriptors.midi2.MidiStreamingInterfaceDescriptorTypes">[docs]</a>
+<span class="k">class</span> <span class="nc">MidiStreamingInterfaceDescriptorTypes</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+    <span class="c1"># As defined in [Midi20], A.1</span>
+    <span class="n">CS_UNDEFINED</span>     <span class="o">=</span> <span class="mh">0x20</span>
+    <span class="n">CS_DEVICE</span>        <span class="o">=</span> <span class="mh">0x21</span>
+    <span class="n">CS_CONFIGURATION</span> <span class="o">=</span> <span class="mh">0x22</span>
+    <span class="n">CS_STRING</span>        <span class="o">=</span> <span class="mh">0x23</span>
+    <span class="n">CS_INTERFACE</span>     <span class="o">=</span> <span class="mh">0x24</span>
+    <span class="n">CS_ENDPOINT</span>      <span class="o">=</span> <span class="mh">0x25</span>
+    <span class="n">CS_GR_TRM_BLOCK</span>  <span class="o">=</span> <span class="mh">0x26</span></div>
+
+
+
+<div class="viewcode-block" id="MidiStreamingInterfaceDescriptorSubtypes">
+<a class="viewcode-back" href="../../../../api/usb_protocol.types.descriptors.midi2.html#usb_protocol.types.descriptors.midi2.MidiStreamingInterfaceDescriptorSubtypes">[docs]</a>
+<span class="k">class</span> <span class="nc">MidiStreamingInterfaceDescriptorSubtypes</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+    <span class="c1"># As defined in [Midi20], A.1</span>
+    <span class="n">MS_DESCRIPTOR_UNDEFINED</span> <span class="o">=</span> <span class="mh">0x00</span>
+    <span class="n">MS_HEADER</span>               <span class="o">=</span> <span class="mh">0x01</span>
+    <span class="n">MIDI_IN_JACK</span>            <span class="o">=</span> <span class="mh">0x02</span>
+    <span class="n">MIDI_OUT_JACK</span>           <span class="o">=</span> <span class="mh">0x03</span>
+    <span class="n">ELEMENT</span>                 <span class="o">=</span> <span class="mh">0x04</span></div>
+
+
+
+<div class="viewcode-block" id="MidiStreamingEndpointDescriptorSubtypes">
+<a class="viewcode-back" href="../../../../api/usb_protocol.types.descriptors.midi2.html#usb_protocol.types.descriptors.midi2.MidiStreamingEndpointDescriptorSubtypes">[docs]</a>
+<span class="k">class</span> <span class="nc">MidiStreamingEndpointDescriptorSubtypes</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+    <span class="c1"># As defined in [Midi20], A.2</span>
+    <span class="n">DESCRIPTOR_UNDEFINED</span> <span class="o">=</span> <span class="mh">0x00</span>
+    <span class="n">MS_GENERAL</span>           <span class="o">=</span> <span class="mh">0x01</span>
+    <span class="n">MS_GENERAL_2_0</span>       <span class="o">=</span> <span class="mh">0x02</span></div>
+
+
+
+<div class="viewcode-block" id="MidiStreamingInterfaceHeaderClassRevision">
+<a class="viewcode-back" href="../../../../api/usb_protocol.types.descriptors.midi2.html#usb_protocol.types.descriptors.midi2.MidiStreamingInterfaceHeaderClassRevision">[docs]</a>
+<span class="k">class</span> <span class="nc">MidiStreamingInterfaceHeaderClassRevision</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+    <span class="c1"># As defined in [Midi20], A.4</span>
+    <span class="n">MS_MIDI_1_0</span> <span class="o">=</span> <span class="mh">0x0100</span>
+    <span class="n">MS_MIDI_2_0</span> <span class="o">=</span> <span class="mh">0x0200</span></div>
+
+
+
+<div class="viewcode-block" id="MidiStreamingJackTypes">
+<a class="viewcode-back" href="../../../../api/usb_protocol.types.descriptors.midi2.html#usb_protocol.types.descriptors.midi2.MidiStreamingJackTypes">[docs]</a>
+<span class="k">class</span> <span class="nc">MidiStreamingJackTypes</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+    <span class="c1"># As defined in [Midi20], A.5</span>
+    <span class="n">JACK_TYPE_UNDEFINED</span> <span class="o">=</span> <span class="mh">0x00</span>
+    <span class="n">EMBEDDED</span>            <span class="o">=</span> <span class="mh">0x01</span>
+    <span class="n">EXTERNAL</span>            <span class="o">=</span> <span class="mh">0x02</span></div>
+
+
+
+<span class="c1"># As defined in [Midi20], Table B-5</span>
+<span class="n">StandardMidiStreamingInterfaceDescriptor</span> <span class="o">=</span> <span class="n">DescriptorFormat</span><span class="p">(</span>
+    <span class="s2">&quot;bLength&quot;</span>             <span class="o">/</span> <span class="n">construct</span><span class="o">.</span><span class="n">Const</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="n">construct</span><span class="o">.</span><span class="n">Int8ul</span><span class="p">),</span>
+    <span class="s2">&quot;bDescriptorType&quot;</span>     <span class="o">/</span> <span class="n">DescriptorNumber</span><span class="p">(</span><span class="n">DescriptorTypes</span><span class="o">.</span><span class="n">INTERFACE</span><span class="p">),</span>
+    <span class="s2">&quot;bInterfaceNumber&quot;</span>    <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;ID of the streaming interface&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;bAlternateSetting&quot;</span>   <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;alternate setting number for the interface&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+    <span class="s2">&quot;bNumEndpoints&quot;</span>       <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;Number of data endpoints used (excluding endpoint 0). Can be: 0 (no data endpoint); 1 (data endpoint); 2 (data + explicit feedback endpoint)&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+    <span class="s2">&quot;bInterfaceClass&quot;</span>     <span class="o">/</span> <span class="n">DescriptorNumber</span><span class="p">(</span><span class="n">AudioInterfaceClassCode</span><span class="o">.</span><span class="n">AUDIO</span><span class="p">),</span>
+    <span class="s2">&quot;bInterfaceSubClass&quot;</span>  <span class="o">/</span> <span class="n">DescriptorNumber</span><span class="p">(</span><span class="n">AudioInterfaceSubclassCodes</span><span class="o">.</span><span class="n">MIDI_STREAMING</span><span class="p">),</span>
+    <span class="s2">&quot;bInterfaceProtocol&quot;</span>  <span class="o">/</span> <span class="n">DescriptorNumber</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span>
+    <span class="s2">&quot;iInterface&quot;</span>          <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;index of a string descriptor describing this interface (0 = unused)&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1"># As defined in [Midi20], Table B-6</span>
+<span class="n">ClassSpecificMidiStreamingInterfaceHeaderDescriptor</span> <span class="o">=</span> <span class="n">DescriptorFormat</span><span class="p">(</span>
+    <span class="s2">&quot;bLength&quot;</span>             <span class="o">/</span> <span class="n">construct</span><span class="o">.</span><span class="n">Const</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="n">construct</span><span class="o">.</span><span class="n">Int8ul</span><span class="p">),</span>
+    <span class="s2">&quot;bDescriptorType&quot;</span>     <span class="o">/</span> <span class="n">DescriptorNumber</span><span class="p">(</span><span class="n">AudioClassSpecificDescriptorTypes</span><span class="o">.</span><span class="n">CS_INTERFACE</span><span class="p">),</span>
+    <span class="s2">&quot;bDescriptorSubtype&quot;</span>  <span class="o">/</span> <span class="n">DescriptorNumber</span><span class="p">(</span><span class="n">AudioClassSpecificACInterfaceDescriptorSubtypes</span><span class="o">.</span><span class="n">HEADER</span><span class="p">),</span>
+    <span class="s2">&quot;bcdADC&quot;</span>              <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;Midi Streaming Class specification release version&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mf">1.0</span><span class="p">),</span>
+    <span class="s2">&quot;wTotalLength&quot;</span>        <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;Total number of bytes of the class-specific MIDIStreaming interface descriptor. Includes the combined length of this descriptor header and all Jack and Element descriptors.&quot;</span><span class="p">),</span>
+<span class="p">)</span>
+
+<span class="c1"># As defined in [Midi20], Table 5-3</span>
+<span class="n">StandardMidiStreamingDataEndpointDescriptor</span> <span class="o">=</span> <span class="n">DescriptorFormat</span><span class="p">(</span>
+    <span class="s2">&quot;bLength&quot;</span>             <span class="o">/</span> <span class="n">construct</span><span class="o">.</span><span class="n">Const</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="n">construct</span><span class="o">.</span><span class="n">Int8ul</span><span class="p">),</span>
+    <span class="s2">&quot;bDescriptorType&quot;</span>     <span class="o">/</span> <span class="n">DescriptorNumber</span><span class="p">(</span><span class="n">AudioClassSpecificDescriptorTypes</span><span class="o">.</span><span class="n">CS_ENDPOINT</span><span class="p">),</span>
+    <span class="s2">&quot;bEndpointAddress&quot;</span>    <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;endpoint address, use USBDirection.*.from_endpoint_address()&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;bmAttributes&quot;</span>        <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;endpoint type, see USBTransferType (only NONE, BULK or INTERRUPT allowed)&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">USBTransferType</span><span class="o">.</span><span class="n">BULK</span><span class="p">),</span>
+    <span class="s2">&quot;wMaxPacketSize&quot;</span>      <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;Maximum packet size this endpoint is capable of sending or receiving&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;bInterval&quot;</span>           <span class="o">/</span> <span class="n">DescriptorField</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;Interval for polling endpoint for Interrupt data transfers. For bulk endpoints this field is ignored and must be reset to 0&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

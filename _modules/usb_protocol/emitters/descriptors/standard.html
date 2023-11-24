@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>usb_protocol.emitters.descriptors.standard &mdash; usb_protocol 0.0 documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../_static/documentation_options.js?v=837179f8"></script>
+        <script src="../../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            usb_protocol
+          </a>
+              <div class="version">
+                0.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../README.html">USB Protocol Library for Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../api/modules.html">usb_protocol</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">usb_protocol</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">usb_protocol.emitters.descriptors.standard</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for usb_protocol.emitters.descriptors.standard</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="c1">#</span>
+<span class="c1"># This file is part of usb_protocol.</span>
+<span class="c1">#</span>
+<span class="sd">&quot;&quot;&quot; Convenience emitters for simple, standard descriptors. &quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">contextlib</span> <span class="kn">import</span> <span class="n">contextmanager</span>
+
+<span class="kn">from</span> <span class="nn">...types</span> <span class="kn">import</span> <span class="n">LanguageIDs</span>
+<span class="kn">from</span> <span class="nn">...types.descriptors.standard</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">..</span> <span class="kn">import</span> <span class="n">emitter_for_format</span>
+<span class="kn">from</span> <span class="nn">..descriptor</span> <span class="kn">import</span> <span class="n">ComplexDescriptorEmitter</span>
+
+<span class="c1"># Create our basic emitters...</span>
+<span class="n">DeviceDescriptorEmitter</span>         <span class="o">=</span> <span class="n">emitter_for_format</span><span class="p">(</span><span class="n">DeviceDescriptor</span><span class="p">)</span>
+<span class="n">StringDescriptorEmitter</span>         <span class="o">=</span> <span class="n">emitter_for_format</span><span class="p">(</span><span class="n">StringDescriptor</span><span class="p">)</span>
+<span class="n">StringLanguageDescriptorEmitter</span> <span class="o">=</span> <span class="n">emitter_for_format</span><span class="p">(</span><span class="n">StringLanguageDescriptor</span><span class="p">)</span>
+<span class="n">DeviceQualifierDescriptor</span>       <span class="o">=</span> <span class="n">emitter_for_format</span><span class="p">(</span><span class="n">DeviceQualifierDescriptor</span><span class="p">)</span>
+
+<span class="c1"># ... our basic superspeed emitters ...</span>
+<span class="n">USB2ExtensionDescriptorEmitter</span>                  <span class="o">=</span> <span class="n">emitter_for_format</span><span class="p">(</span><span class="n">USB2ExtensionDescriptor</span><span class="p">)</span>
+<span class="n">SuperSpeedUSBDeviceCapabilityDescriptorEmitter</span>  <span class="o">=</span> <span class="n">emitter_for_format</span><span class="p">(</span><span class="n">SuperSpeedUSBDeviceCapabilityDescriptor</span><span class="p">)</span>
+<span class="n">SuperSpeedEndpointCompanionDescriptorEmitter</span>    <span class="o">=</span> <span class="n">emitter_for_format</span><span class="p">(</span><span class="n">SuperSpeedEndpointCompanionDescriptor</span><span class="p">)</span>
+
+<span class="c1"># ... convenience functions ...</span>
+<div class="viewcode-block" id="get_string_descriptor">
+<a class="viewcode-back" href="../../../../api/usb_protocol.emitters.descriptors.standard.html#usb_protocol.emitters.descriptors.standard.get_string_descriptor">[docs]</a>
+<span class="k">def</span> <span class="nf">get_string_descriptor</span><span class="p">(</span><span class="n">string</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Generates a string descriptor for the relevant string. &quot;&quot;&quot;</span>
+
+    <span class="n">emitter</span> <span class="o">=</span> <span class="n">StringDescriptorEmitter</span><span class="p">()</span>
+    <span class="n">emitter</span><span class="o">.</span><span class="n">bString</span> <span class="o">=</span> <span class="n">string</span>
+    <span class="k">return</span> <span class="n">emitter</span><span class="o">.</span><span class="n">emit</span><span class="p">()</span></div>
+
+
+<span class="c1"># ... and complex emitters.</span>
+
+<div class="viewcode-block" id="EndpointDescriptorEmitter">
+<a class="viewcode-back" href="../../../../api/usb_protocol.emitters.descriptors.standard.html#usb_protocol.emitters.descriptors.standard.EndpointDescriptorEmitter">[docs]</a>
+<span class="k">class</span> <span class="nc">EndpointDescriptorEmitter</span><span class="p">(</span><span class="n">ComplexDescriptorEmitter</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Emitter that creates an InterfaceDescriptor. &quot;&quot;&quot;</span>
+
+    <span class="n">DESCRIPTOR_FORMAT</span> <span class="o">=</span> <span class="n">EndpointDescriptor</span>
+
+<div class="viewcode-block" id="EndpointDescriptorEmitter.SuperSpeedCompanion">
+<a class="viewcode-back" href="../../../../api/usb_protocol.emitters.descriptors.standard.html#usb_protocol.emitters.descriptors.standard.EndpointDescriptorEmitter.SuperSpeedCompanion">[docs]</a>
+    <span class="nd">@contextmanager</span>
+    <span class="k">def</span> <span class="nf">SuperSpeedCompanion</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Context manager that allows addition of a SuperSpeed Companion to this endpoint descriptor.</span>
+
+<span class="sd">        It can be used with a `with` statement; and yields an SuperSpeedEndpointCompanionDescriptorEmitter</span>
+<span class="sd">        that can be populated::</span>
+
+<span class="sd">            with endpoint.SuperSpeedEndpointCompanion() as d:</span>
+<span class="sd">                d.bMaxBurst = 1</span>
+
+<span class="sd">        This adds the relevant descriptor, automatically.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">descriptor</span> <span class="o">=</span> <span class="n">SuperSpeedEndpointCompanionDescriptorEmitter</span><span class="p">()</span>
+        <span class="k">yield</span> <span class="n">descriptor</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_subordinate_descriptor</span><span class="p">(</span><span class="n">descriptor</span><span class="p">)</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="InterfaceDescriptorEmitter">
+<a class="viewcode-back" href="../../../../api/usb_protocol.emitters.descriptors.standard.html#usb_protocol.emitters.descriptors.standard.InterfaceDescriptorEmitter">[docs]</a>
+<span class="k">class</span> <span class="nc">InterfaceDescriptorEmitter</span><span class="p">(</span><span class="n">ComplexDescriptorEmitter</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Emitter that creates an InterfaceDescriptor. &quot;&quot;&quot;</span>
+
+    <span class="n">DESCRIPTOR_FORMAT</span> <span class="o">=</span> <span class="n">InterfaceDescriptor</span>
+
+<div class="viewcode-block" id="InterfaceDescriptorEmitter.EndpointDescriptor">
+<a class="viewcode-back" href="../../../../api/usb_protocol.emitters.descriptors.standard.html#usb_protocol.emitters.descriptors.standard.InterfaceDescriptorEmitter.EndpointDescriptor">[docs]</a>
+    <span class="nd">@contextmanager</span>
+    <span class="k">def</span> <span class="nf">EndpointDescriptor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">add_default_superspeed</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Context manager that allows addition of a subordinate endpoint descriptor.</span>
+
+<span class="sd">        It can be used with a `with` statement; and yields an EndpointDesriptorEmitter</span>
+<span class="sd">        that can be populated::</span>
+
+<span class="sd">            with interface.EndpointDescriptor() as d:</span>
+<span class="sd">                d.bEndpointAddress = 0x01</span>
+<span class="sd">                d.bmAttributes     = 0x80</span>
+<span class="sd">                d.wMaxPacketSize   = 64</span>
+<span class="sd">                d.bInterval        = 0</span>
+
+<span class="sd">        This adds the relevant descriptor, automatically.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">descriptor</span> <span class="o">=</span> <span class="n">EndpointDescriptorEmitter</span><span class="p">()</span>
+        <span class="k">yield</span> <span class="n">descriptor</span>
+
+        <span class="c1"># If we&#39;re adding a default SuperSpeed extension, do so.</span>
+        <span class="k">if</span> <span class="n">add_default_superspeed</span><span class="p">:</span>
+            <span class="k">with</span> <span class="n">descriptor</span><span class="o">.</span><span class="n">SuperSpeedCompanion</span><span class="p">():</span>
+                <span class="k">pass</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_subordinate_descriptor</span><span class="p">(</span><span class="n">descriptor</span><span class="p">)</span></div>
+
+
+
+    <span class="k">def</span> <span class="nf">_pre_emit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="c1"># Count our endpoints, and update our internal count.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bNumEndpoints</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_type_counts</span><span class="p">[</span><span class="n">StandardDescriptorNumbers</span><span class="o">.</span><span class="n">ENDPOINT</span><span class="p">]</span>
+
+        <span class="c1"># Ensure that our interface string is an index, if we can.</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_collection</span> <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;iInterface&#39;</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">iInterface</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_collection</span><span class="o">.</span><span class="n">ensure_string_field_is_index</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">iInterface</span><span class="p">)</span></div>
+
+
+
+
+<div class="viewcode-block" id="ConfigurationDescriptorEmitter">
+<a class="viewcode-back" href="../../../../api/usb_protocol.emitters.descriptors.standard.html#usb_protocol.emitters.descriptors.standard.ConfigurationDescriptorEmitter">[docs]</a>
+<span class="k">class</span> <span class="nc">ConfigurationDescriptorEmitter</span><span class="p">(</span><span class="n">ComplexDescriptorEmitter</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Emitter that creates a configuration descriptor. &quot;&quot;&quot;</span>
+
+    <span class="n">DESCRIPTOR_FORMAT</span> <span class="o">=</span> <span class="n">ConfigurationDescriptor</span>
+
+<div class="viewcode-block" id="ConfigurationDescriptorEmitter.InterfaceDescriptor">
+<a class="viewcode-back" href="../../../../api/usb_protocol.emitters.descriptors.standard.html#usb_protocol.emitters.descriptors.standard.ConfigurationDescriptorEmitter.InterfaceDescriptor">[docs]</a>
+    <span class="nd">@contextmanager</span>
+    <span class="k">def</span> <span class="nf">InterfaceDescriptor</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Context manager that allows addition of a subordinate interface descriptor.</span>
+
+<span class="sd">        It can be used with a `with` statement; and yields an InterfaceDescriptorEmitter</span>
+<span class="sd">        that can be populated::</span>
+
+<span class="sd">            with interface.InterfaceDescriptor() as d:</span>
+<span class="sd">                d.bInterfaceNumber = 0x01</span>
+<span class="sd">                [snip]</span>
+
+<span class="sd">        This adds the relevant descriptor, automatically. Note that populating derived</span>
+<span class="sd">        fields such as bNumEndpoints aren&#39;t necessary; they&#39;ll be populated automatically.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">descriptor</span> <span class="o">=</span> <span class="n">InterfaceDescriptorEmitter</span><span class="p">(</span><span class="n">collection</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_collection</span><span class="p">)</span>
+        <span class="k">yield</span> <span class="n">descriptor</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_subordinate_descriptor</span><span class="p">(</span><span class="n">descriptor</span><span class="p">)</span></div>
+
+
+
+    <span class="k">def</span> <span class="nf">_pre_emit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="c1"># Count our interfaces. Alternate settings of the same interface do not count multiple times.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bNumInterfaces</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">([</span><span class="n">subordinate</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="k">for</span> <span class="n">subordinate</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_subordinates</span> <span class="k">if</span> <span class="p">(</span><span class="n">subordinate</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">StandardDescriptorNumbers</span><span class="o">.</span><span class="n">INTERFACE</span><span class="p">)]))</span>
+
+        <span class="c1"># Figure out our total length.</span>
+        <span class="n">subordinate_length</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sub</span><span class="p">)</span> <span class="k">for</span> <span class="n">sub</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_subordinates</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wTotalLength</span> <span class="o">=</span> <span class="n">subordinate_length</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">DESCRIPTOR_FORMAT</span><span class="o">.</span><span class="n">sizeof</span><span class="p">()</span>
+
+        <span class="c1"># Ensure that our configuration string is an index, if we can.</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_collection</span> <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;iConfiguration&#39;</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">iConfiguration</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_collection</span><span class="o">.</span><span class="n">ensure_string_field_is_index</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">iConfiguration</span><span class="p">)</span></div>
+
+
+
+
+<div class="viewcode-block" id="DeviceDescriptorCollection">
+<a class="viewcode-back" href="../../../../api/usb_protocol.emitters.descriptors.standard.html#usb_protocol.emitters.descriptors.standard.DeviceDescriptorCollection">[docs]</a>
+<span class="k">class</span> <span class="nc">DeviceDescriptorCollection</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Object that builds a full collection of descriptors related to a given USB device. &quot;&quot;&quot;</span>
+
+    <span class="c1"># Most systems seem happiest with en_US (ugh), so default to that.</span>
+    <span class="n">DEFAULT_SUPPORTED_LANGUAGES</span> <span class="o">=</span> <span class="p">[</span><span class="n">LanguageIDs</span><span class="o">.</span><span class="n">ENGLISH_US</span><span class="p">]</span>
+
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">automatic_language_descriptor</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :automatic_language_descriptor: If set or not provided, a language descriptor will automatically</span>
+<span class="sd">                                        be added if none exists.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_automatic_language_descriptor</span> <span class="o">=</span> <span class="n">automatic_language_descriptor</span>
+
+        <span class="c1"># Create our internal descriptor tracker.</span>
+        <span class="c1"># Keys are a tuple of (type, index).</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_descriptors</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="c1"># Track string descriptors as they&#39;re created.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_next_string_index</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_index_for_string</span> <span class="o">=</span> <span class="p">{}</span>
+
+
+<div class="viewcode-block" id="DeviceDescriptorCollection.ensure_string_field_is_index">
+<a class="viewcode-back" href="../../../../api/usb_protocol.emitters.descriptors.standard.html#usb_protocol.emitters.descriptors.standard.DeviceDescriptorCollection.ensure_string_field_is_index">[docs]</a>
+    <span class="k">def</span> <span class="nf">ensure_string_field_is_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field_value</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Processes the given field value; if it&#39;s not an string index, converts it to one.</span>
+
+<span class="sd">        Non-index-fields are converted to indices using `get_index_for_string`, which automatically</span>
+<span class="sd">        adds the relevant fields to our string descriptor collection.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">field_value</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_index_for_string</span><span class="p">(</span><span class="n">field_value</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">field_value</span></div>
+
+
+
+<div class="viewcode-block" id="DeviceDescriptorCollection.get_index_for_string">
+<a class="viewcode-back" href="../../../../api/usb_protocol.emitters.descriptors.standard.html#usb_protocol.emitters.descriptors.standard.DeviceDescriptorCollection.get_index_for_string">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_index_for_string</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">string</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Returns an string descriptor index for the given string.</span>
+
+<span class="sd">        If a string descriptor already exists for the given string, its index is</span>
+<span class="sd">        returned. Otherwise, a string descriptor is created.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># If we already have a descriptor for this string, return it.</span>
+        <span class="k">if</span> <span class="n">string</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_index_for_string</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_index_for_string</span><span class="p">[</span><span class="n">string</span><span class="p">]</span>
+
+
+        <span class="c1"># Otherwise, create one:</span>
+
+        <span class="c1"># Allocate an index...</span>
+        <span class="n">index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_next_string_index</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_index_for_string</span><span class="p">[</span><span class="n">string</span><span class="p">]</span> <span class="o">=</span> <span class="n">index</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_next_string_index</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="c1"># ... store our string descriptor with it ...</span>
+        <span class="n">identifier</span> <span class="o">=</span> <span class="n">StandardDescriptorNumbers</span><span class="o">.</span><span class="n">STRING</span><span class="p">,</span> <span class="n">index</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_descriptors</span><span class="p">[</span><span class="n">identifier</span><span class="p">]</span> <span class="o">=</span> <span class="n">get_string_descriptor</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
+
+        <span class="c1"># ... and return our index.</span>
+        <span class="k">return</span> <span class="n">index</span></div>
+
+
+
+<div class="viewcode-block" id="DeviceDescriptorCollection.add_descriptor">
+<a class="viewcode-back" href="../../../../api/usb_protocol.emitters.descriptors.standard.html#usb_protocol.emitters.descriptors.standard.DeviceDescriptorCollection.add_descriptor">[docs]</a>
+    <span class="k">def</span> <span class="nf">add_descriptor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">descriptor</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">descriptor_type</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Adds a descriptor to our collection.</span>
+
+<span class="sd">        :param descriptor:      The descriptor to be added.</span>
+<span class="sd">        :param index:           The index of the relevant descriptor. Defaults to 0.</span>
+<span class="sd">        :param descriptor_type: The type of the descriptor to be added. If `None`,</span>
+<span class="sd">                                this is automatically derived from the descriptor contents.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># If this is an emitter rather than a descriptor itself, convert it.</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">descriptor</span><span class="p">,</span> <span class="s1">&#39;emit&#39;</span><span class="p">):</span>
+            <span class="n">descriptor</span> <span class="o">=</span> <span class="n">descriptor</span><span class="o">.</span><span class="n">emit</span><span class="p">()</span>
+
+        <span class="c1"># Figure out the identifier (type + index) for this descriptor...</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">descriptor_type</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">):</span>
+            <span class="n">descriptor_type</span> <span class="o">=</span> <span class="n">descriptor</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">identifier</span> <span class="o">=</span> <span class="n">descriptor_type</span><span class="p">,</span> <span class="n">index</span>
+
+        <span class="c1"># ... and store it.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_descriptors</span><span class="p">[</span><span class="n">identifier</span><span class="p">]</span> <span class="o">=</span> <span class="n">descriptor</span></div>
+
+
+
+<div class="viewcode-block" id="DeviceDescriptorCollection.add_language_descriptor">
+<a class="viewcode-back" href="../../../../api/usb_protocol.emitters.descriptors.standard.html#usb_protocol.emitters.descriptors.standard.DeviceDescriptorCollection.add_language_descriptor">[docs]</a>
+    <span class="k">def</span> <span class="nf">add_language_descriptor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">supported_languages</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Adds a language descriptor to the list of device descriptors.</span>
+
+<span class="sd">        :param supported_languages: A list of languages supported by the device.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">supported_languages</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">supported_languages</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">DEFAULT_SUPPORTED_LANGUAGES</span>
+
+        <span class="n">descriptor</span> <span class="o">=</span> <span class="n">StringLanguageDescriptorEmitter</span><span class="p">()</span>
+        <span class="n">descriptor</span><span class="o">.</span><span class="n">wLANGID</span> <span class="o">=</span> <span class="n">supported_languages</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_descriptor</span><span class="p">(</span><span class="n">descriptor</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="DeviceDescriptorCollection.DeviceDescriptor">
+<a class="viewcode-back" href="../../../../api/usb_protocol.emitters.descriptors.standard.html#usb_protocol.emitters.descriptors.standard.DeviceDescriptorCollection.DeviceDescriptor">[docs]</a>
+    <span class="nd">@contextmanager</span>
+    <span class="k">def</span> <span class="nf">DeviceDescriptor</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Context manager that allows addition of a device descriptor.</span>
+
+<span class="sd">        It can be used with a `with` statement; and yields an DeviceDescriptorEmitter</span>
+<span class="sd">        that can be populated::</span>
+
+<span class="sd">            with collection.DeviceDescriptor() as d:</span>
+<span class="sd">                d.idVendor  = 0xabcd</span>
+<span class="sd">                d.idProduct = 0x1234</span>
+<span class="sd">                [snip]</span>
+
+<span class="sd">        This adds the relevant descriptor, automatically.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">descriptor</span> <span class="o">=</span> <span class="n">DeviceDescriptorEmitter</span><span class="p">()</span>
+        <span class="k">yield</span> <span class="n">descriptor</span>
+
+        <span class="c1"># If we have any string fields, ensure that they&#39;re indices before continuing.</span>
+        <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;iManufacturer&#39;</span><span class="p">,</span> <span class="s1">&#39;iProduct&#39;</span><span class="p">,</span> <span class="s1">&#39;iSerialNumber&#39;</span><span class="p">):</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">descriptor</span><span class="p">,</span> <span class="n">field</span><span class="p">):</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">descriptor</span><span class="p">,</span> <span class="n">field</span><span class="p">)</span>
+                <span class="n">index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ensure_string_field_is_index</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+                <span class="nb">setattr</span><span class="p">(</span><span class="n">descriptor</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">index</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_descriptor</span><span class="p">(</span><span class="n">descriptor</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="DeviceDescriptorCollection.ConfigurationDescriptor">
+<a class="viewcode-back" href="../../../../api/usb_protocol.emitters.descriptors.standard.html#usb_protocol.emitters.descriptors.standard.DeviceDescriptorCollection.ConfigurationDescriptor">[docs]</a>
+    <span class="nd">@contextmanager</span>
+    <span class="k">def</span> <span class="nf">ConfigurationDescriptor</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Context manager that allows addition of a configuration descriptor.</span>
+
+<span class="sd">        It can be used with a `with` statement; and yields an ConfigurationDescriptorEmitter</span>
+<span class="sd">        that can be populated::</span>
+
+<span class="sd">            with collection.ConfigurationDescriptor() as d:</span>
+<span class="sd">                d.bConfigurationValue = 1</span>
+<span class="sd">                [snip]</span>
+
+<span class="sd">        This adds the relevant descriptor, automatically. Note that populating derived</span>
+<span class="sd">        fields such as bNumInterfaces aren&#39;t necessary; they&#39;ll be populated automatically.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">descriptor</span> <span class="o">=</span> <span class="n">ConfigurationDescriptorEmitter</span><span class="p">(</span><span class="n">collection</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span>
+        <span class="k">yield</span> <span class="n">descriptor</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_descriptor</span><span class="p">(</span><span class="n">descriptor</span><span class="p">)</span></div>
+
+
+
+    <span class="k">def</span> <span class="nf">_ensure_has_language_descriptor</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Ensures that we have a language descriptor; adding one if necessary.&quot;&quot;&quot;</span>
+
+        <span class="c1"># if we&#39;re not automatically adding a language descriptor, we shouldn&#39;t do anything,</span>
+        <span class="c1"># and we&#39;ll just ignore this.</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_automatic_language_descriptor</span><span class="p">:</span>
+            <span class="k">return</span>
+
+        <span class="c1"># if we don&#39;t have a language descriptor, add our default one.</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">StandardDescriptorNumbers</span><span class="o">.</span><span class="n">STRING</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_descriptors</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add_language_descriptor</span><span class="p">()</span>
+
+
+
+<div class="viewcode-block" id="DeviceDescriptorCollection.get_descriptor_bytes">
+<a class="viewcode-back" href="../../../../api/usb_protocol.emitters.descriptors.standard.html#usb_protocol.emitters.descriptors.standard.DeviceDescriptorCollection.get_descriptor_bytes">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_descriptor_bytes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">type_number</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">index</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Returns the raw, binary descriptor for a given descriptor type/index.</span>
+
+<span class="sd">        :param type_number: The descriptor type number.</span>
+<span class="sd">        :param index: The index of the relevant descriptor, if relevant.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># If this is a request for a language descriptor, return one.</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">type_number</span><span class="p">,</span> <span class="n">index</span><span class="p">)</span> <span class="o">==</span> <span class="p">(</span><span class="n">StandardDescriptorNumbers</span><span class="o">.</span><span class="n">STRING</span><span class="p">,</span> <span class="mi">0</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_ensure_has_language_descriptor</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_descriptors</span><span class="p">[(</span><span class="n">type_number</span><span class="p">,</span> <span class="n">index</span><span class="p">)]</span></div>
+
+
+
+    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Allow iterating over each of our descriptors; yields (index, value, descriptor). &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ensure_has_language_descriptor</span><span class="p">()</span>
+        <span class="k">return</span> <span class="p">((</span><span class="n">number</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">desc</span><span class="p">)</span> <span class="k">for</span> <span class="p">((</span><span class="n">number</span><span class="p">,</span> <span class="n">index</span><span class="p">),</span> <span class="n">desc</span><span class="p">)</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_descriptors</span><span class="o">.</span><span class="n">items</span><span class="p">())</span></div>
+
+
+
+
+
+<div class="viewcode-block" id="BinaryObjectStoreDescriptorEmitter">
+<a class="viewcode-back" href="../../../../api/usb_protocol.emitters.descriptors.standard.html#usb_protocol.emitters.descriptors.standard.BinaryObjectStoreDescriptorEmitter">[docs]</a>
+<span class="k">class</span> <span class="nc">BinaryObjectStoreDescriptorEmitter</span><span class="p">(</span><span class="n">ComplexDescriptorEmitter</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Emitter that creates a BinaryObjectStore descriptor. &quot;&quot;&quot;</span>
+
+    <span class="n">DESCRIPTOR_FORMAT</span> <span class="o">=</span> <span class="n">BinaryObjectStoreDescriptor</span>
+
+<div class="viewcode-block" id="BinaryObjectStoreDescriptorEmitter.USB2Extension">
+<a class="viewcode-back" href="../../../../api/usb_protocol.emitters.descriptors.standard.html#usb_protocol.emitters.descriptors.standard.BinaryObjectStoreDescriptorEmitter.USB2Extension">[docs]</a>
+    <span class="nd">@contextmanager</span>
+    <span class="k">def</span> <span class="nf">USB2Extension</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Context manager that allows addition of a USB 2.0 Extension to this Binary Object Store.</span>
+
+<span class="sd">        It can be used with a `with` statement; and yields an USB2ExtensionDescriptorEmitter</span>
+<span class="sd">        that can be populated::</span>
+
+<span class="sd">            with bos.USB2Extension() as e:</span>
+<span class="sd">                e.bmAttributes = 1</span>
+
+<span class="sd">        This adds the relevant descriptor, automatically.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">descriptor</span> <span class="o">=</span> <span class="n">USB2ExtensionDescriptorEmitter</span><span class="p">()</span>
+        <span class="k">yield</span> <span class="n">descriptor</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_subordinate_descriptor</span><span class="p">(</span><span class="n">descriptor</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="BinaryObjectStoreDescriptorEmitter.SuperSpeedUSBDeviceCapability">
+<a class="viewcode-back" href="../../../../api/usb_protocol.emitters.descriptors.standard.html#usb_protocol.emitters.descriptors.standard.BinaryObjectStoreDescriptorEmitter.SuperSpeedUSBDeviceCapability">[docs]</a>
+    <span class="nd">@contextmanager</span>
+    <span class="k">def</span> <span class="nf">SuperSpeedUSBDeviceCapability</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Context manager that allows addition of a SS Device Capability to this Binary Object Store.</span>
+
+<span class="sd">        It can be used with a `with` statement; and yields an SuperSpeedUSBDeviceCapabilityDescriptorEmitter</span>
+<span class="sd">        that can be populated::</span>
+
+<span class="sd">            with bos.SuperSpeedUSBDeviceCapability() as e:</span>
+<span class="sd">                e.wSpeedSupported       = 0b1110</span>
+<span class="sd">                e.bFunctionalitySupport = 1</span>
+
+<span class="sd">        This adds the relevant descriptor, automatically.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">descriptor</span> <span class="o">=</span> <span class="n">SuperSpeedUSBDeviceCapabilityDescriptorEmitter</span><span class="p">()</span>
+        <span class="k">yield</span> <span class="n">descriptor</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_subordinate_descriptor</span><span class="p">(</span><span class="n">descriptor</span><span class="p">)</span></div>
+
+
+
+    <span class="k">def</span> <span class="nf">_pre_emit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="c1"># Figure out the total length of our descriptor, including subordinates.</span>
+        <span class="n">subordinate_length</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sub</span><span class="p">)</span> <span class="k">for</span> <span class="n">sub</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_subordinates</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wTotalLength</span> <span class="o">=</span> <span class="n">subordinate_length</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">DESCRIPTOR_FORMAT</span><span class="o">.</span><span class="n">sizeof</span><span class="p">()</span>
+
+        <span class="c1"># Count our subordinate descriptors, and update our internal count.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bNumDeviceCaps</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_subordinates</span><span class="p">)</span></div>
+
+
+
+
+<div class="viewcode-block" id="SuperSpeedDeviceDescriptorCollection">
+<a class="viewcode-back" href="../../../../api/usb_protocol.emitters.descriptors.standard.html#usb_protocol.emitters.descriptors.standard.SuperSpeedDeviceDescriptorCollection">[docs]</a>
+<span class="k">class</span> <span class="nc">SuperSpeedDeviceDescriptorCollection</span><span class="p">(</span><span class="n">DeviceDescriptorCollection</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Object that builds a full collection of descriptors related to a given USB3 device. &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">automatic_descriptors</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param automatic_descriptors: If set or not provided, certain required descriptors will be</span>
+<span class="sd">                                      be added if none exists.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_automatic_descriptors</span> <span class="o">=</span> <span class="n">automatic_descriptors</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">automatic_language_descriptor</span><span class="o">=</span><span class="n">automatic_descriptors</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="SuperSpeedDeviceDescriptorCollection.BOSDescriptor">
+<a class="viewcode-back" href="../../../../api/usb_protocol.emitters.descriptors.standard.html#usb_protocol.emitters.descriptors.standard.SuperSpeedDeviceDescriptorCollection.BOSDescriptor">[docs]</a>
+    <span class="nd">@contextmanager</span>
+    <span class="k">def</span> <span class="nf">BOSDescriptor</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Context manager that allows addition of a Binary Object Store descriptor.</span>
+
+<span class="sd">        It can be used with a `with` statement; and yields an BinaryObjectStoreDescriptorEmitter</span>
+<span class="sd">        that can be populated::</span>
+
+<span class="sd">            with collection.BOSDescriptor() as d:</span>
+<span class="sd">                [snip]</span>
+
+<span class="sd">        This adds the relevant descriptor, automatically. Note that populating derived</span>
+<span class="sd">        fields such as bNumDeviceCaps aren&#39;t necessary; they&#39;ll be populated automatically.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">descriptor</span> <span class="o">=</span> <span class="n">BinaryObjectStoreDescriptorEmitter</span><span class="p">()</span>
+        <span class="k">yield</span> <span class="n">descriptor</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_descriptor</span><span class="p">(</span><span class="n">descriptor</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="SuperSpeedDeviceDescriptorCollection.add_default_bos_descriptor">
+<a class="viewcode-back" href="../../../../api/usb_protocol.emitters.descriptors.standard.html#usb_protocol.emitters.descriptors.standard.SuperSpeedDeviceDescriptorCollection.add_default_bos_descriptor">[docs]</a>
+    <span class="k">def</span> <span class="nf">add_default_bos_descriptor</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Adds a default, empty BOS descriptor. &quot;&quot;&quot;</span>
+
+        <span class="c1"># Create an empty BOS descriptor...</span>
+        <span class="n">descriptor</span> <span class="o">=</span> <span class="n">BinaryObjectStoreDescriptorEmitter</span><span class="p">()</span>
+
+        <span class="c1"># ... populate our default required descriptors...</span>
+        <span class="n">descriptor</span><span class="o">.</span><span class="n">add_subordinate_descriptor</span><span class="p">(</span><span class="n">USB2ExtensionDescriptorEmitter</span><span class="p">())</span>
+        <span class="n">descriptor</span><span class="o">.</span><span class="n">add_subordinate_descriptor</span><span class="p">(</span><span class="n">SuperSpeedUSBDeviceCapabilityDescriptorEmitter</span><span class="p">())</span>
+
+        <span class="c1"># ... and add it to our overall BOS descriptor.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_descriptor</span><span class="p">(</span><span class="n">descriptor</span><span class="p">)</span></div>
+
+
+
+    <span class="k">def</span> <span class="nf">_ensure_has_bos_descriptor</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Ensures that we have a BOS descriptor; adding one if necessary.&quot;&quot;&quot;</span>
+
+        <span class="c1"># If we&#39;re not automatically adding a language descriptor, we shouldn&#39;t do anything,</span>
+        <span class="c1"># and we&#39;ll just ignore this.</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_automatic_descriptors</span><span class="p">:</span>
+            <span class="k">return</span>
+
+        <span class="c1"># If we don&#39;t have a language descriptor, add our default one.</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">StandardDescriptorNumbers</span><span class="o">.</span><span class="n">BOS</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_descriptors</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add_default_bos_descriptor</span><span class="p">()</span>
+
+
+    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Allow iterating over each of our descriptors; yields (index, value, descriptor). &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ensure_has_bos_descriptor</span><span class="p">()</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__iter__</span><span class="p">()</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

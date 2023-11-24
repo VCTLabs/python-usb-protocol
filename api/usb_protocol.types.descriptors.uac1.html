@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>usb_protocol.types.descriptors.uac1 module &mdash; usb_protocol 0.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=837179f8"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="usb_protocol.types.descriptors.uac2 module" href="usb_protocol.types.descriptors.uac2.html" />
+    <link rel="prev" title="usb_protocol.types.descriptors.standard module" href="usb_protocol.types.descriptors.standard.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            usb_protocol
+          </a>
+              <div class="version">
+                0.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../README.html">USB Protocol Library for Python</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">usb_protocol</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="usb_protocol.html">usb_protocol package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="usb_protocol.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="usb_protocol.emitters.html">usb_protocol.emitters package</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="usb_protocol.types.html">usb_protocol.types package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="usb_protocol.html#module-usb_protocol">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">usb_protocol</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">usb_protocol</a></li>
+          <li class="breadcrumb-item"><a href="usb_protocol.html">usb_protocol package</a></li>
+          <li class="breadcrumb-item"><a href="usb_protocol.types.html">usb_protocol.types package</a></li>
+          <li class="breadcrumb-item"><a href="usb_protocol.types.descriptors.html">usb_protocol.types.descriptors package</a></li>
+      <li class="breadcrumb-item active">usb_protocol.types.descriptors.uac1 module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/api/usb_protocol.types.descriptors.uac1.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-usb_protocol.types.descriptors.uac1">
+<span id="usb-protocol-types-descriptors-uac1-module"></span><h1>usb_protocol.types.descriptors.uac1 module<a class="headerlink" href="#module-usb_protocol.types.descriptors.uac1" title="Link to this heading"></a></h1>
+<p>Descriptors for USB Audio Class Devices (UAC), Release 1</p>
+<p>[Audio10] refers to “Universal Serial Bus Device Class Definition for Audio Devices”, Release 1.0, March 18, 1998
+[Frmts10] refers to “Universal Serial Bus Device Class Definition for Audio Data Formats”, Release 1.0, March 18, 1998
+[TermT10] refers to “Universal Serial Bus Device Class Definition for Terminal Types”, Release 1.0, March 18, 1998</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.AudioClassSpecificACInterfaceDescriptorSubtypes">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">usb_protocol.types.descriptors.uac1.</span></span><span class="sig-name descname"><span class="pre">AudioClassSpecificACInterfaceDescriptorSubtypes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/usb_protocol/types/descriptors/uac1.html#AudioClassSpecificACInterfaceDescriptorSubtypes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.AudioClassSpecificACInterfaceDescriptorSubtypes" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">IntEnum</span></code></p>
+<p>An enumeration.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.AudioClassSpecificACInterfaceDescriptorSubtypes.AC_DESCRIPTOR_UNDEFINED">
+<span class="sig-name descname"><span class="pre">AC_DESCRIPTOR_UNDEFINED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.AudioClassSpecificACInterfaceDescriptorSubtypes.AC_DESCRIPTOR_UNDEFINED" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.AudioClassSpecificACInterfaceDescriptorSubtypes.EXTENSION_UNIT">
+<span class="sig-name descname"><span class="pre">EXTENSION_UNIT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">8</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.AudioClassSpecificACInterfaceDescriptorSubtypes.EXTENSION_UNIT" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.AudioClassSpecificACInterfaceDescriptorSubtypes.FEATURE_UNIT">
+<span class="sig-name descname"><span class="pre">FEATURE_UNIT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">6</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.AudioClassSpecificACInterfaceDescriptorSubtypes.FEATURE_UNIT" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.AudioClassSpecificACInterfaceDescriptorSubtypes.HEADER">
+<span class="sig-name descname"><span class="pre">HEADER</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.AudioClassSpecificACInterfaceDescriptorSubtypes.HEADER" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.AudioClassSpecificACInterfaceDescriptorSubtypes.INPUT_TERMINAL">
+<span class="sig-name descname"><span class="pre">INPUT_TERMINAL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.AudioClassSpecificACInterfaceDescriptorSubtypes.INPUT_TERMINAL" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.AudioClassSpecificACInterfaceDescriptorSubtypes.MIXER_UNIT">
+<span class="sig-name descname"><span class="pre">MIXER_UNIT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.AudioClassSpecificACInterfaceDescriptorSubtypes.MIXER_UNIT" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.AudioClassSpecificACInterfaceDescriptorSubtypes.OUTPUT_TERMINAL">
+<span class="sig-name descname"><span class="pre">OUTPUT_TERMINAL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.AudioClassSpecificACInterfaceDescriptorSubtypes.OUTPUT_TERMINAL" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.AudioClassSpecificACInterfaceDescriptorSubtypes.PROCESSING_UNIT">
+<span class="sig-name descname"><span class="pre">PROCESSING_UNIT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">7</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.AudioClassSpecificACInterfaceDescriptorSubtypes.PROCESSING_UNIT" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.AudioClassSpecificACInterfaceDescriptorSubtypes.SELECTOR_UNIT">
+<span class="sig-name descname"><span class="pre">SELECTOR_UNIT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">5</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.AudioClassSpecificACInterfaceDescriptorSubtypes.SELECTOR_UNIT" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.AudioClassSpecificASInterfaceDescriptorSubtypes">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">usb_protocol.types.descriptors.uac1.</span></span><span class="sig-name descname"><span class="pre">AudioClassSpecificASInterfaceDescriptorSubtypes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/usb_protocol/types/descriptors/uac1.html#AudioClassSpecificASInterfaceDescriptorSubtypes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.AudioClassSpecificASInterfaceDescriptorSubtypes" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">IntEnum</span></code></p>
+<p>An enumeration.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.AudioClassSpecificASInterfaceDescriptorSubtypes.AS_DESCRIPTOR_UNDEFINED">
+<span class="sig-name descname"><span class="pre">AS_DESCRIPTOR_UNDEFINED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.AudioClassSpecificASInterfaceDescriptorSubtypes.AS_DESCRIPTOR_UNDEFINED" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.AudioClassSpecificASInterfaceDescriptorSubtypes.AS_GENERAL">
+<span class="sig-name descname"><span class="pre">AS_GENERAL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.AudioClassSpecificASInterfaceDescriptorSubtypes.AS_GENERAL" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.AudioClassSpecificASInterfaceDescriptorSubtypes.FORMAT_SPECIFIC">
+<span class="sig-name descname"><span class="pre">FORMAT_SPECIFIC</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.AudioClassSpecificASInterfaceDescriptorSubtypes.FORMAT_SPECIFIC" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.AudioClassSpecificASInterfaceDescriptorSubtypes.FORMAT_TYPE">
+<span class="sig-name descname"><span class="pre">FORMAT_TYPE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.AudioClassSpecificASInterfaceDescriptorSubtypes.FORMAT_TYPE" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.AudioClassSpecificDescriptorTypes">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">usb_protocol.types.descriptors.uac1.</span></span><span class="sig-name descname"><span class="pre">AudioClassSpecificDescriptorTypes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/usb_protocol/types/descriptors/uac1.html#AudioClassSpecificDescriptorTypes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.AudioClassSpecificDescriptorTypes" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">IntEnum</span></code></p>
+<p>An enumeration.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.AudioClassSpecificDescriptorTypes.CS_CONFIGURATION">
+<span class="sig-name descname"><span class="pre">CS_CONFIGURATION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">34</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.AudioClassSpecificDescriptorTypes.CS_CONFIGURATION" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.AudioClassSpecificDescriptorTypes.CS_DEVICE">
+<span class="sig-name descname"><span class="pre">CS_DEVICE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">33</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.AudioClassSpecificDescriptorTypes.CS_DEVICE" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.AudioClassSpecificDescriptorTypes.CS_ENDPOINT">
+<span class="sig-name descname"><span class="pre">CS_ENDPOINT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">37</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.AudioClassSpecificDescriptorTypes.CS_ENDPOINT" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.AudioClassSpecificDescriptorTypes.CS_INTERFACE">
+<span class="sig-name descname"><span class="pre">CS_INTERFACE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">36</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.AudioClassSpecificDescriptorTypes.CS_INTERFACE" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.AudioClassSpecificDescriptorTypes.CS_STRING">
+<span class="sig-name descname"><span class="pre">CS_STRING</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">35</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.AudioClassSpecificDescriptorTypes.CS_STRING" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.AudioClassSpecificDescriptorTypes.CS_UNDEFINED">
+<span class="sig-name descname"><span class="pre">CS_UNDEFINED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">32</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.AudioClassSpecificDescriptorTypes.CS_UNDEFINED" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.AudioClassSpecificEndpointDescriptorSubtypes">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">usb_protocol.types.descriptors.uac1.</span></span><span class="sig-name descname"><span class="pre">AudioClassSpecificEndpointDescriptorSubtypes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/usb_protocol/types/descriptors/uac1.html#AudioClassSpecificEndpointDescriptorSubtypes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.AudioClassSpecificEndpointDescriptorSubtypes" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">IntEnum</span></code></p>
+<p>An enumeration.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.AudioClassSpecificEndpointDescriptorSubtypes.DESCRIPTOR_UNDEFINED">
+<span class="sig-name descname"><span class="pre">DESCRIPTOR_UNDEFINED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.AudioClassSpecificEndpointDescriptorSubtypes.DESCRIPTOR_UNDEFINED" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.AudioClassSpecificEndpointDescriptorSubtypes.EP_GENERAL">
+<span class="sig-name descname"><span class="pre">EP_GENERAL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.AudioClassSpecificEndpointDescriptorSubtypes.EP_GENERAL" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.AudioClassSpecificRequestCodes">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">usb_protocol.types.descriptors.uac1.</span></span><span class="sig-name descname"><span class="pre">AudioClassSpecificRequestCodes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/usb_protocol/types/descriptors/uac1.html#AudioClassSpecificRequestCodes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.AudioClassSpecificRequestCodes" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">IntEnum</span></code></p>
+<p>An enumeration.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.AudioClassSpecificRequestCodes.GET_CUR">
+<span class="sig-name descname"><span class="pre">GET_CUR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">129</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.AudioClassSpecificRequestCodes.GET_CUR" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.AudioClassSpecificRequestCodes.GET_MAX">
+<span class="sig-name descname"><span class="pre">GET_MAX</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">131</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.AudioClassSpecificRequestCodes.GET_MAX" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.AudioClassSpecificRequestCodes.GET_MEM">
+<span class="sig-name descname"><span class="pre">GET_MEM</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">133</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.AudioClassSpecificRequestCodes.GET_MEM" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.AudioClassSpecificRequestCodes.GET_MIN">
+<span class="sig-name descname"><span class="pre">GET_MIN</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">130</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.AudioClassSpecificRequestCodes.GET_MIN" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.AudioClassSpecificRequestCodes.GET_RES">
+<span class="sig-name descname"><span class="pre">GET_RES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">132</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.AudioClassSpecificRequestCodes.GET_RES" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.AudioClassSpecificRequestCodes.GET_STAT">
+<span class="sig-name descname"><span class="pre">GET_STAT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">255</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.AudioClassSpecificRequestCodes.GET_STAT" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.AudioClassSpecificRequestCodes.REQUEST_CODE_UNDEFINED">
+<span class="sig-name descname"><span class="pre">REQUEST_CODE_UNDEFINED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.AudioClassSpecificRequestCodes.REQUEST_CODE_UNDEFINED" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.AudioClassSpecificRequestCodes.SET_CUR">
+<span class="sig-name descname"><span class="pre">SET_CUR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.AudioClassSpecificRequestCodes.SET_CUR" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.AudioClassSpecificRequestCodes.SET_MAX">
+<span class="sig-name descname"><span class="pre">SET_MAX</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.AudioClassSpecificRequestCodes.SET_MAX" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.AudioClassSpecificRequestCodes.SET_MEM">
+<span class="sig-name descname"><span class="pre">SET_MEM</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">5</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.AudioClassSpecificRequestCodes.SET_MEM" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.AudioClassSpecificRequestCodes.SET_MIN">
+<span class="sig-name descname"><span class="pre">SET_MIN</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.AudioClassSpecificRequestCodes.SET_MIN" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.AudioClassSpecificRequestCodes.SET_RES">
+<span class="sig-name descname"><span class="pre">SET_RES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.AudioClassSpecificRequestCodes.SET_RES" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.AudioInterfaceClassCode">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">usb_protocol.types.descriptors.uac1.</span></span><span class="sig-name descname"><span class="pre">AudioInterfaceClassCode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/usb_protocol/types/descriptors/uac1.html#AudioInterfaceClassCode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.AudioInterfaceClassCode" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">IntEnum</span></code></p>
+<p>An enumeration.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.AudioInterfaceClassCode.AUDIO">
+<span class="sig-name descname"><span class="pre">AUDIO</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.AudioInterfaceClassCode.AUDIO" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.AudioInterfaceProtocolCodes">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">usb_protocol.types.descriptors.uac1.</span></span><span class="sig-name descname"><span class="pre">AudioInterfaceProtocolCodes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/usb_protocol/types/descriptors/uac1.html#AudioInterfaceProtocolCodes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.AudioInterfaceProtocolCodes" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">IntEnum</span></code></p>
+<p>An enumeration.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.AudioInterfaceProtocolCodes.PR_PROTOCOL_UNDEFINED">
+<span class="sig-name descname"><span class="pre">PR_PROTOCOL_UNDEFINED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.AudioInterfaceProtocolCodes.PR_PROTOCOL_UNDEFINED" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.AudioInterfaceSubclassCodes">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">usb_protocol.types.descriptors.uac1.</span></span><span class="sig-name descname"><span class="pre">AudioInterfaceSubclassCodes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/usb_protocol/types/descriptors/uac1.html#AudioInterfaceSubclassCodes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.AudioInterfaceSubclassCodes" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">IntEnum</span></code></p>
+<p>An enumeration.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.AudioInterfaceSubclassCodes.AUDIO_CONTROL">
+<span class="sig-name descname"><span class="pre">AUDIO_CONTROL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.AudioInterfaceSubclassCodes.AUDIO_CONTROL" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.AudioInterfaceSubclassCodes.AUDIO_STREAMING">
+<span class="sig-name descname"><span class="pre">AUDIO_STREAMING</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.AudioInterfaceSubclassCodes.AUDIO_STREAMING" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.AudioInterfaceSubclassCodes.INTERFACE_SUBCLASS_UNDEFINED">
+<span class="sig-name descname"><span class="pre">INTERFACE_SUBCLASS_UNDEFINED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.AudioInterfaceSubclassCodes.INTERFACE_SUBCLASS_UNDEFINED" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.AudioInterfaceSubclassCodes.MIDI_STREAMING">
+<span class="sig-name descname"><span class="pre">MIDI_STREAMING</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.AudioInterfaceSubclassCodes.MIDI_STREAMING" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.BidirectionalTerminalTypes">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">usb_protocol.types.descriptors.uac1.</span></span><span class="sig-name descname"><span class="pre">BidirectionalTerminalTypes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/usb_protocol/types/descriptors/uac1.html#BidirectionalTerminalTypes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.BidirectionalTerminalTypes" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">IntEnum</span></code></p>
+<p>An enumeration.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.BidirectionalTerminalTypes.BIDIRECTIONAL_UNDEFINED">
+<span class="sig-name descname"><span class="pre">BIDIRECTIONAL_UNDEFINED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1024</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.BidirectionalTerminalTypes.BIDIRECTIONAL_UNDEFINED" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.BidirectionalTerminalTypes.ECHO_CANCELING_SPEAKERPHONE">
+<span class="sig-name descname"><span class="pre">ECHO_CANCELING_SPEAKERPHONE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1029</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.BidirectionalTerminalTypes.ECHO_CANCELING_SPEAKERPHONE" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.BidirectionalTerminalTypes.ECHO_SUPPRESSING_SPEAKERPHONE">
+<span class="sig-name descname"><span class="pre">ECHO_SUPPRESSING_SPEAKERPHONE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1028</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.BidirectionalTerminalTypes.ECHO_SUPPRESSING_SPEAKERPHONE" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.BidirectionalTerminalTypes.HANDSET">
+<span class="sig-name descname"><span class="pre">HANDSET</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1025</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.BidirectionalTerminalTypes.HANDSET" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.BidirectionalTerminalTypes.HEADSET">
+<span class="sig-name descname"><span class="pre">HEADSET</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1026</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.BidirectionalTerminalTypes.HEADSET" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.ChorusProcessingUnitControlSelectors">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">usb_protocol.types.descriptors.uac1.</span></span><span class="sig-name descname"><span class="pre">ChorusProcessingUnitControlSelectors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/usb_protocol/types/descriptors/uac1.html#ChorusProcessingUnitControlSelectors"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.ChorusProcessingUnitControlSelectors" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">IntEnum</span></code></p>
+<p>An enumeration.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.ChorusProcessingUnitControlSelectors.CHORUS_DEPTH_CONTROL">
+<span class="sig-name descname"><span class="pre">CHORUS_DEPTH_CONTROL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.ChorusProcessingUnitControlSelectors.CHORUS_DEPTH_CONTROL" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.ChorusProcessingUnitControlSelectors.CHORUS_LEVEL_CONTROL">
+<span class="sig-name descname"><span class="pre">CHORUS_LEVEL_CONTROL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.ChorusProcessingUnitControlSelectors.CHORUS_LEVEL_CONTROL" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.ChorusProcessingUnitControlSelectors.CHORUS_RATE_CONTROL">
+<span class="sig-name descname"><span class="pre">CHORUS_RATE_CONTROL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.ChorusProcessingUnitControlSelectors.CHORUS_RATE_CONTROL" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.ChorusProcessingUnitControlSelectors.CH_CONTROL_UNDEFINED">
+<span class="sig-name descname"><span class="pre">CH_CONTROL_UNDEFINED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.ChorusProcessingUnitControlSelectors.CH_CONTROL_UNDEFINED" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.ChorusProcessingUnitControlSelectors.CH_ENABLE_CONTROL">
+<span class="sig-name descname"><span class="pre">CH_ENABLE_CONTROL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.ChorusProcessingUnitControlSelectors.CH_ENABLE_CONTROL" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.DolbyProLogicProcessingUnitControlSelectors">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">usb_protocol.types.descriptors.uac1.</span></span><span class="sig-name descname"><span class="pre">DolbyProLogicProcessingUnitControlSelectors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/usb_protocol/types/descriptors/uac1.html#DolbyProLogicProcessingUnitControlSelectors"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.DolbyProLogicProcessingUnitControlSelectors" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">IntEnum</span></code></p>
+<p>An enumeration.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.DolbyProLogicProcessingUnitControlSelectors.DP_CONTROL_UNDEFINED">
+<span class="sig-name descname"><span class="pre">DP_CONTROL_UNDEFINED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.DolbyProLogicProcessingUnitControlSelectors.DP_CONTROL_UNDEFINED" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.DolbyProLogicProcessingUnitControlSelectors.DP_ENABLE_CONTROL">
+<span class="sig-name descname"><span class="pre">DP_ENABLE_CONTROL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.DolbyProLogicProcessingUnitControlSelectors.DP_ENABLE_CONTROL" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.DolbyProLogicProcessingUnitControlSelectors.DP_MODE_SELECT_CONTROL">
+<span class="sig-name descname"><span class="pre">DP_MODE_SELECT_CONTROL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.DolbyProLogicProcessingUnitControlSelectors.DP_MODE_SELECT_CONTROL" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.DynamicRangeCompressorProcessingUnitControlSelectors">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">usb_protocol.types.descriptors.uac1.</span></span><span class="sig-name descname"><span class="pre">DynamicRangeCompressorProcessingUnitControlSelectors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/usb_protocol/types/descriptors/uac1.html#DynamicRangeCompressorProcessingUnitControlSelectors"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.DynamicRangeCompressorProcessingUnitControlSelectors" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">IntEnum</span></code></p>
+<p>An enumeration.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.DynamicRangeCompressorProcessingUnitControlSelectors.ATTACK_TIME">
+<span class="sig-name descname"><span class="pre">ATTACK_TIME</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">5</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.DynamicRangeCompressorProcessingUnitControlSelectors.ATTACK_TIME" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.DynamicRangeCompressorProcessingUnitControlSelectors.COMPRESSION_RATE_CONTROL">
+<span class="sig-name descname"><span class="pre">COMPRESSION_RATE_CONTROL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.DynamicRangeCompressorProcessingUnitControlSelectors.COMPRESSION_RATE_CONTROL" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.DynamicRangeCompressorProcessingUnitControlSelectors.DR_CONTROL_UNDEFINED">
+<span class="sig-name descname"><span class="pre">DR_CONTROL_UNDEFINED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.DynamicRangeCompressorProcessingUnitControlSelectors.DR_CONTROL_UNDEFINED" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.DynamicRangeCompressorProcessingUnitControlSelectors.DR_ENABLE_CONTROL">
+<span class="sig-name descname"><span class="pre">DR_ENABLE_CONTROL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.DynamicRangeCompressorProcessingUnitControlSelectors.DR_ENABLE_CONTROL" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.DynamicRangeCompressorProcessingUnitControlSelectors.MAXAMPL_CONTROL">
+<span class="sig-name descname"><span class="pre">MAXAMPL_CONTROL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.DynamicRangeCompressorProcessingUnitControlSelectors.MAXAMPL_CONTROL" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.DynamicRangeCompressorProcessingUnitControlSelectors.RELEASE_TIME">
+<span class="sig-name descname"><span class="pre">RELEASE_TIME</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">6</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.DynamicRangeCompressorProcessingUnitControlSelectors.RELEASE_TIME" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.DynamicRangeCompressorProcessingUnitControlSelectors.THRESHOLD_CONTROL">
+<span class="sig-name descname"><span class="pre">THRESHOLD_CONTROL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.DynamicRangeCompressorProcessingUnitControlSelectors.THRESHOLD_CONTROL" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.EmbeddedFunctionTerminalTypes">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">usb_protocol.types.descriptors.uac1.</span></span><span class="sig-name descname"><span class="pre">EmbeddedFunctionTerminalTypes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/usb_protocol/types/descriptors/uac1.html#EmbeddedFunctionTerminalTypes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.EmbeddedFunctionTerminalTypes" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">IntEnum</span></code></p>
+<p>An enumeration.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.EmbeddedFunctionTerminalTypes.ANALOG_TAPE">
+<span class="sig-name descname"><span class="pre">ANALOG_TAPE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1799</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.EmbeddedFunctionTerminalTypes.ANALOG_TAPE" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.EmbeddedFunctionTerminalTypes.CABLE_TUNER_AUDIO">
+<span class="sig-name descname"><span class="pre">CABLE_TUNER_AUDIO</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1806</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.EmbeddedFunctionTerminalTypes.CABLE_TUNER_AUDIO" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.EmbeddedFunctionTerminalTypes.CD_PLAYER">
+<span class="sig-name descname"><span class="pre">CD_PLAYER</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1795</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.EmbeddedFunctionTerminalTypes.CD_PLAYER" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.EmbeddedFunctionTerminalTypes.DAT">
+<span class="sig-name descname"><span class="pre">DAT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1796</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.EmbeddedFunctionTerminalTypes.DAT" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.EmbeddedFunctionTerminalTypes.DCC">
+<span class="sig-name descname"><span class="pre">DCC</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1797</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.EmbeddedFunctionTerminalTypes.DCC" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.EmbeddedFunctionTerminalTypes.DSS_AUDIO">
+<span class="sig-name descname"><span class="pre">DSS_AUDIO</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1807</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.EmbeddedFunctionTerminalTypes.DSS_AUDIO" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.EmbeddedFunctionTerminalTypes.DVD_AUDIO">
+<span class="sig-name descname"><span class="pre">DVD_AUDIO</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1803</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.EmbeddedFunctionTerminalTypes.DVD_AUDIO" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.EmbeddedFunctionTerminalTypes.EMBEDDED_UNDEFINED">
+<span class="sig-name descname"><span class="pre">EMBEDDED_UNDEFINED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1792</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.EmbeddedFunctionTerminalTypes.EMBEDDED_UNDEFINED" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.EmbeddedFunctionTerminalTypes.EQUALIZATION_NOISE">
+<span class="sig-name descname"><span class="pre">EQUALIZATION_NOISE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1794</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.EmbeddedFunctionTerminalTypes.EQUALIZATION_NOISE" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.EmbeddedFunctionTerminalTypes.MULTI_TRACK_RECORDER">
+<span class="sig-name descname"><span class="pre">MULTI_TRACK_RECORDER</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1810</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.EmbeddedFunctionTerminalTypes.MULTI_TRACK_RECORDER" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.EmbeddedFunctionTerminalTypes.PHONOGRAPH">
+<span class="sig-name descname"><span class="pre">PHONOGRAPH</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1800</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.EmbeddedFunctionTerminalTypes.PHONOGRAPH" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.EmbeddedFunctionTerminalTypes.RADIO_RECEIVER">
+<span class="sig-name descname"><span class="pre">RADIO_RECEIVER</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1808</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.EmbeddedFunctionTerminalTypes.RADIO_RECEIVER" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.EmbeddedFunctionTerminalTypes.RADIO_TRANSMITTER">
+<span class="sig-name descname"><span class="pre">RADIO_TRANSMITTER</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1809</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.EmbeddedFunctionTerminalTypes.RADIO_TRANSMITTER" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.EmbeddedFunctionTerminalTypes.SATELLITE_RECEIVER_AUDIO">
+<span class="sig-name descname"><span class="pre">SATELLITE_RECEIVER_AUDIO</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1805</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.EmbeddedFunctionTerminalTypes.SATELLITE_RECEIVER_AUDIO" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.EmbeddedFunctionTerminalTypes.SYNTHESIZER">
+<span class="sig-name descname"><span class="pre">SYNTHESIZER</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1811</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.EmbeddedFunctionTerminalTypes.SYNTHESIZER" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.EmbeddedFunctionTerminalTypes.TV_TUNER_AUDIO">
+<span class="sig-name descname"><span class="pre">TV_TUNER_AUDIO</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1804</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.EmbeddedFunctionTerminalTypes.TV_TUNER_AUDIO" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.EmbeddedFunctionTerminalTypes.VCR_AUDIO">
+<span class="sig-name descname"><span class="pre">VCR_AUDIO</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1801</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.EmbeddedFunctionTerminalTypes.VCR_AUDIO" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.EmbeddedFunctionTerminalTypes.VIDEO_DISC_AUDIO">
+<span class="sig-name descname"><span class="pre">VIDEO_DISC_AUDIO</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1802</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.EmbeddedFunctionTerminalTypes.VIDEO_DISC_AUDIO" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.EndpointsControlSelectors">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">usb_protocol.types.descriptors.uac1.</span></span><span class="sig-name descname"><span class="pre">EndpointsControlSelectors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/usb_protocol/types/descriptors/uac1.html#EndpointsControlSelectors"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.EndpointsControlSelectors" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">IntEnum</span></code></p>
+<p>An enumeration.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.EndpointsControlSelectors.EP_CONTROL_UNDEFINED">
+<span class="sig-name descname"><span class="pre">EP_CONTROL_UNDEFINED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.EndpointsControlSelectors.EP_CONTROL_UNDEFINED" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.EndpointsControlSelectors.PITCH_CONTROL">
+<span class="sig-name descname"><span class="pre">PITCH_CONTROL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.EndpointsControlSelectors.PITCH_CONTROL" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.EndpointsControlSelectors.SAMPLING_FREQ_CONTROL">
+<span class="sig-name descname"><span class="pre">SAMPLING_FREQ_CONTROL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.EndpointsControlSelectors.SAMPLING_FREQ_CONTROL" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.ExtensionUnitControlSelectors">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">usb_protocol.types.descriptors.uac1.</span></span><span class="sig-name descname"><span class="pre">ExtensionUnitControlSelectors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/usb_protocol/types/descriptors/uac1.html#ExtensionUnitControlSelectors"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.ExtensionUnitControlSelectors" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">IntEnum</span></code></p>
+<p>An enumeration.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.ExtensionUnitControlSelectors.XU_CONTROL_UNDEFINED">
+<span class="sig-name descname"><span class="pre">XU_CONTROL_UNDEFINED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.ExtensionUnitControlSelectors.XU_CONTROL_UNDEFINED" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.ExtensionUnitControlSelectors.XU_ENABLE_CONTROL">
+<span class="sig-name descname"><span class="pre">XU_ENABLE_CONTROL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.ExtensionUnitControlSelectors.XU_ENABLE_CONTROL" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.ExternalTerminalTypes">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">usb_protocol.types.descriptors.uac1.</span></span><span class="sig-name descname"><span class="pre">ExternalTerminalTypes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/usb_protocol/types/descriptors/uac1.html#ExternalTerminalTypes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.ExternalTerminalTypes" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">IntEnum</span></code></p>
+<p>An enumeration.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.ExternalTerminalTypes.ANALOG_CONNECTOR">
+<span class="sig-name descname"><span class="pre">ANALOG_CONNECTOR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1537</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.ExternalTerminalTypes.ANALOG_CONNECTOR" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.ExternalTerminalTypes.DIGITAL_AUDIO_INTERFACE">
+<span class="sig-name descname"><span class="pre">DIGITAL_AUDIO_INTERFACE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1538</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.ExternalTerminalTypes.DIGITAL_AUDIO_INTERFACE" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.ExternalTerminalTypes.EXTERNAL_UNDEFINED">
+<span class="sig-name descname"><span class="pre">EXTERNAL_UNDEFINED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1536</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.ExternalTerminalTypes.EXTERNAL_UNDEFINED" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.ExternalTerminalTypes.IEEE_1394_DA_STREAM">
+<span class="sig-name descname"><span class="pre">IEEE_1394_DA_STREAM</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1542</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.ExternalTerminalTypes.IEEE_1394_DA_STREAM" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.ExternalTerminalTypes.IEEE_1394_DV_STREAM_SOUNDTRACK">
+<span class="sig-name descname"><span class="pre">IEEE_1394_DV_STREAM_SOUNDTRACK</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1543</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.ExternalTerminalTypes.IEEE_1394_DV_STREAM_SOUNDTRACK" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.ExternalTerminalTypes.LINE_CONNECTOR">
+<span class="sig-name descname"><span class="pre">LINE_CONNECTOR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1539</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.ExternalTerminalTypes.LINE_CONNECTOR" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.ExternalTerminalTypes.SPDIF_INTERFACE">
+<span class="sig-name descname"><span class="pre">SPDIF_INTERFACE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1541</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.ExternalTerminalTypes.SPDIF_INTERFACE" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.FeatureUnitControlSelectors">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">usb_protocol.types.descriptors.uac1.</span></span><span class="sig-name descname"><span class="pre">FeatureUnitControlSelectors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/usb_protocol/types/descriptors/uac1.html#FeatureUnitControlSelectors"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.FeatureUnitControlSelectors" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">IntEnum</span></code></p>
+<p>An enumeration.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.FeatureUnitControlSelectors.AUTOMATIC_GAIN_CONTROL">
+<span class="sig-name descname"><span class="pre">AUTOMATIC_GAIN_CONTROL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">7</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.FeatureUnitControlSelectors.AUTOMATIC_GAIN_CONTROL" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.FeatureUnitControlSelectors.BASS_BOOST_CONTROL">
+<span class="sig-name descname"><span class="pre">BASS_BOOST_CONTROL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">9</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.FeatureUnitControlSelectors.BASS_BOOST_CONTROL" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.FeatureUnitControlSelectors.BASS_CONTROL">
+<span class="sig-name descname"><span class="pre">BASS_CONTROL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.FeatureUnitControlSelectors.BASS_CONTROL" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.FeatureUnitControlSelectors.DELAY_CONTROL">
+<span class="sig-name descname"><span class="pre">DELAY_CONTROL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">8</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.FeatureUnitControlSelectors.DELAY_CONTROL" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.FeatureUnitControlSelectors.FU_CONTROL_UNDEFINED">
+<span class="sig-name descname"><span class="pre">FU_CONTROL_UNDEFINED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.FeatureUnitControlSelectors.FU_CONTROL_UNDEFINED" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.FeatureUnitControlSelectors.GRAPHIC_EQUALIZER_CONTROL">
+<span class="sig-name descname"><span class="pre">GRAPHIC_EQUALIZER_CONTROL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">6</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.FeatureUnitControlSelectors.GRAPHIC_EQUALIZER_CONTROL" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.FeatureUnitControlSelectors.LOUDNESS_CONTROL">
+<span class="sig-name descname"><span class="pre">LOUDNESS_CONTROL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">10</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.FeatureUnitControlSelectors.LOUDNESS_CONTROL" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.FeatureUnitControlSelectors.MID_CONTROL">
+<span class="sig-name descname"><span class="pre">MID_CONTROL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.FeatureUnitControlSelectors.MID_CONTROL" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.FeatureUnitControlSelectors.MUTE_CONTROL">
+<span class="sig-name descname"><span class="pre">MUTE_CONTROL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.FeatureUnitControlSelectors.MUTE_CONTROL" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.FeatureUnitControlSelectors.TREBLE_CONTROL">
+<span class="sig-name descname"><span class="pre">TREBLE_CONTROL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">5</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.FeatureUnitControlSelectors.TREBLE_CONTROL" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.FeatureUnitControlSelectors.VOLUME_CONTROL">
+<span class="sig-name descname"><span class="pre">VOLUME_CONTROL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.FeatureUnitControlSelectors.VOLUME_CONTROL" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.InputTerminalTypes">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">usb_protocol.types.descriptors.uac1.</span></span><span class="sig-name descname"><span class="pre">InputTerminalTypes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/usb_protocol/types/descriptors/uac1.html#InputTerminalTypes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.InputTerminalTypes" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">IntEnum</span></code></p>
+<p>An enumeration.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.InputTerminalTypes.DESKTOP_MICROPHONE">
+<span class="sig-name descname"><span class="pre">DESKTOP_MICROPHONE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">514</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.InputTerminalTypes.DESKTOP_MICROPHONE" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.InputTerminalTypes.INPUT_UNDEFINED">
+<span class="sig-name descname"><span class="pre">INPUT_UNDEFINED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">512</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.InputTerminalTypes.INPUT_UNDEFINED" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.InputTerminalTypes.MICROPHONE">
+<span class="sig-name descname"><span class="pre">MICROPHONE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">513</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.InputTerminalTypes.MICROPHONE" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.InputTerminalTypes.MICROPHONE_ARRAY">
+<span class="sig-name descname"><span class="pre">MICROPHONE_ARRAY</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">517</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.InputTerminalTypes.MICROPHONE_ARRAY" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.InputTerminalTypes.OMNI_DIRECTIONAL_MICROPHONE">
+<span class="sig-name descname"><span class="pre">OMNI_DIRECTIONAL_MICROPHONE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">516</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.InputTerminalTypes.OMNI_DIRECTIONAL_MICROPHONE" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.InputTerminalTypes.PERSONAL_MICROPHONE">
+<span class="sig-name descname"><span class="pre">PERSONAL_MICROPHONE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">515</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.InputTerminalTypes.PERSONAL_MICROPHONE" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.InputTerminalTypes.PROCESSING_MICROPHONE_ARRAY">
+<span class="sig-name descname"><span class="pre">PROCESSING_MICROPHONE_ARRAY</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">518</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.InputTerminalTypes.PROCESSING_MICROPHONE_ARRAY" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.OutputTerminalTypes">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">usb_protocol.types.descriptors.uac1.</span></span><span class="sig-name descname"><span class="pre">OutputTerminalTypes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/usb_protocol/types/descriptors/uac1.html#OutputTerminalTypes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.OutputTerminalTypes" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">IntEnum</span></code></p>
+<p>An enumeration.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.OutputTerminalTypes.COMMUNICATION_SPEAKER">
+<span class="sig-name descname"><span class="pre">COMMUNICATION_SPEAKER</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">774</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.OutputTerminalTypes.COMMUNICATION_SPEAKER" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.OutputTerminalTypes.DESKTOP_SPEAKER">
+<span class="sig-name descname"><span class="pre">DESKTOP_SPEAKER</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">772</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.OutputTerminalTypes.DESKTOP_SPEAKER" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.OutputTerminalTypes.HEADPHONES">
+<span class="sig-name descname"><span class="pre">HEADPHONES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">770</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.OutputTerminalTypes.HEADPHONES" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.OutputTerminalTypes.LOW_FREQUENCY_EFFECTS_SPEAKER">
+<span class="sig-name descname"><span class="pre">LOW_FREQUENCY_EFFECTS_SPEAKER</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">775</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.OutputTerminalTypes.LOW_FREQUENCY_EFFECTS_SPEAKER" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.OutputTerminalTypes.OUTPUT_UNDEFINED">
+<span class="sig-name descname"><span class="pre">OUTPUT_UNDEFINED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">768</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.OutputTerminalTypes.OUTPUT_UNDEFINED" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.OutputTerminalTypes.ROOM_SPEAKER">
+<span class="sig-name descname"><span class="pre">ROOM_SPEAKER</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">773</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.OutputTerminalTypes.ROOM_SPEAKER" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.OutputTerminalTypes.SPEAKER">
+<span class="sig-name descname"><span class="pre">SPEAKER</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">769</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.OutputTerminalTypes.SPEAKER" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.ProcessingUnitProcessTypes">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">usb_protocol.types.descriptors.uac1.</span></span><span class="sig-name descname"><span class="pre">ProcessingUnitProcessTypes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/usb_protocol/types/descriptors/uac1.html#ProcessingUnitProcessTypes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.ProcessingUnitProcessTypes" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">IntEnum</span></code></p>
+<p>An enumeration.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.ProcessingUnitProcessTypes.CHORUS_PROCESS">
+<span class="sig-name descname"><span class="pre">CHORUS_PROCESS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">5</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.ProcessingUnitProcessTypes.CHORUS_PROCESS" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.ProcessingUnitProcessTypes.DOLBY_PROLOGIC_PROCESS">
+<span class="sig-name descname"><span class="pre">DOLBY_PROLOGIC_PROCESS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.ProcessingUnitProcessTypes.DOLBY_PROLOGIC_PROCESS" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.ProcessingUnitProcessTypes.DYN_RANGE_COMP_PROCESS">
+<span class="sig-name descname"><span class="pre">DYN_RANGE_COMP_PROCESS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">6</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.ProcessingUnitProcessTypes.DYN_RANGE_COMP_PROCESS" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.ProcessingUnitProcessTypes.PROCESS_UNDEFINED">
+<span class="sig-name descname"><span class="pre">PROCESS_UNDEFINED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.ProcessingUnitProcessTypes.PROCESS_UNDEFINED" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.ProcessingUnitProcessTypes.REVERBERATION_PROCESS">
+<span class="sig-name descname"><span class="pre">REVERBERATION_PROCESS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.ProcessingUnitProcessTypes.REVERBERATION_PROCESS" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.ProcessingUnitProcessTypes.UP_DOWNMIX_PROCESS">
+<span class="sig-name descname"><span class="pre">UP_DOWNMIX_PROCESS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.ProcessingUnitProcessTypes.UP_DOWNMIX_PROCESS" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.ReverberationProcessingUnitControlSelectors">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">usb_protocol.types.descriptors.uac1.</span></span><span class="sig-name descname"><span class="pre">ReverberationProcessingUnitControlSelectors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/usb_protocol/types/descriptors/uac1.html#ReverberationProcessingUnitControlSelectors"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.ReverberationProcessingUnitControlSelectors" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">IntEnum</span></code></p>
+<p>An enumeration.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.ReverberationProcessingUnitControlSelectors.REVERB_FEEDBACK_CONTROL">
+<span class="sig-name descname"><span class="pre">REVERB_FEEDBACK_CONTROL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.ReverberationProcessingUnitControlSelectors.REVERB_FEEDBACK_CONTROL" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.ReverberationProcessingUnitControlSelectors.REVERB_LEVEL_CONTROL">
+<span class="sig-name descname"><span class="pre">REVERB_LEVEL_CONTROL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.ReverberationProcessingUnitControlSelectors.REVERB_LEVEL_CONTROL" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.ReverberationProcessingUnitControlSelectors.REVERB_TIME_CONTROL">
+<span class="sig-name descname"><span class="pre">REVERB_TIME_CONTROL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.ReverberationProcessingUnitControlSelectors.REVERB_TIME_CONTROL" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.ReverberationProcessingUnitControlSelectors.RV_CONTROL_UNDEFINED">
+<span class="sig-name descname"><span class="pre">RV_CONTROL_UNDEFINED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.ReverberationProcessingUnitControlSelectors.RV_CONTROL_UNDEFINED" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.ReverberationProcessingUnitControlSelectors.RV_ENABLE_CONTROL">
+<span class="sig-name descname"><span class="pre">RV_ENABLE_CONTROL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.ReverberationProcessingUnitControlSelectors.RV_ENABLE_CONTROL" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.TelephonyTerminalTypes">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">usb_protocol.types.descriptors.uac1.</span></span><span class="sig-name descname"><span class="pre">TelephonyTerminalTypes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/usb_protocol/types/descriptors/uac1.html#TelephonyTerminalTypes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.TelephonyTerminalTypes" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">IntEnum</span></code></p>
+<p>An enumeration.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.TelephonyTerminalTypes.DOWN_LINE_PHONE">
+<span class="sig-name descname"><span class="pre">DOWN_LINE_PHONE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1283</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.TelephonyTerminalTypes.DOWN_LINE_PHONE" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.TelephonyTerminalTypes.PHONE_LINE">
+<span class="sig-name descname"><span class="pre">PHONE_LINE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1281</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.TelephonyTerminalTypes.PHONE_LINE" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.TelephonyTerminalTypes.TELEPHONE">
+<span class="sig-name descname"><span class="pre">TELEPHONE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1282</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.TelephonyTerminalTypes.TELEPHONE" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.TelephonyTerminalTypes.TELEPHONY_UNDEFINED">
+<span class="sig-name descname"><span class="pre">TELEPHONY_UNDEFINED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1280</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.TelephonyTerminalTypes.TELEPHONY_UNDEFINED" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.TerminalControlSelectors">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">usb_protocol.types.descriptors.uac1.</span></span><span class="sig-name descname"><span class="pre">TerminalControlSelectors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/usb_protocol/types/descriptors/uac1.html#TerminalControlSelectors"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.TerminalControlSelectors" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">IntEnum</span></code></p>
+<p>An enumeration.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.TerminalControlSelectors.COPY_PROTECT_CONTROL">
+<span class="sig-name descname"><span class="pre">COPY_PROTECT_CONTROL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.TerminalControlSelectors.COPY_PROTECT_CONTROL" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.TerminalControlSelectors.TE_CONTROL_UNDEFINED">
+<span class="sig-name descname"><span class="pre">TE_CONTROL_UNDEFINED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.TerminalControlSelectors.TE_CONTROL_UNDEFINED" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.USBTerminalTypes">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">usb_protocol.types.descriptors.uac1.</span></span><span class="sig-name descname"><span class="pre">USBTerminalTypes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/usb_protocol/types/descriptors/uac1.html#USBTerminalTypes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.USBTerminalTypes" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">IntEnum</span></code></p>
+<p>An enumeration.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.USBTerminalTypes.USB_STREAMING">
+<span class="sig-name descname"><span class="pre">USB_STREAMING</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">257</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.USBTerminalTypes.USB_STREAMING" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.USBTerminalTypes.USB_UNDEFINED">
+<span class="sig-name descname"><span class="pre">USB_UNDEFINED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">256</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.USBTerminalTypes.USB_UNDEFINED" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.USBTerminalTypes.USB_VENDOR_SPECIFIC">
+<span class="sig-name descname"><span class="pre">USB_VENDOR_SPECIFIC</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">511</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.USBTerminalTypes.USB_VENDOR_SPECIFIC" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.UpDownMixProcessingUnitControlSelectors">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">usb_protocol.types.descriptors.uac1.</span></span><span class="sig-name descname"><span class="pre">UpDownMixProcessingUnitControlSelectors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/usb_protocol/types/descriptors/uac1.html#UpDownMixProcessingUnitControlSelectors"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.UpDownMixProcessingUnitControlSelectors" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">IntEnum</span></code></p>
+<p>An enumeration.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.UpDownMixProcessingUnitControlSelectors.UD_CONTROL_UNDEFINED">
+<span class="sig-name descname"><span class="pre">UD_CONTROL_UNDEFINED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.UpDownMixProcessingUnitControlSelectors.UD_CONTROL_UNDEFINED" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.UpDownMixProcessingUnitControlSelectors.UD_ENABLE_CONTROL">
+<span class="sig-name descname"><span class="pre">UD_ENABLE_CONTROL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.UpDownMixProcessingUnitControlSelectors.UD_ENABLE_CONTROL" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.uac1.UpDownMixProcessingUnitControlSelectors.UD_MODE_SELECT_CONTROL">
+<span class="sig-name descname"><span class="pre">UD_MODE_SELECT_CONTROL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.uac1.UpDownMixProcessingUnitControlSelectors.UD_MODE_SELECT_CONTROL" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="usb_protocol.types.descriptors.standard.html" class="btn btn-neutral float-left" title="usb_protocol.types.descriptors.standard module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="usb_protocol.types.descriptors.uac2.html" class="btn btn-neutral float-right" title="usb_protocol.types.descriptors.uac2 module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>usb_protocol.emitters.descriptors.uac2 &mdash; usb_protocol 0.0 documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../_static/documentation_options.js?v=837179f8"></script>
+        <script src="../../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            usb_protocol
+          </a>
+              <div class="version">
+                0.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../README.html">USB Protocol Library for Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../api/modules.html">usb_protocol</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">usb_protocol</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">usb_protocol.emitters.descriptors.uac2</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for usb_protocol.emitters.descriptors.uac2</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="c1">#</span>
+<span class="c1"># This file is part of usb_protocol.</span>
+<span class="c1">#</span>
+<span class="sd">&quot;&quot;&quot; Convenience emitters for USB Audio Class 2 descriptors. &quot;&quot;&quot;</span>
+
+
+<span class="kn">from</span> <span class="nn">...types.descriptors.uac2</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">..</span> <span class="kn">import</span> <span class="n">emitter_for_format</span>
+<span class="kn">from</span> <span class="nn">..descriptor</span> <span class="kn">import</span> <span class="n">ComplexDescriptorEmitter</span>
+
+<span class="c1"># Create our emitters.</span>
+<span class="n">InterfaceAssociationDescriptorEmitter</span>          <span class="o">=</span> <span class="n">emitter_for_format</span><span class="p">(</span><span class="n">InterfaceAssociationDescriptor</span><span class="p">)</span>
+<span class="n">StandardAudioControlInterfaceDescriptorEmitter</span> <span class="o">=</span> <span class="n">emitter_for_format</span><span class="p">(</span><span class="n">StandardAudioControlInterfaceDescriptor</span><span class="p">)</span>
+
+<div class="viewcode-block" id="ClassSpecificAudioControlInterfaceDescriptorEmitter">
+<a class="viewcode-back" href="../../../../api/usb_protocol.emitters.descriptors.uac2.html#usb_protocol.emitters.descriptors.uac2.ClassSpecificAudioControlInterfaceDescriptorEmitter">[docs]</a>
+<span class="k">class</span> <span class="nc">ClassSpecificAudioControlInterfaceDescriptorEmitter</span><span class="p">(</span><span class="n">ComplexDescriptorEmitter</span><span class="p">):</span>
+    <span class="n">DESCRIPTOR_FORMAT</span> <span class="o">=</span> <span class="n">ClassSpecificAudioControlInterfaceDescriptor</span>
+
+    <span class="k">def</span> <span class="nf">_pre_emit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Figure out the total length of our descriptor, including subordinates.</span>
+        <span class="n">subordinate_length</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sub</span><span class="p">)</span> <span class="k">for</span> <span class="n">sub</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_subordinates</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wTotalLength</span> <span class="o">=</span> <span class="n">subordinate_length</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">DESCRIPTOR_FORMAT</span><span class="o">.</span><span class="n">sizeof</span><span class="p">()</span></div>
+
+
+<span class="n">ClockSourceDescriptorEmitter</span>                                             <span class="o">=</span> <span class="n">emitter_for_format</span><span class="p">(</span><span class="n">ClockSourceDescriptor</span><span class="p">)</span>
+<span class="n">InputTerminalDescriptorEmitter</span>                                           <span class="o">=</span> <span class="n">emitter_for_format</span><span class="p">(</span><span class="n">InputTerminalDescriptor</span><span class="p">)</span>
+<span class="n">OutputTerminalDescriptorEmitter</span>                                          <span class="o">=</span> <span class="n">emitter_for_format</span><span class="p">(</span><span class="n">OutputTerminalDescriptor</span><span class="p">)</span>
+<span class="n">FeatureUnitDescriptorEmitter</span>                                             <span class="o">=</span> <span class="n">emitter_for_format</span><span class="p">(</span><span class="n">FeatureUnitDescriptor</span><span class="p">)</span>
+<span class="n">AudioStreamingInterfaceDescriptorEmitter</span>                                 <span class="o">=</span> <span class="n">emitter_for_format</span><span class="p">(</span><span class="n">AudioStreamingInterfaceDescriptor</span><span class="p">)</span>
+<span class="n">ClassSpecificAudioStreamingInterfaceDescriptorEmitter</span>                    <span class="o">=</span> <span class="n">emitter_for_format</span><span class="p">(</span><span class="n">ClassSpecificAudioStreamingInterfaceDescriptor</span><span class="p">)</span>
+<span class="n">TypeIFormatTypeDescriptorEmitter</span>                                         <span class="o">=</span> <span class="n">emitter_for_format</span><span class="p">(</span><span class="n">TypeIFormatTypeDescriptor</span><span class="p">)</span>
+<span class="n">ExtendedTypeIFormatTypeDescriptorEmitter</span>                                 <span class="o">=</span> <span class="n">emitter_for_format</span><span class="p">(</span><span class="n">ExtendedTypeIFormatTypeDescriptor</span><span class="p">)</span>
+<span class="n">TypeIIFormatTypeDescriptorEmitter</span>                                        <span class="o">=</span> <span class="n">emitter_for_format</span><span class="p">(</span><span class="n">TypeIIFormatTypeDescriptor</span><span class="p">)</span>
+<span class="n">ExtendedTypeIIFormatTypeDescriptorEmitter</span>                                <span class="o">=</span> <span class="n">emitter_for_format</span><span class="p">(</span><span class="n">ExtendedTypeIIFormatTypeDescriptor</span><span class="p">)</span>
+<span class="n">TypeIIIFormatTypeDescriptorEmitter</span>                                       <span class="o">=</span> <span class="n">emitter_for_format</span><span class="p">(</span><span class="n">TypeIIIFormatTypeDescriptor</span><span class="p">)</span>
+<span class="n">ExtendedTypeIIIFormatTypeDescriptorEmitter</span>                               <span class="o">=</span> <span class="n">emitter_for_format</span><span class="p">(</span><span class="n">ExtendedTypeIIIFormatTypeDescriptor</span><span class="p">)</span>
+<span class="n">ClassSpecificAudioStreamingIsochronousAudioDataEndpointDescriptorEmitter</span> <span class="o">=</span> <span class="n">emitter_for_format</span><span class="p">(</span><span class="n">ClassSpecificAudioStreamingIsochronousAudioDataEndpointDescriptor</span><span class="p">)</span>
+<span class="n">AudioControlInterruptEndpointDescriptorEmitter</span>                           <span class="o">=</span> <span class="n">emitter_for_format</span><span class="p">(</span><span class="n">AudioControlInterruptEndpointDescriptor</span><span class="p">)</span>
+<span class="n">AudioStreamingIsochronousEndpointDescriptorEmitter</span>                       <span class="o">=</span> <span class="n">emitter_for_format</span><span class="p">(</span><span class="n">AudioStreamingIsochronousEndpointDescriptor</span><span class="p">)</span>
+<span class="n">AudioStreamingIsochronousFeedbackEndpointDescriptorEmitter</span>               <span class="o">=</span> <span class="n">emitter_for_format</span><span class="p">(</span><span class="n">AudioStreamingIsochronousFeedbackEndpointDescriptor</span><span class="p">)</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

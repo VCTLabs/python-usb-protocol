@@ -1,0 +1,7 @@
+usb\_protocol.types.descriptors.uac1 module
+===========================================
+
+.. automodule:: usb_protocol.types.descriptors.uac1
+   :members:
+   :undoc-members:
+   :show-inheritance:

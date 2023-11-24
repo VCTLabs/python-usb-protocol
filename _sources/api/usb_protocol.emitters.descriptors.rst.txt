@@ -1,0 +1,22 @@
+usb\_protocol.emitters.descriptors package
+==========================================
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 4
+
+   usb_protocol.emitters.descriptors.cdc
+   usb_protocol.emitters.descriptors.standard
+   usb_protocol.emitters.descriptors.uac1
+   usb_protocol.emitters.descriptors.uac2
+   usb_protocol.emitters.descriptors.uac3
+
+Module contents
+---------------
+
+.. automodule:: usb_protocol.emitters.descriptors
+   :members:
+   :undoc-members:
+   :show-inheritance:

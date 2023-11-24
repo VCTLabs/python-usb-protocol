@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>usb_protocol.types.descriptors.cdc module &mdash; usb_protocol 0.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=837179f8"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="usb_protocol.types.descriptors.midi1 module" href="usb_protocol.types.descriptors.midi1.html" />
+    <link rel="prev" title="usb_protocol.types.descriptors.partial.standard module" href="usb_protocol.types.descriptors.partial.standard.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            usb_protocol
+          </a>
+              <div class="version">
+                0.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../README.html">USB Protocol Library for Python</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">usb_protocol</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="usb_protocol.html">usb_protocol package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="usb_protocol.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="usb_protocol.emitters.html">usb_protocol.emitters package</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="usb_protocol.types.html">usb_protocol.types package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="usb_protocol.html#module-usb_protocol">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">usb_protocol</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">usb_protocol</a></li>
+          <li class="breadcrumb-item"><a href="usb_protocol.html">usb_protocol package</a></li>
+          <li class="breadcrumb-item"><a href="usb_protocol.types.html">usb_protocol.types package</a></li>
+          <li class="breadcrumb-item"><a href="usb_protocol.types.descriptors.html">usb_protocol.types.descriptors package</a></li>
+      <li class="breadcrumb-item active">usb_protocol.types.descriptors.cdc module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/api/usb_protocol.types.descriptors.cdc.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-usb_protocol.types.descriptors.cdc">
+<span id="usb-protocol-types-descriptors-cdc-module"></span><h1>usb_protocol.types.descriptors.cdc module<a class="headerlink" href="#module-usb_protocol.types.descriptors.cdc" title="Link to this heading"></a></h1>
+<p>Structures describing Communications Device Class descriptors.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.cdc.CDCDescriptorNumbers">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">usb_protocol.types.descriptors.cdc.</span></span><span class="sig-name descname"><span class="pre">CDCDescriptorNumbers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/usb_protocol/types/descriptors/cdc.html#CDCDescriptorNumbers"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#usb_protocol.types.descriptors.cdc.CDCDescriptorNumbers" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">IntEnum</span></code></p>
+<p>An enumeration.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.cdc.CDCDescriptorNumbers.CS_ENDPOINT">
+<span class="sig-name descname"><span class="pre">CS_ENDPOINT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">37</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.cdc.CDCDescriptorNumbers.CS_ENDPOINT" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.cdc.CDCDescriptorNumbers.CS_INTERFACE">
+<span class="sig-name descname"><span class="pre">CS_INTERFACE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">36</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.cdc.CDCDescriptorNumbers.CS_INTERFACE" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.cdc.CDCDescriptorSubtypes">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">usb_protocol.types.descriptors.cdc.</span></span><span class="sig-name descname"><span class="pre">CDCDescriptorSubtypes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/usb_protocol/types/descriptors/cdc.html#CDCDescriptorSubtypes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#usb_protocol.types.descriptors.cdc.CDCDescriptorSubtypes" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">IntEnum</span></code></p>
+<p>Numbers of the Communications Class descriptor subtypes.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.cdc.CDCDescriptorSubtypes.ABSTRACT_CONTROL_MANAGEMENT_FUNCTIONAL">
+<span class="sig-name descname"><span class="pre">ABSTRACT_CONTROL_MANAGEMENT_FUNCTIONAL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.cdc.CDCDescriptorSubtypes.ABSTRACT_CONTROL_MANAGEMENT_FUNCTIONAL" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.cdc.CDCDescriptorSubtypes.ATM_NETWORKING_FUNCTIONAL">
+<span class="sig-name descname"><span class="pre">ATM_NETWORKING_FUNCTIONAL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">16</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.cdc.CDCDescriptorSubtypes.ATM_NETWORKING_FUNCTIONAL" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.cdc.CDCDescriptorSubtypes.CALL_MANAGEMENT_FUNCTIONAL">
+<span class="sig-name descname"><span class="pre">CALL_MANAGEMENT_FUNCTIONAL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.cdc.CDCDescriptorSubtypes.CALL_MANAGEMENT_FUNCTIONAL" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.cdc.CDCDescriptorSubtypes.CAPI_CONTROL_MANAGEMENT_FUNCTIONAL">
+<span class="sig-name descname"><span class="pre">CAPI_CONTROL_MANAGEMENT_FUNCTIONAL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">14</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.cdc.CDCDescriptorSubtypes.CAPI_CONTROL_MANAGEMENT_FUNCTIONAL" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.cdc.CDCDescriptorSubtypes.COMMAND_SET_DETAIL_FUNCTIONAL">
+<span class="sig-name descname"><span class="pre">COMMAND_SET_DETAIL_FUNCTIONAL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">23</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.cdc.CDCDescriptorSubtypes.COMMAND_SET_DETAIL_FUNCTIONAL" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.cdc.CDCDescriptorSubtypes.COMMAND_SET_FUCNTIONAL">
+<span class="sig-name descname"><span class="pre">COMMAND_SET_FUCNTIONAL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">22</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.cdc.CDCDescriptorSubtypes.COMMAND_SET_FUCNTIONAL" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.cdc.CDCDescriptorSubtypes.COUNTRY_SELECTION_FUNCTIONAL">
+<span class="sig-name descname"><span class="pre">COUNTRY_SELECTION_FUNCTIONAL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">7</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.cdc.CDCDescriptorSubtypes.COUNTRY_SELECTION_FUNCTIONAL" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.cdc.CDCDescriptorSubtypes.DEVICE_MANAGEMENT_MODEL_FUNCTIONAL">
+<span class="sig-name descname"><span class="pre">DEVICE_MANAGEMENT_MODEL_FUNCTIONAL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">20</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.cdc.CDCDescriptorSubtypes.DEVICE_MANAGEMENT_MODEL_FUNCTIONAL" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.cdc.CDCDescriptorSubtypes.DIRECT_LINE_MANAGEMENT_FUNCTIONAL">
+<span class="sig-name descname"><span class="pre">DIRECT_LINE_MANAGEMENT_FUNCTIONAL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.cdc.CDCDescriptorSubtypes.DIRECT_LINE_MANAGEMENT_FUNCTIONAL" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.cdc.CDCDescriptorSubtypes.ETHERNET_NETWORKING_FUNCTIONAL">
+<span class="sig-name descname"><span class="pre">ETHERNET_NETWORKING_FUNCTIONAL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">15</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.cdc.CDCDescriptorSubtypes.ETHERNET_NETWORKING_FUNCTIONAL" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.cdc.CDCDescriptorSubtypes.EXTENSION_UNIT_FUNCTIONAL">
+<span class="sig-name descname"><span class="pre">EXTENSION_UNIT_FUNCTIONAL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">12</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.cdc.CDCDescriptorSubtypes.EXTENSION_UNIT_FUNCTIONAL" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.cdc.CDCDescriptorSubtypes.HEADER">
+<span class="sig-name descname"><span class="pre">HEADER</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.cdc.CDCDescriptorSubtypes.HEADER" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.cdc.CDCDescriptorSubtypes.MDLM_DETAIL_FUNCTIONAL">
+<span class="sig-name descname"><span class="pre">MDLM_DETAIL_FUNCTIONAL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">19</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.cdc.CDCDescriptorSubtypes.MDLM_DETAIL_FUNCTIONAL" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.cdc.CDCDescriptorSubtypes.MOBILE_DIRECT_LINE_MODEL_FUNCTIONAL">
+<span class="sig-name descname"><span class="pre">MOBILE_DIRECT_LINE_MODEL_FUNCTIONAL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">18</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.cdc.CDCDescriptorSubtypes.MOBILE_DIRECT_LINE_MODEL_FUNCTIONAL" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.cdc.CDCDescriptorSubtypes.MULTI_CHANNEL_MANAGEMENT_FUNCTIONAL">
+<span class="sig-name descname"><span class="pre">MULTI_CHANNEL_MANAGEMENT_FUNCTIONAL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">13</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.cdc.CDCDescriptorSubtypes.MULTI_CHANNEL_MANAGEMENT_FUNCTIONAL" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.cdc.CDCDescriptorSubtypes.NCM_FUNCTIONAL">
+<span class="sig-name descname"><span class="pre">NCM_FUNCTIONAL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">26</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.cdc.CDCDescriptorSubtypes.NCM_FUNCTIONAL" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.cdc.CDCDescriptorSubtypes.NETWORK_CHANNEL_TERMINAL">
+<span class="sig-name descname"><span class="pre">NETWORK_CHANNEL_TERMINAL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">10</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.cdc.CDCDescriptorSubtypes.NETWORK_CHANNEL_TERMINAL" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.cdc.CDCDescriptorSubtypes.OBEX_FUNCTIONAL">
+<span class="sig-name descname"><span class="pre">OBEX_FUNCTIONAL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">21</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.cdc.CDCDescriptorSubtypes.OBEX_FUNCTIONAL" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.cdc.CDCDescriptorSubtypes.OBEX_SERVICE_IDENTIFIER_FUNCTIONAL">
+<span class="sig-name descname"><span class="pre">OBEX_SERVICE_IDENTIFIER_FUNCTIONAL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">25</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.cdc.CDCDescriptorSubtypes.OBEX_SERVICE_IDENTIFIER_FUNCTIONAL" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.cdc.CDCDescriptorSubtypes.PROTOCOL_UNIT_FUNCTIONAL">
+<span class="sig-name descname"><span class="pre">PROTOCOL_UNIT_FUNCTIONAL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">11</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.cdc.CDCDescriptorSubtypes.PROTOCOL_UNIT_FUNCTIONAL" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.cdc.CDCDescriptorSubtypes.TELEPHONE_CALL_AND_LINE_STATE_FUNCTIONAL">
+<span class="sig-name descname"><span class="pre">TELEPHONE_CALL_AND_LINE_STATE_FUNCTIONAL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">5</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.cdc.CDCDescriptorSubtypes.TELEPHONE_CALL_AND_LINE_STATE_FUNCTIONAL" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.cdc.CDCDescriptorSubtypes.TELEPHONE_CONTROL_MODEL_FUNCTIONAL">
+<span class="sig-name descname"><span class="pre">TELEPHONE_CONTROL_MODEL_FUNCTIONAL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">24</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.cdc.CDCDescriptorSubtypes.TELEPHONE_CONTROL_MODEL_FUNCTIONAL" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.cdc.CDCDescriptorSubtypes.TELEPHONE_OPERATIONAL_MODES_FUNCTIONAL">
+<span class="sig-name descname"><span class="pre">TELEPHONE_OPERATIONAL_MODES_FUNCTIONAL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">8</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.cdc.CDCDescriptorSubtypes.TELEPHONE_OPERATIONAL_MODES_FUNCTIONAL" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.cdc.CDCDescriptorSubtypes.TELEPHONE_RINGER_FUNCTIONAL">
+<span class="sig-name descname"><span class="pre">TELEPHONE_RINGER_FUNCTIONAL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.cdc.CDCDescriptorSubtypes.TELEPHONE_RINGER_FUNCTIONAL" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.cdc.CDCDescriptorSubtypes.UNION_FUNCTIONAL_DESCRIPTOR">
+<span class="sig-name descname"><span class="pre">UNION_FUNCTIONAL_DESCRIPTOR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">6</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.cdc.CDCDescriptorSubtypes.UNION_FUNCTIONAL_DESCRIPTOR" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.cdc.CDCDescriptorSubtypes.USB_TERMINAL_FUNCTIONAL">
+<span class="sig-name descname"><span class="pre">USB_TERMINAL_FUNCTIONAL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">9</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.cdc.CDCDescriptorSubtypes.USB_TERMINAL_FUNCTIONAL" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.types.descriptors.cdc.CDCDescriptorSubtypes.WIRELESS_HANDSET_CONTROL_MODEL_FUNCTIONAL">
+<span class="sig-name descname"><span class="pre">WIRELESS_HANDSET_CONTROL_MODEL_FUNCTIONAL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">17</span></em><a class="headerlink" href="#usb_protocol.types.descriptors.cdc.CDCDescriptorSubtypes.WIRELESS_HANDSET_CONTROL_MODEL_FUNCTIONAL" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="usb_protocol.types.descriptors.partial.standard.html" class="btn btn-neutral float-left" title="usb_protocol.types.descriptors.partial.standard module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="usb_protocol.types.descriptors.midi1.html" class="btn btn-neutral float-right" title="usb_protocol.types.descriptors.midi1 module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>usb_protocol.emitters.descriptors.standard module &mdash; usb_protocol 0.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=837179f8"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="usb_protocol.emitters.descriptors.uac1 module" href="usb_protocol.emitters.descriptors.uac1.html" />
+    <link rel="prev" title="usb_protocol.emitters.descriptors.cdc module" href="usb_protocol.emitters.descriptors.cdc.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            usb_protocol
+          </a>
+              <div class="version">
+                0.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../README.html">USB Protocol Library for Python</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">usb_protocol</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="usb_protocol.html">usb_protocol package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="usb_protocol.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="usb_protocol.emitters.html">usb_protocol.emitters package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="usb_protocol.types.html">usb_protocol.types package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="usb_protocol.html#module-usb_protocol">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">usb_protocol</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">usb_protocol</a></li>
+          <li class="breadcrumb-item"><a href="usb_protocol.html">usb_protocol package</a></li>
+          <li class="breadcrumb-item"><a href="usb_protocol.emitters.html">usb_protocol.emitters package</a></li>
+          <li class="breadcrumb-item"><a href="usb_protocol.emitters.descriptors.html">usb_protocol.emitters.descriptors package</a></li>
+      <li class="breadcrumb-item active">usb_protocol.emitters.descriptors.standard module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/api/usb_protocol.emitters.descriptors.standard.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-usb_protocol.emitters.descriptors.standard">
+<span id="usb-protocol-emitters-descriptors-standard-module"></span><h1>usb_protocol.emitters.descriptors.standard module<a class="headerlink" href="#module-usb_protocol.emitters.descriptors.standard" title="Link to this heading"></a></h1>
+<p>Convenience emitters for simple, standard descriptors.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="usb_protocol.emitters.descriptors.standard.BinaryObjectStoreDescriptorEmitter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">usb_protocol.emitters.descriptors.standard.</span></span><span class="sig-name descname"><span class="pre">BinaryObjectStoreDescriptorEmitter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">collection</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/usb_protocol/emitters/descriptors/standard.html#BinaryObjectStoreDescriptorEmitter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#usb_protocol.emitters.descriptors.standard.BinaryObjectStoreDescriptorEmitter" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="usb_protocol.emitters.descriptor.html#usb_protocol.emitters.descriptor.ComplexDescriptorEmitter" title="usb_protocol.emitters.descriptor.ComplexDescriptorEmitter"><code class="xref py py-class docutils literal notranslate"><span class="pre">ComplexDescriptorEmitter</span></code></a></p>
+<p>Emitter that creates a BinaryObjectStore descriptor.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.emitters.descriptors.standard.BinaryObjectStoreDescriptorEmitter.DESCRIPTOR_FORMAT">
+<span class="sig-name descname"><span class="pre">DESCRIPTOR_FORMAT</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="usb_protocol.types.descriptor.html#usb_protocol.types.descriptor.DescriptorFormat" title="usb_protocol.types.descriptor.DescriptorFormat"><span class="pre">DescriptorFormat</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;DescriptorFormat</span> <span class="pre">+nonbuild&gt;</span></em><a class="headerlink" href="#usb_protocol.emitters.descriptors.standard.BinaryObjectStoreDescriptorEmitter.DESCRIPTOR_FORMAT" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="usb_protocol.emitters.descriptors.standard.BinaryObjectStoreDescriptorEmitter.SuperSpeedUSBDeviceCapability">
+<span class="sig-name descname"><span class="pre">SuperSpeedUSBDeviceCapability</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/usb_protocol/emitters/descriptors/standard.html#BinaryObjectStoreDescriptorEmitter.SuperSpeedUSBDeviceCapability"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#usb_protocol.emitters.descriptors.standard.BinaryObjectStoreDescriptorEmitter.SuperSpeedUSBDeviceCapability" title="Link to this definition"></a></dt>
+<dd><p>Context manager that allows addition of a SS Device Capability to this Binary Object Store.</p>
+<p>It can be used with a <cite>with</cite> statement; and yields an SuperSpeedUSBDeviceCapabilityDescriptorEmitter
+that can be populated:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">bos</span><span class="o">.</span><span class="n">SuperSpeedUSBDeviceCapability</span><span class="p">()</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="n">e</span><span class="o">.</span><span class="n">wSpeedSupported</span>       <span class="o">=</span> <span class="mb">0b1110</span>
+    <span class="n">e</span><span class="o">.</span><span class="n">bFunctionalitySupport</span> <span class="o">=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<p>This adds the relevant descriptor, automatically.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="usb_protocol.emitters.descriptors.standard.BinaryObjectStoreDescriptorEmitter.USB2Extension">
+<span class="sig-name descname"><span class="pre">USB2Extension</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/usb_protocol/emitters/descriptors/standard.html#BinaryObjectStoreDescriptorEmitter.USB2Extension"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#usb_protocol.emitters.descriptors.standard.BinaryObjectStoreDescriptorEmitter.USB2Extension" title="Link to this definition"></a></dt>
+<dd><p>Context manager that allows addition of a USB 2.0 Extension to this Binary Object Store.</p>
+<p>It can be used with a <cite>with</cite> statement; and yields an USB2ExtensionDescriptorEmitter
+that can be populated:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">bos</span><span class="o">.</span><span class="n">USB2Extension</span><span class="p">()</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="n">e</span><span class="o">.</span><span class="n">bmAttributes</span> <span class="o">=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<p>This adds the relevant descriptor, automatically.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="usb_protocol.emitters.descriptors.standard.ConfigurationDescriptorEmitter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">usb_protocol.emitters.descriptors.standard.</span></span><span class="sig-name descname"><span class="pre">ConfigurationDescriptorEmitter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">collection</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/usb_protocol/emitters/descriptors/standard.html#ConfigurationDescriptorEmitter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#usb_protocol.emitters.descriptors.standard.ConfigurationDescriptorEmitter" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="usb_protocol.emitters.descriptor.html#usb_protocol.emitters.descriptor.ComplexDescriptorEmitter" title="usb_protocol.emitters.descriptor.ComplexDescriptorEmitter"><code class="xref py py-class docutils literal notranslate"><span class="pre">ComplexDescriptorEmitter</span></code></a></p>
+<p>Emitter that creates a configuration descriptor.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.emitters.descriptors.standard.ConfigurationDescriptorEmitter.DESCRIPTOR_FORMAT">
+<span class="sig-name descname"><span class="pre">DESCRIPTOR_FORMAT</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="usb_protocol.types.descriptor.html#usb_protocol.types.descriptor.DescriptorFormat" title="usb_protocol.types.descriptor.DescriptorFormat"><span class="pre">DescriptorFormat</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;DescriptorFormat&gt;</span></em><a class="headerlink" href="#usb_protocol.emitters.descriptors.standard.ConfigurationDescriptorEmitter.DESCRIPTOR_FORMAT" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="usb_protocol.emitters.descriptors.standard.ConfigurationDescriptorEmitter.InterfaceDescriptor">
+<span class="sig-name descname"><span class="pre">InterfaceDescriptor</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/usb_protocol/emitters/descriptors/standard.html#ConfigurationDescriptorEmitter.InterfaceDescriptor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#usb_protocol.emitters.descriptors.standard.ConfigurationDescriptorEmitter.InterfaceDescriptor" title="Link to this definition"></a></dt>
+<dd><p>Context manager that allows addition of a subordinate interface descriptor.</p>
+<p>It can be used with a <cite>with</cite> statement; and yields an InterfaceDescriptorEmitter
+that can be populated:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">interface</span><span class="o">.</span><span class="n">InterfaceDescriptor</span><span class="p">()</span> <span class="k">as</span> <span class="n">d</span><span class="p">:</span>
+    <span class="n">d</span><span class="o">.</span><span class="n">bInterfaceNumber</span> <span class="o">=</span> <span class="mh">0x01</span>
+    <span class="p">[</span><span class="n">snip</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>This adds the relevant descriptor, automatically. Note that populating derived
+fields such as bNumEndpoints aren’t necessary; they’ll be populated automatically.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="usb_protocol.emitters.descriptors.standard.DeviceDescriptorCollection">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">usb_protocol.emitters.descriptors.standard.</span></span><span class="sig-name descname"><span class="pre">DeviceDescriptorCollection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">automatic_language_descriptor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/usb_protocol/emitters/descriptors/standard.html#DeviceDescriptorCollection"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#usb_protocol.emitters.descriptors.standard.DeviceDescriptorCollection" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Object that builds a full collection of descriptors related to a given USB device.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="usb_protocol.emitters.descriptors.standard.DeviceDescriptorCollection.ConfigurationDescriptor">
+<span class="sig-name descname"><span class="pre">ConfigurationDescriptor</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/usb_protocol/emitters/descriptors/standard.html#DeviceDescriptorCollection.ConfigurationDescriptor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#usb_protocol.emitters.descriptors.standard.DeviceDescriptorCollection.ConfigurationDescriptor" title="Link to this definition"></a></dt>
+<dd><p>Context manager that allows addition of a configuration descriptor.</p>
+<p>It can be used with a <cite>with</cite> statement; and yields an ConfigurationDescriptorEmitter
+that can be populated:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">collection</span><span class="o">.</span><span class="n">ConfigurationDescriptor</span><span class="p">()</span> <span class="k">as</span> <span class="n">d</span><span class="p">:</span>
+    <span class="n">d</span><span class="o">.</span><span class="n">bConfigurationValue</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="p">[</span><span class="n">snip</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>This adds the relevant descriptor, automatically. Note that populating derived
+fields such as bNumInterfaces aren’t necessary; they’ll be populated automatically.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.emitters.descriptors.standard.DeviceDescriptorCollection.DEFAULT_SUPPORTED_LANGUAGES">
+<span class="sig-name descname"><span class="pre">DEFAULT_SUPPORTED_LANGUAGES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[LanguageIDs.ENGLISH_US]</span></em><a class="headerlink" href="#usb_protocol.emitters.descriptors.standard.DeviceDescriptorCollection.DEFAULT_SUPPORTED_LANGUAGES" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="usb_protocol.emitters.descriptors.standard.DeviceDescriptorCollection.DeviceDescriptor">
+<span class="sig-name descname"><span class="pre">DeviceDescriptor</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/usb_protocol/emitters/descriptors/standard.html#DeviceDescriptorCollection.DeviceDescriptor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#usb_protocol.emitters.descriptors.standard.DeviceDescriptorCollection.DeviceDescriptor" title="Link to this definition"></a></dt>
+<dd><p>Context manager that allows addition of a device descriptor.</p>
+<p>It can be used with a <cite>with</cite> statement; and yields an DeviceDescriptorEmitter
+that can be populated:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">collection</span><span class="o">.</span><span class="n">DeviceDescriptor</span><span class="p">()</span> <span class="k">as</span> <span class="n">d</span><span class="p">:</span>
+    <span class="n">d</span><span class="o">.</span><span class="n">idVendor</span>  <span class="o">=</span> <span class="mh">0xabcd</span>
+    <span class="n">d</span><span class="o">.</span><span class="n">idProduct</span> <span class="o">=</span> <span class="mh">0x1234</span>
+    <span class="p">[</span><span class="n">snip</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>This adds the relevant descriptor, automatically.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="usb_protocol.emitters.descriptors.standard.DeviceDescriptorCollection.add_descriptor">
+<span class="sig-name descname"><span class="pre">add_descriptor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">descriptor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">descriptor_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/usb_protocol/emitters/descriptors/standard.html#DeviceDescriptorCollection.add_descriptor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#usb_protocol.emitters.descriptors.standard.DeviceDescriptorCollection.add_descriptor" title="Link to this definition"></a></dt>
+<dd><p>Adds a descriptor to our collection.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>descriptor</strong> – The descriptor to be added.</p></li>
+<li><p><strong>index</strong> – The index of the relevant descriptor. Defaults to 0.</p></li>
+<li><p><strong>descriptor_type</strong> – The type of the descriptor to be added. If <cite>None</cite>,
+this is automatically derived from the descriptor contents.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="usb_protocol.emitters.descriptors.standard.DeviceDescriptorCollection.add_language_descriptor">
+<span class="sig-name descname"><span class="pre">add_language_descriptor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">supported_languages</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/usb_protocol/emitters/descriptors/standard.html#DeviceDescriptorCollection.add_language_descriptor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#usb_protocol.emitters.descriptors.standard.DeviceDescriptorCollection.add_language_descriptor" title="Link to this definition"></a></dt>
+<dd><p>Adds a language descriptor to the list of device descriptors.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>supported_languages</strong> – A list of languages supported by the device.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="usb_protocol.emitters.descriptors.standard.DeviceDescriptorCollection.ensure_string_field_is_index">
+<span class="sig-name descname"><span class="pre">ensure_string_field_is_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/usb_protocol/emitters/descriptors/standard.html#DeviceDescriptorCollection.ensure_string_field_is_index"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#usb_protocol.emitters.descriptors.standard.DeviceDescriptorCollection.ensure_string_field_is_index" title="Link to this definition"></a></dt>
+<dd><p>Processes the given field value; if it’s not an string index, converts it to one.</p>
+<p>Non-index-fields are converted to indices using <cite>get_index_for_string</cite>, which automatically
+adds the relevant fields to our string descriptor collection.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="usb_protocol.emitters.descriptors.standard.DeviceDescriptorCollection.get_descriptor_bytes">
+<span class="sig-name descname"><span class="pre">get_descriptor_bytes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">type_number</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/usb_protocol/emitters/descriptors/standard.html#DeviceDescriptorCollection.get_descriptor_bytes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#usb_protocol.emitters.descriptors.standard.DeviceDescriptorCollection.get_descriptor_bytes" title="Link to this definition"></a></dt>
+<dd><p>Returns the raw, binary descriptor for a given descriptor type/index.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>type_number</strong> – The descriptor type number.</p></li>
+<li><p><strong>index</strong> – The index of the relevant descriptor, if relevant.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="usb_protocol.emitters.descriptors.standard.DeviceDescriptorCollection.get_index_for_string">
+<span class="sig-name descname"><span class="pre">get_index_for_string</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/usb_protocol/emitters/descriptors/standard.html#DeviceDescriptorCollection.get_index_for_string"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#usb_protocol.emitters.descriptors.standard.DeviceDescriptorCollection.get_index_for_string" title="Link to this definition"></a></dt>
+<dd><p>Returns an string descriptor index for the given string.</p>
+<p>If a string descriptor already exists for the given string, its index is
+returned. Otherwise, a string descriptor is created.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="usb_protocol.emitters.descriptors.standard.EndpointDescriptorEmitter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">usb_protocol.emitters.descriptors.standard.</span></span><span class="sig-name descname"><span class="pre">EndpointDescriptorEmitter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">collection</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/usb_protocol/emitters/descriptors/standard.html#EndpointDescriptorEmitter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#usb_protocol.emitters.descriptors.standard.EndpointDescriptorEmitter" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="usb_protocol.emitters.descriptor.html#usb_protocol.emitters.descriptor.ComplexDescriptorEmitter" title="usb_protocol.emitters.descriptor.ComplexDescriptorEmitter"><code class="xref py py-class docutils literal notranslate"><span class="pre">ComplexDescriptorEmitter</span></code></a></p>
+<p>Emitter that creates an InterfaceDescriptor.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.emitters.descriptors.standard.EndpointDescriptorEmitter.DESCRIPTOR_FORMAT">
+<span class="sig-name descname"><span class="pre">DESCRIPTOR_FORMAT</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="usb_protocol.types.descriptor.html#usb_protocol.types.descriptor.DescriptorFormat" title="usb_protocol.types.descriptor.DescriptorFormat"><span class="pre">DescriptorFormat</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;DescriptorFormat&gt;</span></em><a class="headerlink" href="#usb_protocol.emitters.descriptors.standard.EndpointDescriptorEmitter.DESCRIPTOR_FORMAT" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="usb_protocol.emitters.descriptors.standard.EndpointDescriptorEmitter.SuperSpeedCompanion">
+<span class="sig-name descname"><span class="pre">SuperSpeedCompanion</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/usb_protocol/emitters/descriptors/standard.html#EndpointDescriptorEmitter.SuperSpeedCompanion"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#usb_protocol.emitters.descriptors.standard.EndpointDescriptorEmitter.SuperSpeedCompanion" title="Link to this definition"></a></dt>
+<dd><p>Context manager that allows addition of a SuperSpeed Companion to this endpoint descriptor.</p>
+<p>It can be used with a <cite>with</cite> statement; and yields an SuperSpeedEndpointCompanionDescriptorEmitter
+that can be populated:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">endpoint</span><span class="o">.</span><span class="n">SuperSpeedEndpointCompanion</span><span class="p">()</span> <span class="k">as</span> <span class="n">d</span><span class="p">:</span>
+    <span class="n">d</span><span class="o">.</span><span class="n">bMaxBurst</span> <span class="o">=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<p>This adds the relevant descriptor, automatically.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="usb_protocol.emitters.descriptors.standard.InterfaceDescriptorEmitter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">usb_protocol.emitters.descriptors.standard.</span></span><span class="sig-name descname"><span class="pre">InterfaceDescriptorEmitter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">collection</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/usb_protocol/emitters/descriptors/standard.html#InterfaceDescriptorEmitter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#usb_protocol.emitters.descriptors.standard.InterfaceDescriptorEmitter" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="usb_protocol.emitters.descriptor.html#usb_protocol.emitters.descriptor.ComplexDescriptorEmitter" title="usb_protocol.emitters.descriptor.ComplexDescriptorEmitter"><code class="xref py py-class docutils literal notranslate"><span class="pre">ComplexDescriptorEmitter</span></code></a></p>
+<p>Emitter that creates an InterfaceDescriptor.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="usb_protocol.emitters.descriptors.standard.InterfaceDescriptorEmitter.DESCRIPTOR_FORMAT">
+<span class="sig-name descname"><span class="pre">DESCRIPTOR_FORMAT</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="usb_protocol.types.descriptor.html#usb_protocol.types.descriptor.DescriptorFormat" title="usb_protocol.types.descriptor.DescriptorFormat"><span class="pre">DescriptorFormat</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;DescriptorFormat&gt;</span></em><a class="headerlink" href="#usb_protocol.emitters.descriptors.standard.InterfaceDescriptorEmitter.DESCRIPTOR_FORMAT" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="usb_protocol.emitters.descriptors.standard.InterfaceDescriptorEmitter.EndpointDescriptor">
+<span class="sig-name descname"><span class="pre">EndpointDescriptor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_default_superspeed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/usb_protocol/emitters/descriptors/standard.html#InterfaceDescriptorEmitter.EndpointDescriptor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#usb_protocol.emitters.descriptors.standard.InterfaceDescriptorEmitter.EndpointDescriptor" title="Link to this definition"></a></dt>
+<dd><p>Context manager that allows addition of a subordinate endpoint descriptor.</p>
+<p>It can be used with a <cite>with</cite> statement; and yields an EndpointDesriptorEmitter
+that can be populated:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">interface</span><span class="o">.</span><span class="n">EndpointDescriptor</span><span class="p">()</span> <span class="k">as</span> <span class="n">d</span><span class="p">:</span>
+    <span class="n">d</span><span class="o">.</span><span class="n">bEndpointAddress</span> <span class="o">=</span> <span class="mh">0x01</span>
+    <span class="n">d</span><span class="o">.</span><span class="n">bmAttributes</span>     <span class="o">=</span> <span class="mh">0x80</span>
+    <span class="n">d</span><span class="o">.</span><span class="n">wMaxPacketSize</span>   <span class="o">=</span> <span class="mi">64</span>
+    <span class="n">d</span><span class="o">.</span><span class="n">bInterval</span>        <span class="o">=</span> <span class="mi">0</span>
+</pre></div>
+</div>
+<p>This adds the relevant descriptor, automatically.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="usb_protocol.emitters.descriptors.standard.SuperSpeedDeviceDescriptorCollection">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">usb_protocol.emitters.descriptors.standard.</span></span><span class="sig-name descname"><span class="pre">SuperSpeedDeviceDescriptorCollection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">automatic_descriptors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/usb_protocol/emitters/descriptors/standard.html#SuperSpeedDeviceDescriptorCollection"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#usb_protocol.emitters.descriptors.standard.SuperSpeedDeviceDescriptorCollection" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#usb_protocol.emitters.descriptors.standard.DeviceDescriptorCollection" title="usb_protocol.emitters.descriptors.standard.DeviceDescriptorCollection"><code class="xref py py-class docutils literal notranslate"><span class="pre">DeviceDescriptorCollection</span></code></a></p>
+<p>Object that builds a full collection of descriptors related to a given USB3 device.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="usb_protocol.emitters.descriptors.standard.SuperSpeedDeviceDescriptorCollection.BOSDescriptor">
+<span class="sig-name descname"><span class="pre">BOSDescriptor</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/usb_protocol/emitters/descriptors/standard.html#SuperSpeedDeviceDescriptorCollection.BOSDescriptor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#usb_protocol.emitters.descriptors.standard.SuperSpeedDeviceDescriptorCollection.BOSDescriptor" title="Link to this definition"></a></dt>
+<dd><p>Context manager that allows addition of a Binary Object Store descriptor.</p>
+<p>It can be used with a <cite>with</cite> statement; and yields an BinaryObjectStoreDescriptorEmitter
+that can be populated:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">collection</span><span class="o">.</span><span class="n">BOSDescriptor</span><span class="p">()</span> <span class="k">as</span> <span class="n">d</span><span class="p">:</span>
+    <span class="p">[</span><span class="n">snip</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>This adds the relevant descriptor, automatically. Note that populating derived
+fields such as bNumDeviceCaps aren’t necessary; they’ll be populated automatically.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="usb_protocol.emitters.descriptors.standard.SuperSpeedDeviceDescriptorCollection.add_default_bos_descriptor">
+<span class="sig-name descname"><span class="pre">add_default_bos_descriptor</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/usb_protocol/emitters/descriptors/standard.html#SuperSpeedDeviceDescriptorCollection.add_default_bos_descriptor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#usb_protocol.emitters.descriptors.standard.SuperSpeedDeviceDescriptorCollection.add_default_bos_descriptor" title="Link to this definition"></a></dt>
+<dd><p>Adds a default, empty BOS descriptor.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="usb_protocol.emitters.descriptors.standard.get_string_descriptor">
+<span class="sig-prename descclassname"><span class="pre">usb_protocol.emitters.descriptors.standard.</span></span><span class="sig-name descname"><span class="pre">get_string_descriptor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/usb_protocol/emitters/descriptors/standard.html#get_string_descriptor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#usb_protocol.emitters.descriptors.standard.get_string_descriptor" title="Link to this definition"></a></dt>
+<dd><p>Generates a string descriptor for the relevant string.</p>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="usb_protocol.emitters.descriptors.cdc.html" class="btn btn-neutral float-left" title="usb_protocol.emitters.descriptors.cdc module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="usb_protocol.emitters.descriptors.uac1.html" class="btn btn-neutral float-right" title="usb_protocol.emitters.descriptors.uac1 module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

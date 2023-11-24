@@ -1,0 +1,7 @@
+usb\_protocol.emitters.descriptors.cdc module
+=============================================
+
+.. automodule:: usb_protocol.emitters.descriptors.cdc
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,7 @@
+usb\_protocol.emitters.descriptors.uac2 module
+==============================================
+
+.. automodule:: usb_protocol.emitters.descriptors.uac2
+   :members:
+   :undoc-members:
+   :show-inheritance:

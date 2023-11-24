@@ -1,0 +1,27 @@
+usb\_protocol.types package
+===========================
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   usb_protocol.types.descriptors
+   usb_protocol.types.superspeed
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 4
+
+   usb_protocol.types.descriptor
+
+Module contents
+---------------
+
+.. automodule:: usb_protocol.types
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>usb_protocol.types &mdash; usb_protocol 0.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=837179f8"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            usb_protocol
+          </a>
+              <div class="version">
+                0.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../README.html">USB Protocol Library for Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/modules.html">usb_protocol</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">usb_protocol</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">usb_protocol.types</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for usb_protocol.types</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="c1">#</span>
+<span class="c1"># This file is part of usb-protocol.</span>
+<span class="c1">#</span>
+<span class="sd">&quot;&quot;&quot; USB types -- defines enumerations that describe standard USB types &quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">IntEnum</span><span class="p">,</span> <span class="n">IntFlag</span>
+
+
+<div class="viewcode-block" id="USBDirection">
+<a class="viewcode-back" href="../../api/usb_protocol.types.html#usb_protocol.types.USBDirection">[docs]</a>
+<span class="k">class</span> <span class="nc">USBDirection</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Class representing USB directions. &quot;&quot;&quot;</span>
+    <span class="n">OUT</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">IN</span> <span class="o">=</span> <span class="mi">1</span>
+
+<div class="viewcode-block" id="USBDirection.is_in">
+<a class="viewcode-back" href="../../api/usb_protocol.types.html#usb_protocol.types.USBDirection.is_in">[docs]</a>
+    <span class="k">def</span> <span class="nf">is_in</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span> <span class="ow">is</span> <span class="bp">self</span><span class="o">.</span><span class="n">IN</span></div>
+
+
+<div class="viewcode-block" id="USBDirection.is_out">
+<a class="viewcode-back" href="../../api/usb_protocol.types.html#usb_protocol.types.USBDirection.is_out">[docs]</a>
+    <span class="k">def</span> <span class="nf">is_out</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span> <span class="ow">is</span> <span class="bp">self</span><span class="o">.</span><span class="n">OUT</span></div>
+
+
+<div class="viewcode-block" id="USBDirection.parse">
+<a class="viewcode-back" href="../../api/usb_protocol.types.html#usb_protocol.types.USBDirection.parse">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Helper that converts a numeric field into a direction. &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">value</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="USBDirection.from_request_type">
+<a class="viewcode-back" href="../../api/usb_protocol.types.html#usb_protocol.types.USBDirection.from_request_type">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_request_type</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">request_type_int</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Helper method that extracts the direction from a request_type integer. &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">request_type_int</span> <span class="o">&gt;&gt;</span> <span class="mi">7</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="USBDirection.from_endpoint_address">
+<a class="viewcode-back" href="../../api/usb_protocol.types.html#usb_protocol.types.USBDirection.from_endpoint_address">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_endpoint_address</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">address</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Helper method that extracts the direction from an endpoint address. &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">address</span> <span class="o">&gt;&gt;</span> <span class="mi">7</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="USBDirection.token">
+<a class="viewcode-back" href="../../api/usb_protocol.types.html#usb_protocol.types.USBDirection.token">[docs]</a>
+    <span class="k">def</span> <span class="nf">token</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Generates the token corresponding to the given direction. &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">USBPacketID</span><span class="o">.</span><span class="n">IN</span> <span class="k">if</span> <span class="p">(</span><span class="bp">self</span> <span class="ow">is</span> <span class="bp">self</span><span class="o">.</span><span class="n">IN</span><span class="p">)</span> <span class="k">else</span> <span class="n">USBPacketID</span><span class="o">.</span><span class="n">OUT</span></div>
+
+
+<div class="viewcode-block" id="USBDirection.reverse">
+<a class="viewcode-back" href="../../api/usb_protocol.types.html#usb_protocol.types.USBDirection.reverse">[docs]</a>
+    <span class="k">def</span> <span class="nf">reverse</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Returns the reverse of the given direction. &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">OUT</span> <span class="k">if</span> <span class="p">(</span><span class="bp">self</span> <span class="ow">is</span> <span class="bp">self</span><span class="o">.</span><span class="n">IN</span><span class="p">)</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">IN</span></div>
+
+
+
+<div class="viewcode-block" id="USBDirection.to_endpoint_address">
+<a class="viewcode-back" href="../../api/usb_protocol.types.html#usb_protocol.types.USBDirection.to_endpoint_address">[docs]</a>
+    <span class="k">def</span> <span class="nf">to_endpoint_address</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">endpoint_number</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Helper method that converts and endpoint_number to an address, given direction. &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_in</span><span class="p">():</span>
+            <span class="k">return</span> <span class="n">endpoint_number</span> <span class="o">|</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">7</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">endpoint_number</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="USBPIDCategory">
+<a class="viewcode-back" href="../../api/usb_protocol.types.html#usb_protocol.types.USBPIDCategory">[docs]</a>
+<span class="k">class</span> <span class="nc">USBPIDCategory</span><span class="p">(</span><span class="n">IntFlag</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Category constants for each of the groups that PIDs can fall under. &quot;&quot;&quot;</span>
+
+    <span class="n">SPECIAL</span>   <span class="o">=</span> <span class="mb">0b00</span>
+    <span class="n">TOKEN</span>     <span class="o">=</span> <span class="mb">0b01</span>
+    <span class="n">HANDSHAKE</span> <span class="o">=</span> <span class="mb">0b10</span>
+    <span class="n">DATA</span>      <span class="o">=</span> <span class="mb">0b11</span>
+
+    <span class="n">MASK</span>      <span class="o">=</span> <span class="mb">0b11</span></div>
+
+
+
+
+<div class="viewcode-block" id="USBPacketID">
+<a class="viewcode-back" href="../../api/usb_protocol.types.html#usb_protocol.types.USBPacketID">[docs]</a>
+<span class="k">class</span> <span class="nc">USBPacketID</span><span class="p">(</span><span class="n">IntFlag</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Enumeration specifying all of the valid USB PIDs we can handle. &quot;&quot;&quot;</span>
+
+    <span class="c1"># Token group (lsbs = 0b01).</span>
+    <span class="n">OUT</span>   <span class="o">=</span> <span class="mb">0b0001</span>
+    <span class="n">IN</span>    <span class="o">=</span> <span class="mb">0b1001</span>
+    <span class="n">SOF</span>   <span class="o">=</span> <span class="mb">0b0101</span>
+    <span class="n">SETUP</span> <span class="o">=</span> <span class="mb">0b1101</span>
+
+    <span class="c1"># Data group (lsbs = 0b11).</span>
+    <span class="n">DATA0</span> <span class="o">=</span> <span class="mb">0b0011</span>
+    <span class="n">DATA1</span> <span class="o">=</span> <span class="mb">0b1011</span>
+    <span class="n">DATA2</span> <span class="o">=</span> <span class="mb">0b0111</span>
+    <span class="n">MDATA</span> <span class="o">=</span> <span class="mb">0b1111</span>
+
+    <span class="c1"># Handshake group (lsbs = 0b10)</span>
+    <span class="n">ACK</span>   <span class="o">=</span> <span class="mb">0b0010</span>
+    <span class="n">NAK</span>   <span class="o">=</span> <span class="mb">0b1010</span>
+    <span class="n">STALL</span> <span class="o">=</span> <span class="mb">0b1110</span>
+    <span class="n">NYET</span>  <span class="o">=</span> <span class="mb">0b0110</span>
+
+    <span class="c1"># Special group.</span>
+    <span class="n">PRE</span>   <span class="o">=</span> <span class="mb">0b1100</span>
+    <span class="n">ERR</span>   <span class="o">=</span> <span class="mb">0b1100</span>
+    <span class="n">SPLIT</span> <span class="o">=</span> <span class="mb">0b1000</span>
+    <span class="n">PING</span>  <span class="o">=</span> <span class="mb">0b0100</span>
+
+    <span class="c1"># Flag representing that the PID seems invalid.</span>
+    <span class="n">PID_INVALID</span>   <span class="o">=</span> <span class="mb">0b10000</span>
+    <span class="n">PID_CORE_MASK</span> <span class="o">=</span> <span class="mb">0b01111</span>
+
+
+<div class="viewcode-block" id="USBPacketID.from_byte">
+<a class="viewcode-back" href="../../api/usb_protocol.types.html#usb_protocol.types.USBPacketID.from_byte">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_byte</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">byte</span><span class="p">,</span> <span class="n">skip_checks</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Creates a PID object from a byte. &quot;&quot;&quot;</span>
+
+        <span class="c1"># Convert the raw PID to an integer.</span>
+        <span class="n">pid_as_int</span> <span class="o">=</span> <span class="nb">int</span><span class="o">.</span><span class="n">from_bytes</span><span class="p">(</span><span class="n">byte</span><span class="p">,</span> <span class="n">byteorder</span><span class="o">=</span><span class="s1">&#39;little&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">from_int</span><span class="p">(</span><span class="n">pid_as_int</span><span class="p">,</span> <span class="n">skip_checks</span><span class="o">=</span><span class="n">skip_checks</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="USBPacketID.from_int">
+<a class="viewcode-back" href="../../api/usb_protocol.types.html#usb_protocol.types.USBPacketID.from_int">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_int</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">skip_checks</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Create a PID object from an integer. &quot;&quot;&quot;</span>
+
+        <span class="n">PID_MASK</span>           <span class="o">=</span> <span class="mb">0b1111</span>
+        <span class="n">INVERTED_PID_SHIFT</span> <span class="o">=</span> <span class="mi">4</span>
+
+        <span class="c1"># Pull out the PID and its inverse from the byte.</span>
+        <span class="n">pid</span>          <span class="o">=</span> <span class="bp">cls</span><span class="p">(</span><span class="n">value</span> <span class="o">&amp;</span> <span class="n">PID_MASK</span><span class="p">)</span>
+        <span class="n">inverted_pid</span> <span class="o">=</span> <span class="n">value</span> <span class="o">&gt;&gt;</span> <span class="n">INVERTED_PID_SHIFT</span>
+
+        <span class="c1"># If we&#39;re not skipping checks,</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">skip_checks</span><span class="p">:</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">pid</span> <span class="o">^</span> <span class="n">inverted_pid</span><span class="p">)</span> <span class="o">!=</span> <span class="n">PID_MASK</span><span class="p">:</span>
+                <span class="n">pid</span> <span class="o">|=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">PID_INVALID</span>
+
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">pid</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="USBPacketID.from_name">
+<a class="viewcode-back" href="../../api/usb_protocol.types.html#usb_protocol.types.USBPacketID.from_name">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_name</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Create a PID object from a string representation of its name. &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">[</span><span class="n">name</span><span class="p">]</span></div>
+
+
+
+<div class="viewcode-block" id="USBPacketID.parse">
+<a class="viewcode-back" href="../../api/usb_protocol.types.html#usb_protocol.types.USBPacketID.parse">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Attempt to create a PID object from a number, byte, or string. &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">from_byte</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">from_name</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">from_int</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">value</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="USBPacketID.category">
+<a class="viewcode-back" href="../../api/usb_protocol.types.html#usb_protocol.types.USBPacketID.category">[docs]</a>
+    <span class="k">def</span> <span class="nf">category</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Returns the USBPIDCategory that each given PID belongs to. &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">USBPIDCategory</span><span class="p">(</span><span class="bp">self</span> <span class="o">&amp;</span> <span class="n">USBPIDCategory</span><span class="o">.</span><span class="n">MASK</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="USBPacketID.is_data">
+<a class="viewcode-back" href="../../api/usb_protocol.types.html#usb_protocol.types.USBPacketID.is_data">[docs]</a>
+    <span class="k">def</span> <span class="nf">is_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Returns true iff the given PID represents a DATA packet. &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">category</span><span class="p">()</span> <span class="ow">is</span> <span class="n">USBPIDCategory</span><span class="o">.</span><span class="n">DATA</span></div>
+
+
+
+<div class="viewcode-block" id="USBPacketID.is_token">
+<a class="viewcode-back" href="../../api/usb_protocol.types.html#usb_protocol.types.USBPacketID.is_token">[docs]</a>
+    <span class="k">def</span> <span class="nf">is_token</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Returns true iff the given PID represents a token packet. &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">category</span><span class="p">()</span> <span class="ow">is</span> <span class="n">USBPIDCategory</span><span class="o">.</span><span class="n">TOKEN</span></div>
+
+
+
+<div class="viewcode-block" id="USBPacketID.is_handshake">
+<a class="viewcode-back" href="../../api/usb_protocol.types.html#usb_protocol.types.USBPacketID.is_handshake">[docs]</a>
+    <span class="k">def</span> <span class="nf">is_handshake</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Returns true iff the given PID represents a handshake packet. &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">category</span><span class="p">()</span> <span class="ow">is</span> <span class="n">USBPIDCategory</span><span class="o">.</span><span class="n">HANDSHAKE</span></div>
+
+
+
+<div class="viewcode-block" id="USBPacketID.is_invalid">
+<a class="viewcode-back" href="../../api/usb_protocol.types.html#usb_protocol.types.USBPacketID.is_invalid">[docs]</a>
+    <span class="k">def</span> <span class="nf">is_invalid</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Returns true if this object is an attempt to encapsulate an invalid PID. &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span> <span class="o">&amp;</span> <span class="bp">self</span><span class="o">.</span><span class="n">PID_INVALID</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="USBPacketID.direction">
+<a class="viewcode-back" href="../../api/usb_protocol.types.html#usb_protocol.types.USBPacketID.direction">[docs]</a>
+    <span class="k">def</span> <span class="nf">direction</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Get a USB direction from a PacketID. &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="bp">self</span> <span class="ow">is</span> <span class="bp">self</span><span class="o">.</span><span class="n">SOF</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+        <span class="k">if</span> <span class="bp">self</span> <span class="ow">is</span> <span class="bp">self</span><span class="o">.</span><span class="n">SETUP</span> <span class="ow">or</span> <span class="bp">self</span> <span class="ow">is</span> <span class="bp">self</span><span class="o">.</span><span class="n">OUT</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">USBDirection</span><span class="o">.</span><span class="n">OUT</span>
+
+        <span class="k">if</span> <span class="bp">self</span> <span class="ow">is</span> <span class="bp">self</span><span class="o">.</span><span class="n">IN</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">USBDirection</span><span class="o">.</span><span class="n">IN</span>
+
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;cannot determine the direction of a non-token PID&quot;</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="USBPacketID.summarize">
+<a class="viewcode-back" href="../../api/usb_protocol.types.html#usb_protocol.types.USBPacketID.summarize">[docs]</a>
+    <span class="k">def</span> <span class="nf">summarize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Return a summary of the given packet. &quot;&quot;&quot;</span>
+
+        <span class="c1"># By default, get the raw name.</span>
+        <span class="n">core_pid</span>  <span class="o">=</span> <span class="bp">self</span> <span class="o">&amp;</span> <span class="bp">self</span><span class="o">.</span><span class="n">PID_CORE_MASK</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">core_pid</span><span class="o">.</span><span class="n">name</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_invalid</span><span class="p">():</span>
+            <span class="k">return</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> (check-nibble invalid)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">name</span></div>
+
+
+
+<div class="viewcode-block" id="USBPacketID.byte">
+<a class="viewcode-back" href="../../api/usb_protocol.types.html#usb_protocol.types.USBPacketID.byte">[docs]</a>
+    <span class="k">def</span> <span class="nf">byte</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Return the PID&#39;s value with its upper nibble. &quot;&quot;&quot;</span>
+
+        <span class="n">inverted_pid</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">^</span> <span class="mb">0b1111</span>
+        <span class="n">full_pid</span>     <span class="o">=</span> <span class="p">(</span><span class="n">inverted_pid</span> <span class="o">&lt;&lt;</span> <span class="mi">4</span><span class="p">)</span> <span class="o">|</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">full_pid</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="USBRequestRecipient">
+<a class="viewcode-back" href="../../api/usb_protocol.types.html#usb_protocol.types.USBRequestRecipient">[docs]</a>
+<span class="k">class</span> <span class="nc">USBRequestRecipient</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Enumeration that describes each &#39;recipient&#39; of a USB request field. &quot;&quot;&quot;</span>
+
+    <span class="n">DEVICE</span>    <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">INTERFACE</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">ENDPOINT</span>  <span class="o">=</span> <span class="mi">2</span>
+    <span class="n">OTHER</span>     <span class="o">=</span> <span class="mi">3</span>
+
+    <span class="n">RESERVED</span>  <span class="o">=</span> <span class="mi">4</span>
+
+<div class="viewcode-block" id="USBRequestRecipient.from_integer">
+<a class="viewcode-back" href="../../api/usb_protocol.types.html#usb_protocol.types.USBRequestRecipient.from_integer">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_integer</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Special factory that correctly handles reserved values. &quot;&quot;&quot;</span>
+
+        <span class="c1"># If we have one of the reserved values; indicate so.</span>
+        <span class="k">if</span> <span class="mi">4</span> <span class="o">&lt;=</span> <span class="n">value</span> <span class="o">&lt;</span> <span class="mi">16</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">RESERVED</span>
+
+        <span class="c1"># Otherwise, translate the raw value.</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">value</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="USBRequestRecipient.from_request_type">
+<a class="viewcode-back" href="../../api/usb_protocol.types.html#usb_protocol.types.USBRequestRecipient.from_request_type">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_request_type</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">request_type_int</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Helper method that extracts the type from a request_type integer. &quot;&quot;&quot;</span>
+
+        <span class="n">MASK</span>  <span class="o">=</span> <span class="mb">0b11111</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">request_type_int</span> <span class="o">&amp;</span> <span class="n">MASK</span><span class="p">)</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="USBRequestType">
+<a class="viewcode-back" href="../../api/usb_protocol.types.html#usb_protocol.types.USBRequestType">[docs]</a>
+<span class="k">class</span> <span class="nc">USBRequestType</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Enumeration that describes each possible Type field for a USB request. &quot;&quot;&quot;</span>
+
+    <span class="n">STANDARD</span>  <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">CLASS</span>     <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">VENDOR</span>    <span class="o">=</span> <span class="mi">2</span>
+    <span class="n">RESERVED</span>  <span class="o">=</span> <span class="mi">3</span>
+
+
+<div class="viewcode-block" id="USBRequestType.from_request_type">
+<a class="viewcode-back" href="../../api/usb_protocol.types.html#usb_protocol.types.USBRequestType.from_request_type">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_request_type</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">request_type_int</span><span class="p">):</span>
+
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Helper method that extracts the type from a request_type integer. &quot;&quot;&quot;</span>
+        <span class="n">SHIFT</span> <span class="o">=</span> <span class="mi">5</span>
+        <span class="n">MASK</span>  <span class="o">=</span> <span class="mb">0b11</span>
+
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">((</span><span class="n">request_type_int</span> <span class="o">&gt;&gt;</span> <span class="n">SHIFT</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">MASK</span><span class="p">)</span></div>
+</div>
+
+
+
+
+<div class="viewcode-block" id="USBTransferType">
+<a class="viewcode-back" href="../../api/usb_protocol.types.html#usb_protocol.types.USBTransferType">[docs]</a>
+<span class="k">class</span> <span class="nc">USBTransferType</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+    <span class="n">CONTROL</span>     <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">ISOCHRONOUS</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">BULK</span>        <span class="o">=</span> <span class="mi">2</span>
+    <span class="n">INTERRUPT</span>   <span class="o">=</span> <span class="mi">3</span></div>
+
+
+
+<div class="viewcode-block" id="endpoint_number_from_address">
+<a class="viewcode-back" href="../../api/usb_protocol.types.html#usb_protocol.types.endpoint_number_from_address">[docs]</a>
+<span class="k">def</span> <span class="nf">endpoint_number_from_address</span><span class="p">(</span><span class="n">number</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">number</span> <span class="o">&amp;</span> <span class="mh">0x7F</span></div>
+
+
+
+<span class="n">LANGUAGE_NAMES</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="mh">0x0436</span><span class="p">:</span> <span class="s2">&quot;Afrikaans&quot;</span><span class="p">,</span>
+    <span class="mh">0x041c</span><span class="p">:</span> <span class="s2">&quot;Albanian&quot;</span><span class="p">,</span>
+    <span class="mh">0x0401</span><span class="p">:</span> <span class="s2">&quot;Arabic (Saudi Arabia)&quot;</span><span class="p">,</span>
+    <span class="mh">0x0801</span><span class="p">:</span> <span class="s2">&quot;Arabic (Iraq)&quot;</span><span class="p">,</span>
+    <span class="mh">0x0c01</span><span class="p">:</span> <span class="s2">&quot;Arabic (Egypt)&quot;</span><span class="p">,</span>
+    <span class="mh">0x1001</span><span class="p">:</span> <span class="s2">&quot;Arabic (Libya)&quot;</span><span class="p">,</span>
+    <span class="mh">0x1401</span><span class="p">:</span> <span class="s2">&quot;Arabic (Algeria)&quot;</span><span class="p">,</span>
+    <span class="mh">0x1801</span><span class="p">:</span> <span class="s2">&quot;Arabic (Morocco)&quot;</span><span class="p">,</span>
+    <span class="mh">0x1c01</span><span class="p">:</span> <span class="s2">&quot;Arabic (Tunisia)&quot;</span><span class="p">,</span>
+    <span class="mh">0x2001</span><span class="p">:</span> <span class="s2">&quot;Arabic (Oman)&quot;</span><span class="p">,</span>
+    <span class="mh">0x2401</span><span class="p">:</span> <span class="s2">&quot;Arabic (Yemen)&quot;</span><span class="p">,</span>
+    <span class="mh">0x2801</span><span class="p">:</span> <span class="s2">&quot;Arabic (Syria)&quot;</span><span class="p">,</span>
+    <span class="mh">0x2c01</span><span class="p">:</span> <span class="s2">&quot;Arabic (Jordan)&quot;</span><span class="p">,</span>
+    <span class="mh">0x3001</span><span class="p">:</span> <span class="s2">&quot;Arabic (Lebanon)&quot;</span><span class="p">,</span>
+    <span class="mh">0x3401</span><span class="p">:</span> <span class="s2">&quot;Arabic (Kuwait)&quot;</span><span class="p">,</span>
+    <span class="mh">0x3801</span><span class="p">:</span> <span class="s2">&quot;Arabic (U.A.E.)&quot;</span><span class="p">,</span>
+    <span class="mh">0x3c01</span><span class="p">:</span> <span class="s2">&quot;Arabic (Bahrain)&quot;</span><span class="p">,</span>
+    <span class="mh">0x4001</span><span class="p">:</span> <span class="s2">&quot;Arabic (Qatar)&quot;</span><span class="p">,</span>
+    <span class="mh">0x042b</span><span class="p">:</span> <span class="s2">&quot;Armenian&quot;</span><span class="p">,</span>
+    <span class="mh">0x044d</span><span class="p">:</span> <span class="s2">&quot;Assamese&quot;</span><span class="p">,</span>
+    <span class="mh">0x042c</span><span class="p">:</span> <span class="s2">&quot;Azeri (Latin)&quot;</span><span class="p">,</span>
+    <span class="mh">0x082c</span><span class="p">:</span> <span class="s2">&quot;Azeri (Cyrillic)&quot;</span><span class="p">,</span>
+    <span class="mh">0x042d</span><span class="p">:</span> <span class="s2">&quot;Basque&quot;</span><span class="p">,</span>
+    <span class="mh">0x0423</span><span class="p">:</span> <span class="s2">&quot;Belarussian&quot;</span><span class="p">,</span>
+    <span class="mh">0x0445</span><span class="p">:</span> <span class="s2">&quot;Bengali&quot;</span><span class="p">,</span>
+    <span class="mh">0x0402</span><span class="p">:</span> <span class="s2">&quot;Bulgarian&quot;</span><span class="p">,</span>
+    <span class="mh">0x0455</span><span class="p">:</span> <span class="s2">&quot;Burmese&quot;</span><span class="p">,</span>
+    <span class="mh">0x0403</span><span class="p">:</span> <span class="s2">&quot;Catalan&quot;</span><span class="p">,</span>
+    <span class="mh">0x0404</span><span class="p">:</span> <span class="s2">&quot;Chinese (Taiwan)&quot;</span><span class="p">,</span>
+    <span class="mh">0x0804</span><span class="p">:</span> <span class="s2">&quot;Chinese (PRC)&quot;</span><span class="p">,</span>
+    <span class="mh">0x0c04</span><span class="p">:</span> <span class="s2">&quot;Chinese (Hong Kong SAR, PRC)&quot;</span><span class="p">,</span>
+    <span class="mh">0x1004</span><span class="p">:</span> <span class="s2">&quot;Chinese (Singapore)&quot;</span><span class="p">,</span>
+    <span class="mh">0x1404</span><span class="p">:</span> <span class="s2">&quot;Chinese (Macau SAR)&quot;</span><span class="p">,</span>
+    <span class="mh">0x041a</span><span class="p">:</span> <span class="s2">&quot;Croatian&quot;</span><span class="p">,</span>
+    <span class="mh">0x0405</span><span class="p">:</span> <span class="s2">&quot;Czech&quot;</span><span class="p">,</span>
+    <span class="mh">0x0406</span><span class="p">:</span> <span class="s2">&quot;Danish&quot;</span><span class="p">,</span>
+    <span class="mh">0x0413</span><span class="p">:</span> <span class="s2">&quot;Dutch (Netherlands)&quot;</span><span class="p">,</span>
+    <span class="mh">0x0813</span><span class="p">:</span> <span class="s2">&quot;Dutch (Belgium)&quot;</span><span class="p">,</span>
+    <span class="mh">0x0409</span><span class="p">:</span> <span class="s2">&quot;English (US)&quot;</span><span class="p">,</span>
+    <span class="mh">0x0809</span><span class="p">:</span> <span class="s2">&quot;English (United Kingdom)&quot;</span><span class="p">,</span>
+    <span class="mh">0x0c09</span><span class="p">:</span> <span class="s2">&quot;English (Australian)&quot;</span><span class="p">,</span>
+    <span class="mh">0x1009</span><span class="p">:</span> <span class="s2">&quot;English (Canadian)&quot;</span><span class="p">,</span>
+    <span class="mh">0x1409</span><span class="p">:</span> <span class="s2">&quot;English (New Zealand)&quot;</span><span class="p">,</span>
+    <span class="mh">0x1809</span><span class="p">:</span> <span class="s2">&quot;English (Ireland)&quot;</span><span class="p">,</span>
+    <span class="mh">0x1c09</span><span class="p">:</span> <span class="s2">&quot;English (South Africa)&quot;</span><span class="p">,</span>
+    <span class="mh">0x2009</span><span class="p">:</span> <span class="s2">&quot;English (Jamaica)&quot;</span><span class="p">,</span>
+    <span class="mh">0x2409</span><span class="p">:</span> <span class="s2">&quot;English (Caribbean)&quot;</span><span class="p">,</span>
+    <span class="mh">0x2809</span><span class="p">:</span> <span class="s2">&quot;English (Belize)&quot;</span><span class="p">,</span>
+    <span class="mh">0x2c09</span><span class="p">:</span> <span class="s2">&quot;English (Trinidad)&quot;</span><span class="p">,</span>
+    <span class="mh">0x3009</span><span class="p">:</span> <span class="s2">&quot;English (Zimbabwe)&quot;</span><span class="p">,</span>
+    <span class="mh">0x3409</span><span class="p">:</span> <span class="s2">&quot;English (Philippines)&quot;</span><span class="p">,</span>
+    <span class="mh">0x0425</span><span class="p">:</span> <span class="s2">&quot;Estonian&quot;</span><span class="p">,</span>
+    <span class="mh">0x0438</span><span class="p">:</span> <span class="s2">&quot;Faeroese&quot;</span><span class="p">,</span>
+    <span class="mh">0x0429</span><span class="p">:</span> <span class="s2">&quot;Farsi&quot;</span><span class="p">,</span>
+    <span class="mh">0x040b</span><span class="p">:</span> <span class="s2">&quot;Finnish&quot;</span><span class="p">,</span>
+    <span class="mh">0x040c</span><span class="p">:</span> <span class="s2">&quot;French (Standard)&quot;</span><span class="p">,</span>
+    <span class="mh">0x080c</span><span class="p">:</span> <span class="s2">&quot;French (Belgian)&quot;</span><span class="p">,</span>
+    <span class="mh">0x0c0c</span><span class="p">:</span> <span class="s2">&quot;French (Canadian)&quot;</span><span class="p">,</span>
+    <span class="mh">0x100c</span><span class="p">:</span> <span class="s2">&quot;French (Switzerland)&quot;</span><span class="p">,</span>
+    <span class="mh">0x140c</span><span class="p">:</span> <span class="s2">&quot;French (Luxembourg)&quot;</span><span class="p">,</span>
+    <span class="mh">0x180c</span><span class="p">:</span> <span class="s2">&quot;French (Monaco)&quot;</span><span class="p">,</span>
+    <span class="mh">0x0437</span><span class="p">:</span> <span class="s2">&quot;Georgian&quot;</span><span class="p">,</span>
+    <span class="mh">0x0407</span><span class="p">:</span> <span class="s2">&quot;German (Standard)&quot;</span><span class="p">,</span>
+    <span class="mh">0x0807</span><span class="p">:</span> <span class="s2">&quot;German (Switzerland)&quot;</span><span class="p">,</span>
+    <span class="mh">0x0c07</span><span class="p">:</span> <span class="s2">&quot;German (Austria)&quot;</span><span class="p">,</span>
+    <span class="mh">0x1007</span><span class="p">:</span> <span class="s2">&quot;German (Luxembourg)&quot;</span><span class="p">,</span>
+    <span class="mh">0x1407</span><span class="p">:</span> <span class="s2">&quot;German (Liechtenstein)&quot;</span><span class="p">,</span>
+    <span class="mh">0x0408</span><span class="p">:</span> <span class="s2">&quot;Greek&quot;</span><span class="p">,</span>
+    <span class="mh">0x0447</span><span class="p">:</span> <span class="s2">&quot;Gujarati&quot;</span><span class="p">,</span>
+    <span class="mh">0x040d</span><span class="p">:</span> <span class="s2">&quot;Hebrew&quot;</span><span class="p">,</span>
+    <span class="mh">0x0439</span><span class="p">:</span> <span class="s2">&quot;Hindi&quot;</span><span class="p">,</span>
+    <span class="mh">0x040e</span><span class="p">:</span> <span class="s2">&quot;Hungarian&quot;</span><span class="p">,</span>
+    <span class="mh">0x040f</span><span class="p">:</span> <span class="s2">&quot;Icelandic&quot;</span><span class="p">,</span>
+    <span class="mh">0x0421</span><span class="p">:</span> <span class="s2">&quot;Indonesian&quot;</span><span class="p">,</span>
+    <span class="mh">0x0410</span><span class="p">:</span> <span class="s2">&quot;Italian (Standard)&quot;</span><span class="p">,</span>
+    <span class="mh">0x0810</span><span class="p">:</span> <span class="s2">&quot;Italian (Switzerland)&quot;</span><span class="p">,</span>
+    <span class="mh">0x0411</span><span class="p">:</span> <span class="s2">&quot;Japanese&quot;</span><span class="p">,</span>
+    <span class="mh">0x044b</span><span class="p">:</span> <span class="s2">&quot;Kannada&quot;</span><span class="p">,</span>
+    <span class="mh">0x0860</span><span class="p">:</span> <span class="s2">&quot;Kashmiri (India)&quot;</span><span class="p">,</span>
+    <span class="mh">0x043f</span><span class="p">:</span> <span class="s2">&quot;Kazakh&quot;</span><span class="p">,</span>
+    <span class="mh">0x0457</span><span class="p">:</span> <span class="s2">&quot;Konkani&quot;</span><span class="p">,</span>
+    <span class="mh">0x0412</span><span class="p">:</span> <span class="s2">&quot;Korean&quot;</span><span class="p">,</span>
+    <span class="mh">0x0812</span><span class="p">:</span> <span class="s2">&quot;Korean (Johab)&quot;</span><span class="p">,</span>
+    <span class="mh">0x0426</span><span class="p">:</span> <span class="s2">&quot;Latvian&quot;</span><span class="p">,</span>
+    <span class="mh">0x0427</span><span class="p">:</span> <span class="s2">&quot;Lithuanian&quot;</span><span class="p">,</span>
+    <span class="mh">0x0827</span><span class="p">:</span> <span class="s2">&quot;Lithuanian (Classic)&quot;</span><span class="p">,</span>
+    <span class="mh">0x042f</span><span class="p">:</span> <span class="s2">&quot;Macedonian&quot;</span><span class="p">,</span>
+    <span class="mh">0x043e</span><span class="p">:</span> <span class="s2">&quot;Malay (Malaysian)&quot;</span><span class="p">,</span>
+    <span class="mh">0x083e</span><span class="p">:</span> <span class="s2">&quot;Malay (Brunei Darussalam)&quot;</span><span class="p">,</span>
+    <span class="mh">0x044c</span><span class="p">:</span> <span class="s2">&quot;Malayalam&quot;</span><span class="p">,</span>
+    <span class="mh">0x0458</span><span class="p">:</span> <span class="s2">&quot;Manipuri&quot;</span><span class="p">,</span>
+    <span class="mh">0x044e</span><span class="p">:</span> <span class="s2">&quot;Marathi&quot;</span><span class="p">,</span>
+    <span class="mh">0x0861</span><span class="p">:</span> <span class="s2">&quot;Nepali (India)&quot;</span><span class="p">,</span>
+    <span class="mh">0x0414</span><span class="p">:</span> <span class="s2">&quot;Norwegian (Bokmal)&quot;</span><span class="p">,</span>
+    <span class="mh">0x0814</span><span class="p">:</span> <span class="s2">&quot;Norwegian (Nynorsk)&quot;</span><span class="p">,</span>
+    <span class="mh">0x0448</span><span class="p">:</span> <span class="s2">&quot;Oriya&quot;</span><span class="p">,</span>
+    <span class="mh">0x0415</span><span class="p">:</span> <span class="s2">&quot;Polish&quot;</span><span class="p">,</span>
+    <span class="mh">0x0416</span><span class="p">:</span> <span class="s2">&quot;Portuguese (Brazil)&quot;</span><span class="p">,</span>
+    <span class="mh">0x0816</span><span class="p">:</span> <span class="s2">&quot;Portuguese (Standard)&quot;</span><span class="p">,</span>
+    <span class="mh">0x0446</span><span class="p">:</span> <span class="s2">&quot;Punjabi&quot;</span><span class="p">,</span>
+    <span class="mh">0x0418</span><span class="p">:</span> <span class="s2">&quot;Romanian&quot;</span><span class="p">,</span>
+    <span class="mh">0x0419</span><span class="p">:</span> <span class="s2">&quot;Russian&quot;</span><span class="p">,</span>
+    <span class="mh">0x044f</span><span class="p">:</span> <span class="s2">&quot;Sanskrit&quot;</span><span class="p">,</span>
+    <span class="mh">0x0c1a</span><span class="p">:</span> <span class="s2">&quot;Serbian (Cyrillic)&quot;</span><span class="p">,</span>
+    <span class="mh">0x081a</span><span class="p">:</span> <span class="s2">&quot;Serbian (Latin)&quot;</span><span class="p">,</span>
+    <span class="mh">0x0459</span><span class="p">:</span> <span class="s2">&quot;Sindhi&quot;</span><span class="p">,</span>
+    <span class="mh">0x041b</span><span class="p">:</span> <span class="s2">&quot;Slovak&quot;</span><span class="p">,</span>
+    <span class="mh">0x0424</span><span class="p">:</span> <span class="s2">&quot;Slovenian&quot;</span><span class="p">,</span>
+    <span class="mh">0x040a</span><span class="p">:</span> <span class="s2">&quot;Spanish (Traditional Sort)&quot;</span><span class="p">,</span>
+    <span class="mh">0x080a</span><span class="p">:</span> <span class="s2">&quot;Spanish (Mexican)&quot;</span><span class="p">,</span>
+    <span class="mh">0x0c0a</span><span class="p">:</span> <span class="s2">&quot;Spanish (Modern Sort)&quot;</span><span class="p">,</span>
+    <span class="mh">0x100a</span><span class="p">:</span> <span class="s2">&quot;Spanish (Guatemala)&quot;</span><span class="p">,</span>
+    <span class="mh">0x140a</span><span class="p">:</span> <span class="s2">&quot;Spanish (Costa Rica)&quot;</span><span class="p">,</span>
+    <span class="mh">0x180a</span><span class="p">:</span> <span class="s2">&quot;Spanish (Panama)&quot;</span><span class="p">,</span>
+    <span class="mh">0x1c0a</span><span class="p">:</span> <span class="s2">&quot;Spanish (Dominican Republic)&quot;</span><span class="p">,</span>
+    <span class="mh">0x200a</span><span class="p">:</span> <span class="s2">&quot;Spanish (Venezuela)&quot;</span><span class="p">,</span>
+    <span class="mh">0x240a</span><span class="p">:</span> <span class="s2">&quot;Spanish (Colombia)&quot;</span><span class="p">,</span>
+    <span class="mh">0x280a</span><span class="p">:</span> <span class="s2">&quot;Spanish (Peru)&quot;</span><span class="p">,</span>
+    <span class="mh">0x2c0a</span><span class="p">:</span> <span class="s2">&quot;Spanish (Argentina)&quot;</span><span class="p">,</span>
+    <span class="mh">0x300a</span><span class="p">:</span> <span class="s2">&quot;Spanish (Ecuador)&quot;</span><span class="p">,</span>
+    <span class="mh">0x340a</span><span class="p">:</span> <span class="s2">&quot;Spanish (Chile)&quot;</span><span class="p">,</span>
+    <span class="mh">0x380a</span><span class="p">:</span> <span class="s2">&quot;Spanish (Uruguay)&quot;</span><span class="p">,</span>
+    <span class="mh">0x3c0a</span><span class="p">:</span> <span class="s2">&quot;Spanish (Paraguay)&quot;</span><span class="p">,</span>
+    <span class="mh">0x400a</span><span class="p">:</span> <span class="s2">&quot;Spanish (Bolivia)&quot;</span><span class="p">,</span>
+    <span class="mh">0x440a</span><span class="p">:</span> <span class="s2">&quot;Spanish (El Salvador)&quot;</span><span class="p">,</span>
+    <span class="mh">0x480a</span><span class="p">:</span> <span class="s2">&quot;Spanish (Honduras)&quot;</span><span class="p">,</span>
+    <span class="mh">0x4c0a</span><span class="p">:</span> <span class="s2">&quot;Spanish (Nicaragua)&quot;</span><span class="p">,</span>
+    <span class="mh">0x500a</span><span class="p">:</span> <span class="s2">&quot;Spanish (Puerto Rico)&quot;</span><span class="p">,</span>
+    <span class="mh">0x0430</span><span class="p">:</span> <span class="s2">&quot;Sutu&quot;</span><span class="p">,</span>
+    <span class="mh">0x0441</span><span class="p">:</span> <span class="s2">&quot;Swahili (Kenya)&quot;</span><span class="p">,</span>
+    <span class="mh">0x041d</span><span class="p">:</span> <span class="s2">&quot;Swedish&quot;</span><span class="p">,</span>
+    <span class="mh">0x081d</span><span class="p">:</span> <span class="s2">&quot;Swedish (Finland)&quot;</span><span class="p">,</span>
+    <span class="mh">0x0449</span><span class="p">:</span> <span class="s2">&quot;Tamil&quot;</span><span class="p">,</span>
+    <span class="mh">0x0444</span><span class="p">:</span> <span class="s2">&quot;Tatar (Tatarstan)&quot;</span><span class="p">,</span>
+    <span class="mh">0x044a</span><span class="p">:</span> <span class="s2">&quot;Telugu&quot;</span><span class="p">,</span>
+    <span class="mh">0x041e</span><span class="p">:</span> <span class="s2">&quot;Thai&quot;</span><span class="p">,</span>
+    <span class="mh">0x041f</span><span class="p">:</span> <span class="s2">&quot;Turkish&quot;</span><span class="p">,</span>
+    <span class="mh">0x0422</span><span class="p">:</span> <span class="s2">&quot;Ukrainian&quot;</span><span class="p">,</span>
+    <span class="mh">0x0420</span><span class="p">:</span> <span class="s2">&quot;Urdu (Pakistan)&quot;</span><span class="p">,</span>
+    <span class="mh">0x0820</span><span class="p">:</span> <span class="s2">&quot;Urdu (India)&quot;</span><span class="p">,</span>
+    <span class="mh">0x0443</span><span class="p">:</span> <span class="s2">&quot;Uzbek (Latin)&quot;</span><span class="p">,</span>
+    <span class="mh">0x0843</span><span class="p">:</span> <span class="s2">&quot;Uzbek (Cyrillic)&quot;</span><span class="p">,</span>
+    <span class="mh">0x042a</span><span class="p">:</span> <span class="s2">&quot;Vietnamese&quot;</span><span class="p">,</span>
+    <span class="mh">0x04ff</span><span class="p">:</span> <span class="s2">&quot;HID (Usage Data Descriptor)&quot;</span><span class="p">,</span>
+    <span class="mh">0xf0ff</span><span class="p">:</span> <span class="s2">&quot;HID (Vendor Defined 1)&quot;</span><span class="p">,</span>
+    <span class="mh">0xf4ff</span><span class="p">:</span> <span class="s2">&quot;HID (Vendor Defined 2)&quot;</span><span class="p">,</span>
+    <span class="mh">0xf8ff</span><span class="p">:</span> <span class="s2">&quot;HID (Vendor Defined 3)&quot;</span><span class="p">,</span>
+    <span class="mh">0xfcff</span><span class="p">:</span> <span class="s2">&quot;HID (Vendor Defined 4)&quot;</span><span class="p">,</span>
+<span class="p">}</span>
+
+
+<div class="viewcode-block" id="LanguageIDs">
+<a class="viewcode-back" href="../../api/usb_protocol.types.html#usb_protocol.types.LanguageIDs">[docs]</a>
+<span class="k">class</span> <span class="nc">LanguageIDs</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+    <span class="n">AFRIKAANS</span>                  <span class="o">=</span> <span class="mh">0X0436</span>
+    <span class="n">ALBANIAN</span>                   <span class="o">=</span> <span class="mh">0X041C</span>
+    <span class="n">ARABIC_SAUDI_ARABIA</span>        <span class="o">=</span> <span class="mh">0X0401</span>
+    <span class="n">ARABIC_IRAQ</span>                <span class="o">=</span> <span class="mh">0X0801</span>
+    <span class="n">ARABIC_EGYPT</span>               <span class="o">=</span> <span class="mh">0X0C01</span>
+    <span class="n">ARABIC_LIBYA</span>               <span class="o">=</span> <span class="mh">0X1001</span>
+    <span class="n">ARABIC_ALGERIA</span>             <span class="o">=</span> <span class="mh">0X1401</span>
+    <span class="n">ARABIC_MOROCCO</span>             <span class="o">=</span> <span class="mh">0X1801</span>
+    <span class="n">ARABIC_TUNISIA</span>             <span class="o">=</span> <span class="mh">0X1C01</span>
+    <span class="n">ARABIC_OMAN</span>                <span class="o">=</span> <span class="mh">0X2001</span>
+    <span class="n">ARABIC_YEMEN</span>               <span class="o">=</span> <span class="mh">0X2401</span>
+    <span class="n">ARABIC_SYRIA</span>               <span class="o">=</span> <span class="mh">0X2801</span>
+    <span class="n">ARABIC_JORDAN</span>              <span class="o">=</span> <span class="mh">0X2C01</span>
+    <span class="n">ARABIC_LEBANON</span>             <span class="o">=</span> <span class="mh">0X3001</span>
+    <span class="n">ARABIC_KUWAIT</span>              <span class="o">=</span> <span class="mh">0X3401</span>
+    <span class="n">ARABIC_UAE</span>                 <span class="o">=</span> <span class="mh">0X3801</span>
+    <span class="n">ARABIC_BAHRAIN</span>             <span class="o">=</span> <span class="mh">0X3C01</span>
+    <span class="n">ARABIC_QATAR</span>               <span class="o">=</span> <span class="mh">0X4001</span>
+    <span class="n">ARMENIAN</span>                   <span class="o">=</span> <span class="mh">0X042B</span>
+    <span class="n">ASSAMESE</span>                   <span class="o">=</span> <span class="mh">0X044D</span>
+    <span class="n">AZERI_LATIN</span>                <span class="o">=</span> <span class="mh">0X042C</span>
+    <span class="n">AZERI_CYRILLIC</span>             <span class="o">=</span> <span class="mh">0X082C</span>
+    <span class="n">BASQUE</span>                     <span class="o">=</span> <span class="mh">0X042D</span>
+    <span class="n">BELARUSSIAN</span>                <span class="o">=</span> <span class="mh">0X0423</span>
+    <span class="n">BENGALI</span>                    <span class="o">=</span> <span class="mh">0X0445</span>
+    <span class="n">BULGARIAN</span>                  <span class="o">=</span> <span class="mh">0X0402</span>
+    <span class="n">BURMESE</span>                    <span class="o">=</span> <span class="mh">0X0455</span>
+    <span class="n">CATALAN</span>                    <span class="o">=</span> <span class="mh">0X0403</span>
+    <span class="n">CHINESE_TAIWAN</span>             <span class="o">=</span> <span class="mh">0X0404</span>
+    <span class="n">CHINESE_PRC</span>                <span class="o">=</span> <span class="mh">0X0804</span>
+    <span class="n">CHINESE_HONG_KONG</span>          <span class="o">=</span> <span class="mh">0X0C04</span>
+    <span class="n">CHINESE_SINGAPORE</span>          <span class="o">=</span> <span class="mh">0X1004</span>
+    <span class="n">CHINESE_MACAU_SAR</span>          <span class="o">=</span> <span class="mh">0X1404</span>
+    <span class="n">CROATIAN</span>                   <span class="o">=</span> <span class="mh">0X041A</span>
+    <span class="n">CZECH</span>                      <span class="o">=</span> <span class="mh">0X0405</span>
+    <span class="n">DANISH</span>                     <span class="o">=</span> <span class="mh">0X0406</span>
+    <span class="n">DUTCH_NETHERLANDS</span>          <span class="o">=</span> <span class="mh">0X0413</span>
+    <span class="n">DUTCH_BELGIUM</span>              <span class="o">=</span> <span class="mh">0X0813</span>
+    <span class="n">ENGLISH_US</span>                 <span class="o">=</span> <span class="mh">0X0409</span>
+    <span class="n">ENGLISH_UNITED_KINGDOM</span>     <span class="o">=</span> <span class="mh">0X0809</span>
+    <span class="n">ENGLISH_AUSTRALIAN</span>         <span class="o">=</span> <span class="mh">0X0C09</span>
+    <span class="n">ENGLISH_CANADIAN</span>           <span class="o">=</span> <span class="mh">0X1009</span>
+    <span class="n">ENGLISH_NEW_ZEALAND</span>        <span class="o">=</span> <span class="mh">0X1409</span>
+    <span class="n">ENGLISH_IRELAND</span>            <span class="o">=</span> <span class="mh">0X1809</span>
+    <span class="n">ENGLISH_SOUTH_AFRICA</span>       <span class="o">=</span> <span class="mh">0X1C09</span>
+    <span class="n">ENGLISH_JAMAICA</span>            <span class="o">=</span> <span class="mh">0X2009</span>
+    <span class="n">ENGLISH_CARIBBEAN</span>          <span class="o">=</span> <span class="mh">0X2409</span>
+    <span class="n">ENGLISH_BELIZE</span>             <span class="o">=</span> <span class="mh">0X2809</span>
+    <span class="n">ENGLISH_TRINIDAD</span>           <span class="o">=</span> <span class="mh">0X2C09</span>
+    <span class="n">ENGLISH_ZIMBABWE</span>           <span class="o">=</span> <span class="mh">0X3009</span>
+    <span class="n">ENGLISH_PHILIPPINES</span>        <span class="o">=</span> <span class="mh">0X3409</span>
+    <span class="n">ESTONIAN</span>                   <span class="o">=</span> <span class="mh">0X0425</span>
+    <span class="n">FAEROESE</span>                   <span class="o">=</span> <span class="mh">0X0438</span>
+    <span class="n">FARSI</span>                      <span class="o">=</span> <span class="mh">0X0429</span>
+    <span class="n">FINNISH</span>                    <span class="o">=</span> <span class="mh">0X040B</span>
+    <span class="n">FRENCH_STANDARD</span>            <span class="o">=</span> <span class="mh">0X040C</span>
+    <span class="n">FRENCH_BELGIAN</span>             <span class="o">=</span> <span class="mh">0X080C</span>
+    <span class="n">FRENCH_CANADIAN</span>            <span class="o">=</span> <span class="mh">0X0C0C</span>
+    <span class="n">FRENCH_SWITZERLAND</span>         <span class="o">=</span> <span class="mh">0X100C</span>
+    <span class="n">FRENCH_LUXEMBOURG</span>          <span class="o">=</span> <span class="mh">0X140C</span>
+    <span class="n">FRENCH_MONACO</span>              <span class="o">=</span> <span class="mh">0X180C</span>
+    <span class="n">GEORGIAN</span>                   <span class="o">=</span> <span class="mh">0X0437</span>
+    <span class="n">GERMAN_STANDARD</span>            <span class="o">=</span> <span class="mh">0X0407</span>
+    <span class="n">GERMAN_SWITZERLAND</span>         <span class="o">=</span> <span class="mh">0X0807</span>
+    <span class="n">GERMAN_AUSTRIA</span>             <span class="o">=</span> <span class="mh">0X0C07</span>
+    <span class="n">GERMAN_LUXEMBOURG</span>          <span class="o">=</span> <span class="mh">0X1007</span>
+    <span class="n">GERMAN_LIECHTENSTEIN</span>       <span class="o">=</span> <span class="mh">0X1407</span>
+    <span class="n">GREEK</span>                      <span class="o">=</span> <span class="mh">0X0408</span>
+    <span class="n">GUJARATI</span>                   <span class="o">=</span> <span class="mh">0X0447</span>
+    <span class="n">HEBREW</span>                     <span class="o">=</span> <span class="mh">0X040D</span>
+    <span class="n">HINDI</span>                      <span class="o">=</span> <span class="mh">0X0439</span>
+    <span class="n">HUNGARIAN</span>                  <span class="o">=</span> <span class="mh">0X040E</span>
+    <span class="n">ICELANDIC</span>                  <span class="o">=</span> <span class="mh">0X040F</span>
+    <span class="n">INDONESIAN</span>                 <span class="o">=</span> <span class="mh">0X0421</span>
+    <span class="n">ITALIAN_STANDARD</span>           <span class="o">=</span> <span class="mh">0X0410</span>
+    <span class="n">ITALIAN_SWITZERLAND</span>        <span class="o">=</span> <span class="mh">0X0810</span>
+    <span class="n">JAPANESE</span>                   <span class="o">=</span> <span class="mh">0X0411</span>
+    <span class="n">KANNADA</span>                    <span class="o">=</span> <span class="mh">0X044B</span>
+    <span class="n">KASHMIRI_INDIA</span>             <span class="o">=</span> <span class="mh">0X0860</span>
+    <span class="n">KAZAKH</span>                     <span class="o">=</span> <span class="mh">0X043F</span>
+    <span class="n">KONKANI</span>                    <span class="o">=</span> <span class="mh">0X0457</span>
+    <span class="n">KOREAN</span>                     <span class="o">=</span> <span class="mh">0X0412</span>
+    <span class="n">KOREAN_JOHAB</span>               <span class="o">=</span> <span class="mh">0X0812</span>
+    <span class="n">LATVIAN</span>                    <span class="o">=</span> <span class="mh">0X0426</span>
+    <span class="n">LITHUANIAN</span>                 <span class="o">=</span> <span class="mh">0X0427</span>
+    <span class="n">LITHUANIAN_CLASSIC</span>         <span class="o">=</span> <span class="mh">0X0827</span>
+    <span class="n">MACEDONIAN</span>                 <span class="o">=</span> <span class="mh">0X042F</span>
+    <span class="n">MALAY_MALAYSIAN</span>            <span class="o">=</span> <span class="mh">0X043E</span>
+    <span class="n">MALAY_BRUNEI_DARUSSALAM</span>    <span class="o">=</span> <span class="mh">0X083E</span>
+    <span class="n">MALAYALAM</span>                  <span class="o">=</span> <span class="mh">0X044C</span>
+    <span class="n">MANIPURI</span>                   <span class="o">=</span> <span class="mh">0X0458</span>
+    <span class="n">MARATHI</span>                    <span class="o">=</span> <span class="mh">0X044E</span>
+    <span class="n">NEPALI_INDIA</span>               <span class="o">=</span> <span class="mh">0X0861</span>
+    <span class="n">NORWEGIAN_BOKMAL</span>           <span class="o">=</span> <span class="mh">0X0414</span>
+    <span class="n">NORWEGIAN_NYNORSK</span>          <span class="o">=</span> <span class="mh">0X0814</span>
+    <span class="n">ORIYA</span>                      <span class="o">=</span> <span class="mh">0X0448</span>
+    <span class="n">POLISH</span>                     <span class="o">=</span> <span class="mh">0X0415</span>
+    <span class="n">PORTUGUESE_BRAZIL</span>          <span class="o">=</span> <span class="mh">0X0416</span>
+    <span class="n">PORTUGUESE_STANDARD</span>        <span class="o">=</span> <span class="mh">0X0816</span>
+    <span class="n">PUNJABI</span>                    <span class="o">=</span> <span class="mh">0X0446</span>
+    <span class="n">ROMANIAN</span>                   <span class="o">=</span> <span class="mh">0X0418</span>
+    <span class="n">RUSSIAN</span>                    <span class="o">=</span> <span class="mh">0X0419</span>
+    <span class="n">SANSKRIT</span>                   <span class="o">=</span> <span class="mh">0X044F</span>
+    <span class="n">SERBIAN_CYRILLIC</span>           <span class="o">=</span> <span class="mh">0X0C1A</span>
+    <span class="n">SERBIAN_LATIN</span>              <span class="o">=</span> <span class="mh">0X081A</span>
+    <span class="n">SINDHI</span>                     <span class="o">=</span> <span class="mh">0X0459</span>
+    <span class="n">SLOVAK</span>                     <span class="o">=</span> <span class="mh">0X041B</span>
+    <span class="n">SLOVENIAN</span>                  <span class="o">=</span> <span class="mh">0X0424</span>
+    <span class="n">SPANISH_TRADITIONAL_SORT</span>   <span class="o">=</span> <span class="mh">0X040A</span>
+    <span class="n">SPANISH_MEXICAN</span>            <span class="o">=</span> <span class="mh">0X080A</span>
+    <span class="n">SPANISH_MODERN_SORT</span>        <span class="o">=</span> <span class="mh">0X0C0A</span>
+    <span class="n">SPANISH_GUATEMALA</span>          <span class="o">=</span> <span class="mh">0X100A</span>
+    <span class="n">SPANISH_COSTA_RICA</span>         <span class="o">=</span> <span class="mh">0X140A</span>
+    <span class="n">SPANISH_PANAMA</span>             <span class="o">=</span> <span class="mh">0X180A</span>
+    <span class="n">SPANISH_DOMINICAN_REPUBLIC</span> <span class="o">=</span> <span class="mh">0X1C0A</span>
+    <span class="n">SPANISH_VENEZUELA</span>          <span class="o">=</span> <span class="mh">0X200A</span>
+    <span class="n">SPANISH_COLOMBIA</span>           <span class="o">=</span> <span class="mh">0X240A</span>
+    <span class="n">SPANISH_PERU</span>               <span class="o">=</span> <span class="mh">0X280A</span>
+    <span class="n">SPANISH_ARGENTINA</span>          <span class="o">=</span> <span class="mh">0X2C0A</span>
+    <span class="n">SPANISH_ECUADOR</span>            <span class="o">=</span> <span class="mh">0X300A</span>
+    <span class="n">SPANISH_CHILE</span>              <span class="o">=</span> <span class="mh">0X340A</span>
+    <span class="n">SPANISH_URUGUAY</span>            <span class="o">=</span> <span class="mh">0X380A</span>
+    <span class="n">SPANISH_PARAGUAY</span>           <span class="o">=</span> <span class="mh">0X3C0A</span>
+    <span class="n">SPANISH_BOLIVIA</span>            <span class="o">=</span> <span class="mh">0X400A</span>
+    <span class="n">SPANISH_EL_SALVADOR</span>        <span class="o">=</span> <span class="mh">0X440A</span>
+    <span class="n">SPANISH_HONDURAS</span>           <span class="o">=</span> <span class="mh">0X480A</span>
+    <span class="n">SPANISH_NICARAGUA</span>          <span class="o">=</span> <span class="mh">0X4C0A</span>
+    <span class="n">SPANISH_PUERTO_RICO</span>        <span class="o">=</span> <span class="mh">0X500A</span>
+    <span class="n">SUTU</span>                       <span class="o">=</span> <span class="mh">0X0430</span>
+    <span class="n">SWAHILI_KENYA</span>              <span class="o">=</span> <span class="mh">0X0441</span>
+    <span class="n">SWEDISH</span>                    <span class="o">=</span> <span class="mh">0X041D</span>
+    <span class="n">SWEDISH_FINLAND</span>            <span class="o">=</span> <span class="mh">0X081D</span>
+    <span class="n">TAMIL</span>                      <span class="o">=</span> <span class="mh">0X0449</span>
+    <span class="n">TATAR_TATARSTAN</span>            <span class="o">=</span> <span class="mh">0X0444</span>
+    <span class="n">TELUGU</span>                     <span class="o">=</span> <span class="mh">0X044A</span>
+    <span class="n">THAI</span>                       <span class="o">=</span> <span class="mh">0X041E</span>
+    <span class="n">TURKISH</span>                    <span class="o">=</span> <span class="mh">0X041F</span>
+    <span class="n">UKRAINIAN</span>                  <span class="o">=</span> <span class="mh">0X0422</span>
+    <span class="n">URDU_PAKISTAN</span>              <span class="o">=</span> <span class="mh">0X0420</span>
+    <span class="n">URDU_INDIA</span>                 <span class="o">=</span> <span class="mh">0X0820</span>
+    <span class="n">UZBEK_LATIN</span>                <span class="o">=</span> <span class="mh">0X0443</span>
+    <span class="n">UZBEK_CYRILLIC</span>             <span class="o">=</span> <span class="mh">0X0843</span>
+    <span class="n">VIETNAMESE</span>                 <span class="o">=</span> <span class="mh">0X042A</span>
+    <span class="n">HID_USAGE_DATA_DESCRIPTOR</span>  <span class="o">=</span> <span class="mh">0X04FF</span>
+    <span class="n">HID_VENDOR_DEFINED_1</span>       <span class="o">=</span> <span class="mh">0XF0FF</span>
+    <span class="n">HID_VENDOR_DEFINED_2</span>       <span class="o">=</span> <span class="mh">0XF4FF</span>
+    <span class="n">HID_VENDOR_DEFINED_3</span>       <span class="o">=</span> <span class="mh">0XF8FF</span>
+    <span class="n">HID_VENDOR_DEFINED_4</span>       <span class="o">=</span> <span class="mh">0XFCFF</span></div>
+
+
+
+<div class="viewcode-block" id="DescriptorTypes">
+<a class="viewcode-back" href="../../api/usb_protocol.types.html#usb_protocol.types.DescriptorTypes">[docs]</a>
+<span class="k">class</span> <span class="nc">DescriptorTypes</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+    <span class="n">DEVICE</span>                    <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">CONFIGURATION</span>             <span class="o">=</span> <span class="mi">2</span>
+    <span class="n">STRING</span>                    <span class="o">=</span> <span class="mi">3</span>
+    <span class="n">INTERFACE</span>                 <span class="o">=</span> <span class="mi">4</span>
+    <span class="n">ENDPOINT</span>                  <span class="o">=</span> <span class="mi">5</span>
+    <span class="n">DEVICE_QUALIFIER</span>          <span class="o">=</span> <span class="mi">6</span>
+    <span class="n">OTHER_SPEED_CONFIGURATION</span> <span class="o">=</span> <span class="mi">7</span>
+    <span class="n">INTERFACE_POWER</span>           <span class="o">=</span> <span class="mi">8</span>
+    <span class="n">HID</span>                       <span class="o">=</span> <span class="mi">33</span>
+    <span class="n">REPORT</span>                    <span class="o">=</span> <span class="mi">34</span></div>
+
+
+
+<div class="viewcode-block" id="USBSynchronizationType">
+<a class="viewcode-back" href="../../api/usb_protocol.types.html#usb_protocol.types.USBSynchronizationType">[docs]</a>
+<span class="k">class</span> <span class="nc">USBSynchronizationType</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+    <span class="n">NONE</span>         <span class="o">=</span> <span class="mh">0x00</span>
+    <span class="n">ASYNC</span>        <span class="o">=</span> <span class="mh">0x01</span>
+    <span class="n">ADAPTIVE</span>     <span class="o">=</span> <span class="mh">0x02</span>
+    <span class="n">SYNCHRONOUS</span>  <span class="o">=</span> <span class="mh">0x03</span></div>
+
+
+
+<div class="viewcode-block" id="USBUsageType">
+<a class="viewcode-back" href="../../api/usb_protocol.types.html#usb_protocol.types.USBUsageType">[docs]</a>
+<span class="k">class</span> <span class="nc">USBUsageType</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+    <span class="n">DATA</span>              <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">FEEDBACK</span>          <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">IMPLICIT_FEEDBACK</span> <span class="o">=</span> <span class="mi">2</span></div>
+
+
+
+<div class="viewcode-block" id="USBStandardRequests">
+<a class="viewcode-back" href="../../api/usb_protocol.types.html#usb_protocol.types.USBStandardRequests">[docs]</a>
+<span class="k">class</span> <span class="nc">USBStandardRequests</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+    <span class="n">GET_STATUS</span>        <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">CLEAR_FEATURE</span>     <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">SET_FEATURE</span>       <span class="o">=</span> <span class="mi">3</span>
+    <span class="n">SET_ADDRESS</span>       <span class="o">=</span> <span class="mi">5</span>
+    <span class="n">GET_DESCRIPTOR</span>    <span class="o">=</span> <span class="mi">6</span>
+    <span class="n">SET_DESCRIPTOR</span>    <span class="o">=</span> <span class="mi">7</span>
+    <span class="n">GET_CONFIGURATION</span> <span class="o">=</span> <span class="mi">8</span>
+    <span class="n">SET_CONFIGURATION</span> <span class="o">=</span> <span class="mi">9</span>
+    <span class="n">GET_INTERFACE</span>     <span class="o">=</span> <span class="mi">10</span>
+    <span class="n">SET_INTERFACE</span>     <span class="o">=</span> <span class="mi">11</span>
+    <span class="n">SYNCH_FRAME</span>       <span class="o">=</span> <span class="mi">12</span>
+
+    <span class="c1"># USB3 only.</span>
+    <span class="n">SET_ENCRYPTION</span>       <span class="o">=</span> <span class="mi">13</span>
+    <span class="n">GET_ENCRYPTION</span>       <span class="o">=</span> <span class="mi">14</span>
+    <span class="n">SET_HANDSHAKE</span>        <span class="o">=</span> <span class="mi">15</span>
+    <span class="n">GET_HANDSHAKE</span>        <span class="o">=</span> <span class="mi">16</span>
+    <span class="n">SET_CONNECTION</span>       <span class="o">=</span> <span class="mi">17</span>
+    <span class="n">SET_SECURITY_DATA</span>    <span class="o">=</span> <span class="mi">18</span>
+    <span class="n">GET_SECURITY_DATA</span>    <span class="o">=</span> <span class="mi">19</span>
+    <span class="n">SET_WUSB_DATA</span>        <span class="o">=</span> <span class="mi">20</span>
+    <span class="n">LOOPBACK_DATA_WRITE</span>  <span class="o">=</span> <span class="mi">21</span>
+    <span class="n">LOOPBACK_DATA_READ</span>   <span class="o">=</span> <span class="mi">22</span>
+    <span class="n">SET_INTERFACE_DS</span>     <span class="o">=</span> <span class="mi">23</span>
+    <span class="n">SET_SEL</span>              <span class="o">=</span> <span class="mi">48</span>
+    <span class="n">SET_ISOCH_DELAY</span>      <span class="o">=</span> <span class="mi">49</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
