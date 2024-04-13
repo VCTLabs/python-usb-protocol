@@ -26,7 +26,7 @@ from ..descriptor import (
 from ..descriptors.uac1 import (
     AudioClassSpecificACInterfaceDescriptorSubtypes,
     AudioClassSpecificDescriptorTypes,
-    AudioInterfaceClassCode,
+    AudioInterfaceClassCodes,
     AudioInterfaceSubclassCodes,
 )
 from .standard import StandardDescriptorNumbers
